@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="Agent 五类核心指标">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#1c2733">Agent 评测：看整条任务，不只文本</text>
+  <rect x="70" y="88" width="540" height="44" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.8"/>
+  <text x="105" y="115" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">任务成功率</text>
+  <text x="370" y="115" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">目标达成的比例（最重要）</text>
+  <rect x="70" y="140" width="540" height="44" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.8"/>
+  <text x="105" y="167" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">轨迹质量</text>
+  <text x="370" y="167" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">规划是否合理、工具使用是否高效</text>
+  <rect x="70" y="192" width="540" height="44" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.8"/>
+  <text x="105" y="219" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">效率成本</text>
+  <text x="370" y="219" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">轮数、token、耗时</text>
+  <rect x="70" y="244" width="540" height="44" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.8"/>
+  <text x="105" y="271" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b23a2a">安全性</text>
+  <text x="370" y="271" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">是否触发危险操作/越权</text>
+  <rect x="70" y="296" width="540" height="44" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.8"/>
+  <text x="105" y="323" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">鲁棒性</text>
+  <text x="370" y="323" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">干扰/异常下仍能完成</text>
+  <rect x="70" y="350" width="540" height="42" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="340" y="374" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b26a00">高效零风险优于绕远但有风险</text>
+</svg>

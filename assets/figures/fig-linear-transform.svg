@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="320" viewBox="0 0 680 320" role="img" aria-label="矩阵作为线性变换：单位正方形被拉伸">
+  <defs>
+    <marker id="lt-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#9db4cc"/>
+    </marker>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e6ebf0" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- 左侧：原正方形 -->
+  <rect x="0" y="0" width="330" height="320" rx="0" fill="#fafbfc"/>
+  <rect x="40" y="70" width="270" height="240" fill="url(#grid)"/>
+  <polygon points="80,290 140,290 140,230 80,230" fill="#0f4c81" opacity="0.18" stroke="#0f4c81" stroke-width="2"/>
+  <line x1="80" y1="290" x2="140" y2="290" stroke="#0f4c81" stroke-width="2.5" marker-end="url(#lt-arrow)"/>
+  <line x1="80" y1="290" x2="80" y2="230" stroke="#0f4c81" stroke-width="2.5" marker-end="url(#lt-arrow)"/>
+  <circle cx="80" cy="290" r="3.5" fill="#33475b"/>
+  <text x="96" y="308" font-family="sans-serif" font-size="13" fill="#5e6b7a">e₁=(1,0)</text>
+  <text x="30" y="228" font-family="sans-serif" font-size="13" fill="#5e6b7a">e₂=(0,1)</text>
+  <text x="60" y="66" font-family="sans-serif" font-size="13" fill="#5e6b7a">以 e₁、e₂ 为边的正方形</text>
+  <text x="90" y="314" font-family="sans-serif" font-size="13" fill="#5e6b7a">变换前：轴对齐</text>
+
+  <!-- 箭头 -->
+  <text x="350" y="170" font-family="sans-serif" font-size="26" fill="#9db4cc">→</text>
+
+  <!-- 右侧：变换后的平行四边形（1 单位 = 60px，与左侧同比例） -->
+  <rect x="380" y="0" width="300" height="320" rx="0" fill="#fafbfc"/>
+  <rect x="415" y="45" width="260" height="260" fill="url(#grid)"/>
+  <!-- 变换：剪切+拉伸，基向量 e1 -> (2,1), e2 -> (1,2.4) -->
+  <polygon points="445,295 565,235 625,191 505,151" fill="#0e7c66" opacity="0.2" stroke="#0e7c66" stroke-width="2"/>
+  <line x1="445" y1="295" x2="565" y2="235" stroke="#f3c7a8" stroke-width="3"/>
+  <line x1="445" y1="295" x2="505" y2="151" stroke="#f3c7a8" stroke-width="3"/>
+  <circle cx="445" cy="295" r="3.5" fill="#33475b"/>
+  <text x="560" y="256" font-family="sans-serif" font-size="13" fill="#b96b2a">A·e₁ = (2,1)</text>
+  <text x="470" y="145" font-family="sans-serif" font-size="13" fill="#b96b2a">A·e₂ = (1,2.4)</text>
+  <text x="430" y="314" font-family="sans-serif" font-size="13" fill="#5e6b7a">变换后：面积按 |det(A)| 缩放</text>
+
+  <text x="380" y="24" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">w = A·x</text>
+  <text x="40" y="24" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">x</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="状态恢复：快照与日志重放">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1c2733">定期快照 + 日志增量，覆盖崩溃间隙</text>
+  <rect x="60" y="90" width="180" height="80" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="150" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0f4c81">日志重放 replay</text>
+  <text x="150" y="140" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">体积小，按序重放</text>
+  <text x="150" y="158" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">重建模型视角</text>
+  <rect x="60" y="190" width="180" height="80" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="150" y="218" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b26a00">快照 snapshot</text>
+  <text x="150" y="240" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">一键存盘、恢复快</text>
+  <text x="150" y="258" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">体积大</text>
+  <rect x="280" y="90" width="340" height="120" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="450" y="122" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">resume 从中断点继续</text>
+  <text x="450" y="148" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">恢复会话/计划/进度</text>
+  <text x="450" y="172" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">不重复已完成工作</text>
+  <text x="450" y="196" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#0e7c66">省时、省 token</text>
+  <rect x="280" y="230" width="340" height="80" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="450" y="256" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">fork 从历史点分叉</text>
+  <text x="450" y="280" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">复制会话成新起点</text>
+  <text x="450" y="302" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#5b3aa6">换个方式处理/做实验</text>
+  <rect x="280" y="330" width="340" height="46" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.8"/>
+  <text x="450" y="356" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#b23a2a">外部副作用不可纯撤回，需审批/回滚协同</text>
+  <text x="150" y="348" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#b26a00">崩溃后从快照 + 日志续上</text>
+</svg>

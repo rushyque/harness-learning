@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="多头注意力：把 Q/K/V 分成多个头各自计算，再拼接变换融合">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">多头注意力：多个头并行关注不同关系，最后拼接融合</text>
+  <rect x="90" y="96" width="120" height="200" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="150" y="130" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">Q</text>
+  <text x="150" y="160" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">K</text>
+  <text x="150" y="190" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">V</text>
+  <text x="150" y="252" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">输入</text>
+  <rect x="300" y="84" width="150" height="56" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="375" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">头 1</text>
+  <text x="375" y="126" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">邻近词</text>
+  <line x1="210" y1="130" x2="290.2" y2="114.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M290.2 114.0 L291.2 118.9 L289.2 109.1 Z" fill="#0e7c66"/>
+  <rect x="300" y="164" width="150" height="56" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="375" y="188" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">头 2</text>
+  <text x="375" y="206" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">共指关系</text>
+  <line x1="210" y1="210" x2="290.2" y2="194.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M290.2 194.0 L291.2 198.9 L289.2 189.1 Z" fill="#0e7c66"/>
+  <rect x="300" y="244" width="150" height="56" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="375" y="268" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">头 3</text>
+  <text x="375" y="286" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">语法结构</text>
+  <line x1="210" y1="290" x2="290.2" y2="274.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M290.2 274.0 L291.2 278.9 L289.2 269.1 Z" fill="#0e7c66"/>
+  <rect x="480" y="120" width="120" height="180" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="540" y="205" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#5b3aa6">拼接</text>
+  <text x="540" y="228" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#5b3aa6">+ 线性变换</text>
+  <line x1="450" y1="112" x2="474.7" y2="151.5" stroke="#5b3aa6" stroke-width="2"/>
+  <path d="M474.7 151.5 L470.5 154.2 L478.9 148.9 Z" fill="#5b3aa6"/>
+  <line x1="450" y1="192" x2="470.0" y2="190.7" stroke="#5b3aa6" stroke-width="2"/>
+  <path d="M470.0 190.7 L470.4 195.7 L469.7 185.7 Z" fill="#5b3aa6"/>
+  <line x1="450" y1="272" x2="475.0" y2="228.7" stroke="#5b3aa6" stroke-width="2"/>
+  <path d="M475.0 228.7 L479.3 231.2 L470.7 226.2 Z" fill="#5b3aa6"/>
+  <text x="340.0" y="340" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">每个头学不同的关注模式：有的看语法、有的看共指、有的看邻近词</text>
+  <text x="340.0" y="372" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">相比单一注意力，多头让模型同时捕捉多种关系，表达更丰富</text>
+</svg>

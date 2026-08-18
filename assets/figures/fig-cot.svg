@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="思维链 CoT：让中间步骤显式浮现">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#1c2733">Chain-of-Thought：先一步步想，再给答案</text>
+  <rect x="55" y="90" width="280" height="140" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="195" y="118" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#b26a00">直接答（容易错）</text>
+  <text x="195" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#33475b">“答案是 42”</text>
+  <text x="195" y="174" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">一步到位，可能跳步</text>
+  <rect x="345" y="90" width="280" height="140" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="485" y="118" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">思维链（更稳）</text>
+  <text x="485" y="146" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#0e7c66">第 1 步：...</text>
+  <text x="485" y="168" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#0e7c66">第 2 步：...</text>
+  <text x="485" y="190" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">第 3 步：因此答案是 42</text>
+  <text x="485" y="216" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#5e6b7a">中间步骤外化成可读文本</text>
+  <rect x="55" y="250" width="570" height="70" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.5"/>
+  <text x="340" y="276" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">拆成小步 → 每步更简单 → 组合后更可靠</text>
+  <text x="340" y="300" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">few-shot 给例子，或“Let's think step by step”</text>
+  <text x="340.0" y="350" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">也是 Agent“先规划再行动”的理论基础</text>
+</svg>

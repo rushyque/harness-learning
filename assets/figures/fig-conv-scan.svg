@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" role="img" aria-label="卷积：3×3 滤波器在输入图上滑动扫描，产生对应位置的响应">
+  <rect x="0" y="0" width="680" height="420" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">卷积：3×3 滤波器滑过整张图，输出局部模式响应</text>
+  <rect x="50" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="90" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="130" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="170" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="210" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="50" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="90" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="130" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="170" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="210" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="50" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="90" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="130" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="170" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="210" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="50" y="190" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="90" y="190" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="130" y="190" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="170" y="190" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="210" y="190" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="50" y="230" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="90" y="230" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="130" y="230" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="170" y="230" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="210" y="230" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <text x="150.0" y="58" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">输入图像（5×5）</text>
+  <rect x="90" y="110" width="120" height="120" rx="3" fill="#ffffff" stroke="#b26a00" stroke-width="2.5"/>
+  <rect x="330" y="120" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="353.0" y="148.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">1</text>
+  <rect x="376" y="120" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="399.0" y="148.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">0</text>
+  <rect x="422" y="120" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="445.0" y="148.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">-1</text>
+  <rect x="330" y="166" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="353.0" y="194.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">1</text>
+  <rect x="376" y="166" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="399.0" y="194.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">0</text>
+  <rect x="422" y="166" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="445.0" y="194.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">-1</text>
+  <rect x="330" y="212" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="353.0" y="240.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">1</text>
+  <rect x="376" y="212" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="399.0" y="240.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">0</text>
+  <rect x="422" y="212" width="46" height="46" rx="3" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="445.0" y="240.0" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">-1</text>
+  <text x="399.0" y="104" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">滤波器 K（竖边缘）</text>
+  <text x="399.0" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">9 个权重全局共享</text>
+  <line x1="210" y1="170.0" x2="320.0" y2="179.2" stroke="#b26a00" stroke-width="2"/>
+  <path d="M320.0 179.2 L319.6 184.2 L320.4 174.2 Z" fill="#b26a00"/>
+  <rect x="560" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="600" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="640" y="70" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="560" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="600" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="640" y="110" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="560" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="600" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <rect x="640" y="150" width="40" height="40" rx="2" fill="#ffffff" stroke="#9db4cc" stroke-width="1"/>
+  <text x="620.0" y="58" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">响应图（3×3）</text>
+  <line x1="476" y1="189.0" x2="544.1" y2="136.1" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M544.1 136.1 L547.2 140.1 L541.0 132.2 Z" fill="#0f4c81"/>
+  <text x="340.0" y="400" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">每个位置把窗口像素与滤波器逐元素相乘求和，就得到一个输出数</text></svg>

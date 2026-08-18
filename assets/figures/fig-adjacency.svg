@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="无向图与它的邻接矩阵一一对应">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+
+  <text x="40" y="42" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">图 ↔ 邻接矩阵：同一信息，两种表示</text>
+  <text x="120" y="74" font-family="sans-serif" font-size="13" fill="#33475b">无向图（4 节点环形）</text>
+
+  <circle cx="180" cy="150" r="22" fill="#eef4fb" stroke="#0f4c81" stroke-width="2.5"/>
+     <text x="180" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">0</text>
+  <circle cx="300" cy="90" r="22" fill="#eef4fb" stroke="#0f4c81" stroke-width="2.5"/>
+     <text x="300" y="95" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">1</text>
+  <circle cx="400" cy="160" r="22" fill="#eef4fb" stroke="#0f4c81" stroke-width="2.5"/>
+     <text x="400" y="165" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">2</text>
+  <circle cx="290" cy="260" r="22" fill="#eef4fb" stroke="#0f4c81" stroke-width="2.5"/>
+     <text x="290" y="265" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f4c81">3</text><line x1="180" y1="150" x2="300" y2="90" stroke="#9db4cc" stroke-width="2.5"/>
+  <line x1="300" y1="90" x2="400" y2="160" stroke="#9db4cc" stroke-width="2.5"/>
+  <line x1="400" y1="160" x2="290" y2="260" stroke="#9db4cc" stroke-width="2.5"/>
+  <line x1="290" y1="260" x2="180" y2="150" stroke="#9db4cc" stroke-width="2.5"/>
+
+  <text x="530" y="74" font-family="sans-serif" font-size="13" fill="#33475b">邻接矩阵 A（对称）</text>
+  <rect x="452" y="120" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="472" y="145" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="492" y="120" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="512" y="145" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="532" y="120" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="552" y="145" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="572" y="120" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="592" y="145" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="452" y="160" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="472" y="185" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="492" y="160" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="512" y="185" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="532" y="160" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="552" y="185" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="572" y="160" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="592" y="185" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="452" y="200" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="472" y="225" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="492" y="200" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="512" y="225" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="532" y="200" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="552" y="225" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="572" y="200" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="592" y="225" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="452" y="240" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="472" y="265" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="492" y="240" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="512" y="265" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text><rect x="532" y="240" width="40" height="40" rx="7" fill="#0e7c66" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="552" y="265" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">1</text><rect x="572" y="240" width="40" height="40" rx="7" fill="#ffffff" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="592" y="265" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#8a97a6">0</text>
+  <text x="440" y="145" text-anchor="end" font-family="sans-serif" font-size="13" fill="#5e6b7a">0</text>
+  <text x="440" y="185" text-anchor="end" font-family="sans-serif" font-size="13" fill="#5e6b7a">1</text>
+  <text x="440" y="225" text-anchor="end" font-family="sans-serif" font-size="13" fill="#5e6b7a">2</text>
+  <text x="440" y="265" text-anchor="end" font-family="sans-serif" font-size="13" fill="#5e6b7a">3</text>
+  <text x="472" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#5e6b7a">0</text>
+  <text x="512" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#5e6b7a">1</text>
+  <text x="552" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#5e6b7a">2</text>
+  <text x="592" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#5e6b7a">3</text>
+
+  <text x="40" y="384" font-family="sans-serif" font-size="13" fill="#5e6b7a">有边记 1，无边记 0；无向图矩阵对称。矩阵让图能直接套用特征分解、SVD 等线性代数工具</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="scaled dot-product attention 数学流程">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">Scaled Dot-Product Attention：四步计算</text>
+  <rect x="15" y="110" width="110" height="90" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="70" y="140" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">1. 打分</text>
+  <text x="70" y="166" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">Q · Kᵀ</text>
+  <text x="70" y="188" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">相关分数</text>
+  <rect x="185" y="110" width="110" height="90" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="240" y="140" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">2. 缩放</text>
+  <text x="240" y="166" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">÷ √d_k</text>
+  <text x="240" y="188" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">防 softmax 饱和</text>
+  <rect x="355" y="110" width="110" height="90" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="410" y="140" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">3. 归一化</text>
+  <text x="410" y="166" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">softmax</text>
+  <text x="410" y="188" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">权重，和为 1</text>
+  <rect x="525" y="110" width="110" height="90" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="580" y="140" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">4. 加权求和</text>
+  <text x="580" y="166" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">Σ w·V</text>
+  <text x="580" y="188" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">输出表示</text>
+  <line x1="125" y1="155" x2="175.0" y2="155.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M175.0 155.0 L175.0 160.0 L175.0 150.0 Z" fill="#0f4c81"/>
+  <line x1="295" y1="155" x2="345.0" y2="155.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M345.0 155.0 L345.0 160.0 L345.0 150.0 Z" fill="#0f4c81"/>
+  <line x1="465" y1="155" x2="515.0" y2="155.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M515.0 155.0 L515.0 160.0 L515.0 150.0 Z" fill="#0f4c81"/>
+  <rect x="70" y="240" width="560" height="60" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.5"/>
+  <text x="350" y="268" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b23a2a">为什么缩放：点积随维度 d_k 变大而变大</text>
+  <text x="350" y="290" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#33475b">不缩放会让 softmax 变“一热”、梯度趋近 0</text>
+  <text x="340.0" y="340" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">输出 = 各 value 按“相关性权重”加权平均</text>
+  <text x="340.0" y="370" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">权重由 query 与 key 的匹配度动态决定</text>
+</svg>
