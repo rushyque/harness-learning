@@ -151,6 +151,7 @@ function pageHtml(htmlRel, assets, title, body) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)} · Agent 知识图谱</title>
+	<link rel="stylesheet" href="${assets}/docsify/docsify.min.css">
 <link rel="stylesheet" href="${assets}/styles.css">
 <link rel="stylesheet" href="${assets}/katex/katex.min.css">
 <link rel="stylesheet" href="${assets}/static.css">
@@ -204,6 +205,7 @@ mkdirSync(join(OUT, 'assets'), { recursive: true });
 copyFileSync(join(SRC, 'assets', 'styles.css'), join(OUT, 'assets', 'styles.css'));
 
 
+copyDir(join(SRC, 'assets', 'docsify'), join(OUT, 'assets', 'docsify'));
 copyFileSync(join(BUILD, 'static.css'), join(OUT, 'assets', 'static.css'));
 
 // build pages
