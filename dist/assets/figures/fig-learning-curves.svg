@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="学习曲线：欠拟合与过拟合的训练/验证误差">
+  <rect x="0" y="0" width="680" height="360" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">学习曲线：训练误差 vs 验证误差</text>
+  <text x="191.0" y="58" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#33475b">欠拟合（高偏差）</text>
+  <line x1="46" y1="244" x2="336" y2="244" stroke="#9db4cc" stroke-width="1.5"/>
+  <line x1="46" y1="78" x2="46" y2="244" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="191.0" y="262" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">训练样本数 →</text>
+  <text x="34" y="88" text-anchor="end" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">误差</text>
+  <path d="M 46.0,193.3 L 75.0,193.3 L 104.0,193.3 L 133.0,193.3 L 162.0,193.3 L 191.0,193.3 L 220.0,193.3 L 249.0,193.3 L 278.0,193.3 L 307.0,193.3 L 336.0,193.3" fill="none" stroke="#0f4c81" stroke-width="3"/>
+  <path d="M 46.0,178.6 L 75.0,178.6 L 104.0,178.6 L 133.0,178.6 L 162.0,178.6 L 191.0,178.6 L 220.0,178.6 L 249.0,178.6 L 278.0,178.6 L 307.0,178.6 L 336.0,178.6" fill="none" stroke="#0e7c66" stroke-width="3"/>
+  <text x="324" y="188.3" text-anchor="end" font-family="sans-serif" font-size="12" font-weight="700" fill="#0f4c81">训练</text>
+  <text x="324" y="210.56" text-anchor="end" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">验证</text>
+  <text x="191.0" y="284" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#33475b">两线都高且贴近</text>
+  <text x="505.0" y="58" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#33475b">过拟合（高方差）</text>
+  <line x1="360" y1="244" x2="650" y2="244" stroke="#9db4cc" stroke-width="1.5"/>
+  <line x1="360" y1="78" x2="360" y2="244" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="505.0" y="262" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">训练样本数 →</text>
+  <text x="348" y="88" text-anchor="end" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">误差</text>
+  <path d="M 360.0,88.0 L 389.0,88.0 L 418.0,88.0 L 447.0,88.0 L 476.0,88.0 L 505.0,88.0 L 534.0,88.0 L 563.0,88.0 L 592.0,88.0 L 621.0,88.0 L 650.0,88.0" fill="none" stroke="#0f4c81" stroke-width="3"/>
+  <path d="M 360.0,230.7 L 389.0,223.7 L 418.0,216.8 L 447.0,209.8 L 476.0,202.8 L 505.0,195.9 L 534.0,188.9 L 563.0,181.9 L 592.0,174.9 L 621.0,168.0 L 650.0,161.0" fill="none" stroke="#0e7c66" stroke-width="3"/>
+  <text x="638" y="82.96" text-anchor="end" font-family="sans-serif" font-size="12" font-weight="700" fill="#0f4c81">训练</text>
+  <text x="638" y="175.0" text-anchor="end" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">验证</text>
+  <text x="505.0" y="284" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#33475b">训练低、验证高、有沟</text>
+  <text x="340.0" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="400" fill="#5e6b7a">偏差高 → 加能力；方差高 → 加数据或正则</text>
+  <text x="340.0" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="400" fill="#5e6b7a">验证误差先降后升的“V 形”是过拟合信号，可在拐点早停</text>
+</svg>

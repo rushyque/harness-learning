@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>语言模型的起点：从统计到&amp;quot;预测下一个词&amp;quot; · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%B5%B7%E7%82%B9%EF%BC%9A%E4%BB%8E%E7%BB%9F%E8%AE%A1%E5%88%B0%22%E9%A2%84%E6%B5%8B%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%AF%8D%22">语言模型的起点：从统计到&quot;预测下一个词&quot;</h1>
+<blockquote>
+<p>目标：建立&quot;语言模型 = 一键预测下一个词概率&quot;的心智模型。读完这一页，你能从 n-gram 讲清楚语言模型的目标函数，并明白它和大语言模型（LLM）的关系。</p>
+</blockquote>
+<h2 id="%E4%B8%80%E5%88%87%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BB%8E%22%E7%BB%9F%E8%AE%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%22%E5%BC%80%E5%A7%8B">一切为什么从&quot;统计语言模型&quot;开始</h2>
+<p>人类理解语言的能力看起来可以拆成很多子任务：语法、语义、常识、推理。但在计算机看来，这些都没法直接&quot;喂&quot;给模型。机器学习需要一个<strong>明确的目标</strong>。</p>
+<p>统计语言模型（Statistical Language Model）给了 NLP 一个奇迹般的简洁目标：</p>
+<blockquote>
+<p>给定一句话的前面一部分，模型预测下一个最可能出现的词。</p>
+</blockquote>
+<p>也就是建模：</p>
+<pre><code class="language-text">P(下一个词 | 已经看到的词)
+</code></pre>
+<p>这个目标妙在：</p>
+<ul>
+<li><strong>自监督</strong>：不需要人工标注。海量文本里，每个词本来就有&quot;真实答案&quot;（它就是紧接着出现的那个词）。</li>
+<li><strong>可扩展</strong>：互联网上有无穷的文本，语料越大自监督数据越多。</li>
+<li><strong>一石多鸟</strong>：要&quot;猜对下一个词&quot;，模型其实被迫掌握了语法、语义、常识、推理。因为只有真理解这些，才能预测得准。</li>
+</ul>
+<p>你把&quot;预测下一个词&quot;练到极致，得到的**大语言模型（LLM）**做翻译、摘要、问答全部由此而来。这是 <a href="../06-llm-fundamentals/README.html">06 LLM 原理</a> 的种子。</p>
+<h2 id="%E5%85%A8%E5%BA%8F%E5%88%97%E6%A6%82%E7%8E%87%EF%BC%9A%E9%93%BE%E5%BC%8F%E5%88%86%E8%A7%A3">全序列概率：链式分解</h2>
+<p>一个更完整的问题是：给定一段词序列，整个序列出现的概率是多少？</p>
+<p>用条件概率的<strong>链式规则</strong>把它拆成&quot;逐词的条件概率&quot;：</p>
+<pre><code class="language-text">P(w1, w2, ..., wT)
+= P(w1) * P(w2|w1) * P(w3|w1,w2) * ... * P(wT|w1,...,wT-1)
+= Π_t P(w_t | w_1 ... w_{t-1})
+</code></pre>
+<p>这就是&quot;语言建模&quot;的数学定义：<strong>把整句概率拆成一系列&quot;在已知前文下预测下一个词&quot;的条件概率的连乘。</strong> 只要能把每一个条件概率估好，整个句子就能算出来。</p>
+<p>要注意的是：这个等式<strong>没有做任何近似</strong>，它只是概率论里的链式法则。它把&quot;整句太难&quot;的问题，变成了&quot;一步步预测下一个词&quot;的问题——这正是便于自监督的原因。</p>
+<p><img src="../assets/figures/fig-chain-rule.svg" alt="语言建模的链式分解：整句概率拆成逐词条件概率连乘"></p>
+<p>上图把一句话 <code>w₁ w₂ w₃ w₄</code> 的概率从左到右逐词拆开：第一项直接是 <code>P(w₁)</code>，第二项在已知 <code>w₁</code> 下预测 <code>w₂</code>，第三项在已知 <code>w₁,w₂</code> 下预测 <code>w₃</code>，依次类推。每一步的&quot;答案&quot;都藏在文本自身里（下一个真实的词），所以这条链天然支持自监督训练。注意绿色小字的提示：这个分解是<strong>精确</strong>的，不是近似。</p>
+<h2 id="n-gram%EF%BC%9A%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%81%87%E8%AE%BE%E7%9A%84%E9%99%90%E5%88%B6">n-gram：马尔可夫假设的限制</h2>
+<p>先朴素地想：<code>P(w_t | w_1...w_{t-1})</code> 里依赖的词越多，参数就越多。假设词表有 <code>V</code> 个词，要估计 <code>P(w_t | w_{t-1}, w_{t-2})</code>（称 <strong>三元组 trigram</strong>），可能的参数组合就有 <code>V³</code> 量级。<code>V</code> 一旦上万，这就是天文数字，还要求语料里每种组合都出现足够多次才估得准。</p>
+<p>为解决数据稀疏，n-gram 用<strong>马尔可夫假设</strong>做近似：只依赖最近 <code>n-1</code> 个词（即假设&quot;未来只由最近几步决定&quot;，<a href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09</a> 的马尔可夫性质是同一思想）。</p>
+<pre><code class="language-text">bigram：  P(w_t | w_{t-1})
+trigram： P(w_t | w_{t-2}, w_{t-1})
+</code></pre>
+<p>代价是&quot;只看最近 n-1 个词&quot;。长距离的上下文（比如&quot;纽约&quot;在前面 20 个词外的地名）被丢掉，模型记不住真正重要的长程依赖。n 一旦大了，参数又爆炸。</p>
+<p>这就是统计语言模型的<strong>根本矛盾</strong>：</p>
+<pre><code class="language-text">依赖太少（n 小）→ 记不住长程上下文
+依赖太多（n 大）→ 参数爆炸、数据不够
+</code></pre>
+<p><img src="../assets/figures/fig-ngram-tradeoff.svg" alt="n-gram 的根本矛盾：长程记忆 vs 参数爆炸不可兼得"></p>
+<p>左框是 <code>n</code> 很小的情形（bigram）：参数少、数据够用，但只记得上一个词，长程依赖被全部丢掉；右框是 <code>n</code> 很大的高阶 n-gram：记得远一些，但参数以 <code>Vⁿ</code> 量级爆炸、大多数组合在语料里出现太少、估不准。这就是&quot;依赖太少&quot;和&quot;依赖太多&quot;之间的死结。</p>
+<p>现代神经网络语言模型解决了这个矛盾：用固定规模的参数，去建模<strong>无限长</strong>的上下文。这是 <a href="05-06-transformer.html">05-06</a> 和 06 章的真正意义。</p>
+<h2 id="%E4%BB%8E%22%E8%AE%A1%E6%95%B0%22%E5%88%B0%22%E5%AD%A6%E4%B9%A0%22%EF%BC%9A%E7%A5%9E%E7%BB%8F%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">从&quot;计数&quot;到&quot;学习&quot;：神经语言模型</h2>
+<p>统计语言模型靠&quot;在语料里数频率&quot;来估计 <code>P</code>（最大似然估计）。神经语言模型换了个思路：<strong>不直接数频率，而是用一个可微的函数（神经网络）去逼近&quot;预测下一个词&quot;的映射。</strong></p>
+<p>基本形式（你已经在 <a href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a> 见过）：</p>
+<pre><code class="language-text">给定前文 → 模型输出整个词表上的概率分布
+损失 = -log(真实下一个词的预测概率)   （交叉熵）
+</code></pre>
+<p>训练时喂进海量文本，让模型尽量让&quot;真实下一个词&quot;的概率最大，这等价于最小化交叉熵。语言模型的训练和 <a href="../03-machine-learning/03-03-logistic-regression.html">03-03</a> 的多分类本质完全一样——只是类别变成了&quot;整个词表&quot;，数据变成了&quot;预测下一个词&quot;。</p>
+<p><img src="../assets/figures/fig-count-vs-neural.svg" alt="从&quot;数频率&quot;到&quot;学映射&quot;：统计语言模型 vs 神经网络语言模型"></p>
+<p>上图把两种语言模型并排放置：左边蓝色的是统计语言模型，靠&quot;在语料里数频率&quot;来估计 <code>P</code>（比如 <code>the→cat</code> 出现多少次），简单、可解释，但只能记住&quot;见过多少次&quot;；右边紫色的是神经语言模型，它不数频率，而是用一个可微的神经网络去逼近&quot;给定前文 → 词表概率分布&quot;这个映射。区别的关键在于：统计模型在&quot;数见过的组合&quot;，网络在&quot;学一个能泛化的下一词函数&quot;，所以后者能用固定规模的参数去利用更长、更广的上下文。</p>
+<h2 id="%E5%9B%B0%E6%83%91%E5%BA%A6%EF%BC%9A%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A5%BD%E5%9D%8F%E8%A1%A1%E9%87%8F">困惑度：语言模型的好坏衡量</h2>
+<p>语言模型的传统质量指标是<strong>困惑度（perplexity，PPL）</strong>，定义为交叉熵的指数：</p>
+<pre><code class="language-text">PPL = exp(交叉熵)
+</code></pre>
+<p>直觉：模型平均下来在几个词之间&quot;拿不准&quot;。</p>
+<pre><code class="language-text">PPL = 1   → 模型每次都精确锁定下一个词（完美但不可能）
+PPL = N   → 模型每次大致在 N 个词里纠结
+</code></pre>
+<p>困惑度越低越好，但<strong>横向比较要在同一数据集、同一词表</strong>上做才有意义（不同分词会让 PPL 不可比，这又是 <a href="05-03-tokenization.html">05-03</a> 的伏笔）。</p>
+<p><img src="../assets/figures/fig-ppl-scale.svg" alt="困惑度的直观刻度：PPL 代表&quot;平均在几个词里拿不准&quot;"></p>
+<p>上图用一条数轴给你困惑度的&quot;体感&quot;：最左端 <code>PPL=1</code> 意味着模型每次都精确锁定唯一的下一个词（理想但几乎不可能）；随着 PPL 增大，模型平均在 10 个、100 个甚至更多候选词之间&quot;纠结&quot;。左下角琥珀色提示它和 loss 的关系 <code>PPL = exp(loss)</code>——两者是同一件事的两种标度。记住一点：比较 PPL 必须在同一数据集、同一词表上做，否则不同的分词方式会让数字失去可比性。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%BF%90%E8%A1%8C%E7%9A%84-bigram-%E6%A8%A1%E5%9E%8B">一个最小可运行的 bigram 模型</h2>
+<p>用最朴素的统计方法，你也能亲手&quot;训练&quot;一个语言模型：</p>
+<pre><code class="language-python">from collections import defaultdict, Counter
+
+text = &quot;the cat sat on the mat . the dog sat on the mat .&quot;.split()
+bigrams = defaultdict(Counter)
+for w1, w2 in zip(text[:-1], text[1:]):
+    bigrams[w1][w2] += 1
+
+def prob(w1, w2):
+    total = sum(bigrams[w1].values())
+    return bigrams[w1][w2] / total if total else 0
+
+print(&quot;P(dog|the) =&quot;, prob(&quot;the&quot;, &quot;dog&quot;))   # 0.25
+print(&quot;P(mat|the) =&quot;, prob(&quot;the&quot;, &quot;mat&quot;))   # 0.5
+</code></pre>
+<p>这就是一个完全意义上的&quot;统计语言模型&quot;：给定 <code>the</code>，它告诉你下一个词的概率分布。虽然笨得可以、记不住长上文，但&quot;预测下一个词&quot;的骨架已经立起来了。</p>
+<h2 id="%E8%BF%99%E4%B8%80%E9%A1%B5%E7%9A%84%E9%95%BF%E8%BF%9C%E4%BB%B7%E5%80%BC">这一页的长远价值</h2>
+<p>这一页可能是通向 LLM 最重要的&quot;单点悟&quot;：</p>
+<pre><code class="language-text">大语言模型做的一切 = 极致的&quot;预测下一个词&quot;。
+语言理解的各种能力，是在把这个任务学到极致的过程中涌现的。
+</code></pre>
+<p>当你之后在 <a href="../06-llm-fundamentals/README.html">06</a> 章见到&quot;预训练目标 = next token prediction&quot;，请回看这里——它只是一个被神经网络和海量数据放大的统计语言模型。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>语言建模的目标函数是什么？为什么它属于&quot;自监督&quot;而非&quot;需要人工标注&quot;？</li>
+<li>用链式法则把整句概率写成逐词条件概率，这个等式是否做了近似？</li>
+<li>n-gram 靠什么假设来简化模型？它带来的根本矛盾是什么？</li>
+<li>神经语言模型相比&quot;数频率&quot;的统计模型，关键区别是什么？</li>
+<li>困惑度 PPL 为 1 和 PPL 为 1000 各代表什么？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>目标是建模&quot;给定前文预测下一个词&quot;的条件概率 <code>P(w_t|w_1...w_{t-1})</code>。它的&quot;答案&quot;就是文本里自然紧跟着的那个词，无需人工标注，所以是自监督。</li>
+<li>没有做任何近似。它只是条件概率的链式规则，逐项把整句概率分解成条件概率连乘，严格成立。</li>
+<li>靠马尔可夫假设：只依赖最近 n-1 个词。根本矛盾是&quot;n 太小记不住长程依赖、n 太大参数和数据都爆炸&quot;，两者不可兼得。</li>
+<li>统计模型靠语料中数频率来估计概率；神经模型用一个可微网络去逼近&quot;下一词分布&quot;这个映射，能借助固定参数量去利用更长上下文、并自动学到泛化表示。</li>
+<li>PPL=1 表示模型每次都能精确锁定唯一的下一个词（理想上界）；PPL=1000 表示模型大致在约 1000 个词之间纠结、非常不确定。越低越好。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想让&quot;词&quot;拥有可计算的语义 → <a href="05-02-word-representation.html">05-02 词表示</a>。</li>
+<li>想知道文本怎么被切成模型认识的 token → <a href="05-03-tokenization.html">05-03 子词分词</a>。</li>
+<li>想从&quot;预测下一个词&quot;走到真正能落地的序列模型 → <a href="05-04-seq2seq.html">05-04 Seq2Seq</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

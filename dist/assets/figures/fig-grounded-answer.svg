@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="强制“用材料回答”">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#1c2733">把“凭记忆编”拉向“据材料答”</text>
+  <rect x="55" y="90" width="260" height="130" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="185" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">输入</text>
+  <text x="185" y="148" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">上下文资料 + 问题</text>
+  <text x="185" y="174" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">资料里没有 → 直说“未提及”</text>
+  <line x1="315" y1="155" x2="345.0" y2="155.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M345.0 155.0 L345.0 160.0 L345.0 150.0 Z" fill="#b26a00"/>
+  <rect x="355" y="90" width="270" height="130" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="490" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">生成</text>
+  <text x="490" y="148" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">只根据资料回答问题</text>
+  <text x="490" y="174" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">并注明依据/引用</text>
+  <rect x="55" y="245" width="570" height="60" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.5"/>
+  <text x="340" y="271" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">配合 RAG：答案建立在外部文档上</text>
+  <text x="340" y="295" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">是最常用且见效的防幻觉手段</text>
+  <rect x="55" y="322" width="570" height="56" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="340" y="348" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b26a00">Agent 层：工具结果必须回传真实输出，不许模型“猜”</text>
+  <text x="340" y="370" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">还要动作白名单 + 批准 + 证据链</text>
+</svg>

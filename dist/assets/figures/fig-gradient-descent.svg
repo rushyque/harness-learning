@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="梯度下降：沿负梯度方向下降到损失最小值">
+  <defs>
+    <marker id="gd-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0f4c81"/>
+    </marker>
+    <marker id="gd-arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#b96b2a"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="680" height="360" rx="8" fill="#fafbfc"/>
+
+  <text x="40" y="38" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">损失曲面：向谷底（最小值）走</text>
+
+  <!-- 坐标轴 -->
+  <line x1="60" y1="300" x2="640" y2="300" stroke="#9db4cc" stroke-width="2" marker-end="url(#gd-arrow)"/>
+  <line x1="60" y1="60" x2="60" y2="300" stroke="#9db4cc" stroke-width="2"/>
+  <text x="625" y="320" font-family="sans-serif" font-size="13" fill="#5e6b7a">参数 θ</text>
+  <text x="36" y="80" font-family="sans-serif" font-size="13" fill="#5e6b7a">损失 L</text>
+
+  <!-- 损失曲线（二次碗形） -->
+  <path d="M 130 70 C 230 230, 300 250, 360 288
+           C 410 275, 480 260, 540 92"
+        fill="none" stroke="#0f4c81" stroke-width="3"/>
+
+  <!-- 谷底 -->
+  <circle cx="360" cy="286" r="5" fill="#0e7c66"/>
+  <text x="372" y="284" font-family="sans-serif" font-size="14" fill="#0e7c66">最小值</text>
+
+  <!-- 起始点与下降路径 -->
+  <circle cx="160" cy="150" r="6" fill="#b96b2a"/>
+  <text x="130" y="132" font-family="sans-serif" font-size="13" fill="#b96b2a">起点 θ₀</text>
+  <path d="M 160 150 C 220 200, 250 218, 290 250
+           C 310 263, 330 276, 356 284"
+        fill="none" stroke="#b96b2a" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#gd-arrow2)"/>
+
+  <!-- 切线（当前梯度方向：上坡） -->
+  <line x1="146" y1="138" x2="206" y2="182" stroke="#f3c7a8" stroke-width="2"/>
+  <text x="188" y="172" font-family="sans-serif" font-size="13" fill="#b96b2a">梯度 ∇L（上升方向）</text>
+
+  <text x="60" y="344" font-family="sans-serif" font-size="13" fill="#5e6b7a">梯度指向上坡，所以“负梯度”才把我们推下坡：θ ← θ − η·∇L(θ)，η 是步长（学习率）</text>
+</svg>

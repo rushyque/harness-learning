@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="PCA：找数据方差最大的两个主方向">
+  <rect x="0" y="0" width="680" height="360" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2733">PCA：沿方差最大的方向投影</text>
+  <line x1="82" y1="272" x2="640" y2="272" stroke="#9db4cc" stroke-width="2"/>
+  <line x1="82" y1="66" x2="82" y2="272" stroke="#9db4cc" stroke-width="2"/>
+  <text x="632" y="268" text-anchor="end" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">特征1</text>
+  <text x="66" y="70" text-anchor="end" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">特征2</text>
+  <circle cx="350.6" cy="190.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="342.2" cy="175.9" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="300.2" cy="211.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="433.6" cy="123.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="426.8" cy="124.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="386.5" cy="154.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="268.1" cy="263.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="397.3" cy="153.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="234.6" cy="223.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="299.6" cy="205.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="378.2" cy="154.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="384.1" cy="134.9" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="383.8" cy="161.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="340.5" cy="228.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="409.0" cy="162.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="312.8" cy="188.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="337.5" cy="184.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="401.9" cy="143.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="320.7" cy="176.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="343.0" cy="214.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="313.4" cy="212.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="367.9" cy="126.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="379.1" cy="188.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="232.2" cy="261.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="343.4" cy="162.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="389.8" cy="145.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="280.2" cy="253.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="412.8" cy="152.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="453.0" cy="106.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="351.3" cy="143.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="390.3" cy="130.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="316.6" cy="171.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="294.0" cy="208.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="414.2" cy="76.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="273.3" cy="243.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="455.8" cy="109.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="212.2" cy="221.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="372.9" cy="141.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="303.2" cy="239.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="429.7" cy="119.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="380.5" cy="165.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="465.6" cy="103.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="398.6" cy="153.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="279.4" cy="265.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="425.2" cy="132.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="230.9" cy="254.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="389.5" cy="101.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="361.2" cy="194.9" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="299.2" cy="258.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="392.1" cy="141.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="388.0" cy="164.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="381.5" cy="182.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="314.2" cy="195.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="424.4" cy="120.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="317.5" cy="227.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="444.6" cy="92.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="273.5" cy="234.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="347.2" cy="172.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="433.7" cy="86.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="421.9" cy="89.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="319.4" cy="217.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="440.0" cy="129.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="383.0" cy="155.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="376.5" cy="171.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="352.6" cy="182.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="395.2" cy="142.5" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="413.9" cy="142.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="487.6" cy="78.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="329.1" cy="184.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="370.6" cy="185.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="344.1" cy="192.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="441.3" cy="41.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="293.9" cy="227.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="387.4" cy="154.6" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="341.6" cy="201.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="370.9" cy="148.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="513.7" cy="58.9" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="324.7" cy="195.0" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="345.4" cy="179.8" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="186.3" cy="293.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="407.6" cy="103.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="367.6" cy="188.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="431.0" cy="152.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="251.1" cy="246.1" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="346.7" cy="196.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="394.1" cy="75.3" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="409.1" cy="94.9" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="383.6" cy="113.7" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="385.5" cy="180.4" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <circle cx="353.2" cy="180.2" r="3.4" fill="#0f4c81" opacity="0.7"/>
+  <line x1="285.13897840736144" y1="228.48784015593753" x2="426.98091405657135" y2="117.66877459731904" stroke="#0e7c66" stroke-width="3"/>
+  <path d="M427.0 117.7 L430.1 121.6 L423.9 113.7 Z" fill="#0e7c66"/>
+  <text x="452.9852689255932" y="97.35194591157232" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">PC1：方差最大方向</text>
+  <line x1="335.3735409869737" y1="138.4795698557311" x2="378.46984425976973" y2="193.64032260820167" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M378.5 193.6 L374.5 196.7 L382.4 190.6 Z" fill="#b26a00"/>
+  <text x="388.3204278649803" y="206.24849466590922" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">PC2</text>
+  <text x="82" y="302" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="400" fill="#33475b">第一主成分沿数据散开得最开的方向；第二主成分与它正交</text>
+  <text x="82" y="324" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="400" fill="#5e6b7a">投影到前两个主成分，就把高维数据压到 2D 看清结构</text>
+</svg>

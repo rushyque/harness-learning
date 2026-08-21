@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" role="img" aria-label="幻觉机制：预测下一个词 + 压缩记忆 + 采样 → 流畅却可能不真">
+  <rect x="0" y="0" width="680" height="420" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">为什么会幻觉：目标、知识来源、生成方式共同导致</text>
+  <rect x="50" y="70" width="350" height="36" rx="6" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.5"/>
+  <text x="75" y="93" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b23a2a">① 目标只是预测</text>
+  <text x="225" y="93" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">优化“听起来像”，不是“事实对”</text>
+  <rect x="50" y="116" width="350" height="36" rx="6" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="75" y="139" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">② 知识是压缩记忆</text>
+  <text x="225" y="139" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">学的是常见规律，不是事实库</text>
+  <rect x="50" y="162" width="350" height="36" rx="6" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="75" y="185" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">③ 生成即采样</text>
+  <text x="225" y="185" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">可能滑向低概率但不实的组合</text>
+  <rect x="50" y="208" width="350" height="36" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="75" y="231" text-anchor="start" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">④ 训练数据有噪声</text>
+  <text x="225" y="231" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">网络文本本身不全对</text>
+  <line x1="400" y1="150" x2="460.0" y2="150.0" stroke="#b23a2a" stroke-width="2.5"/>
+  <path d="M460.0 150.0 L460.0 155.0 L460.0 145.0 Z" fill="#b23a2a"/>
+  <rect x="480" y="96" width="160" height="110" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="2"/>
+  <text x="560" y="132" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#b23a2a">幻觉</text>
+  <text x="560" y="160" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#33475b">流畅却不符合事实</text>
+  <text x="560" y="180" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#33475b">或给定的上下文</text>
+  <rect x="50" y="300" width="590" height="80" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.8"/>
+  <text x="345" y="324" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">缓解：降低率 + 可校验</text>
+  <text x="345" y="350" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#33475b">RAG 检索增强 · 要求引用 · 低温度 · 明说“不知道” · 工具/结构化输出</text>
+  <text x="345" y="372" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">（无法彻底消除，目标是降低概率并让人能核对）</text>
+  <text x="340.0" y="406" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b23a2a">在 Agent 里尤其危险：模型可能“编造”工具行为/结果，必须用真实回传约束</text>
+</svg>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>术语表 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E6%9C%AF%E8%AF%AD%E8%A1%A8">术语表</h1>
+<blockquote>
+<p>按章分组的速查索引：每个术语给出英文、一句话说明与首次系统讲解的页面。读正文遇到眼生的词，先来这里定位出处。</p>
+</blockquote>
+<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</h2>
+<p>术语按首次系统讲解所在章分组；同一术语在多章出现时，链接指向讲得最完整的那页。左侧搜索框可以全文检索。</p>
+<h2 id="01-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80">01 数学基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>期望</td>
+<td>expected value</td>
+<td>随机变量取值的加权平均，描述&quot;中心位置&quot;</td>
+<td><a href="../01-math-foundations/01-03-expectation.html">01-03</a></td>
+</tr>
+<tr>
+<td>方差</td>
+<td>variance</td>
+<td>偏离期望的平方平均，描述&quot;波动大小&quot;</td>
+<td><a href="../01-math-foundations/01-03-expectation.html">01-03</a></td>
+</tr>
+<tr>
+<td>总体</td>
+<td>population</td>
+<td>想描述的全部对象</td>
+<td><a href="../01-math-foundations/01-03-expectation.html">01-03</a></td>
+</tr>
+<tr>
+<td>样本</td>
+<td>sample</td>
+<td>从总体中实际观测到的一部分</td>
+<td><a href="../01-math-foundations/01-03-expectation.html">01-03</a></td>
+</tr>
+<tr>
+<td>自信息</td>
+<td>self-information</td>
+<td>一个事件发生携带的信息量，概率越小信息越大</td>
+<td><a href="../01-math-foundations/01-05-information-theory.html">01-05</a></td>
+</tr>
+<tr>
+<td>比特</td>
+<td>bit</td>
+<td>以 2 为底的信息量单位</td>
+<td><a href="../01-math-foundations/01-05-information-theory.html">01-05</a></td>
+</tr>
+<tr>
+<td>最优化</td>
+<td>optimization</td>
+<td>在约束下寻找使目标最优的参数</td>
+<td><a href="../01-math-foundations/01-07-optimization.html">01-07</a></td>
+</tr>
+<tr>
+<td>截断 SVD</td>
+<td>truncated SVD</td>
+<td>只保留最大奇异值的低秩近似分解</td>
+<td><a href="../01-math-foundations/01-08-matrix-decomposition.html">01-08</a></td>
+</tr>
+<tr>
+<td>邻居</td>
+<td>neighbor</td>
+<td>图中直接相连的两个点</td>
+<td><a href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09</a></td>
+</tr>
+<tr>
+<td>邻接矩阵</td>
+<td>adjacency matrix</td>
+<td>用 0/1 矩阵表示&quot;谁连谁&quot;</td>
+<td><a href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09</a></td>
+</tr>
+<tr>
+<td>拉普拉斯矩阵</td>
+<td>Laplacian</td>
+<td>度矩阵减邻接矩阵，刻画图上的&quot;差分&quot;</td>
+<td><a href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="02-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80">02 编程基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>广播</td>
+<td>broadcasting</td>
+<td>NumPy 让不同形状数组按规则自动对齐再运算的机制</td>
+<td><a href="../02-programming-basics/02-02-numpy.html">02-02</a></td>
+</tr>
+<tr>
+<td>提交</td>
+<td>commit</td>
+<td>Git 的一次快照式存档</td>
+<td><a href="../02-programming-basics/02-05-version-control.html">02-05</a></td>
+</tr>
+<tr>
+<td>冲突</td>
+<td>conflict</td>
+<td>两分支改了同一处，合并时需人工裁决</td>
+<td><a href="../02-programming-basics/02-05-version-control.html">02-05</a></td>
+</tr>
+<tr>
+<td>分支 + PR</td>
+<td>Pull Request</td>
+<td>拉取请求</td>
+<td><a href="../02-programming-basics/02-05-version-control.html">02-05</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="03-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">03 机器学习</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基线</td>
+<td>baseline</td>
+<td>用来对照的&quot;最笨但能跑&quot;参照方法</td>
+<td><a href="../03-machine-learning/03-01-supervised-overview.html">03-01</a></td>
+</tr>
+<tr>
+<td>负对数似然</td>
+<td>NLL</td>
+<td>负的对数似然，分类任务的标准损失</td>
+<td><a href="../03-machine-learning/03-03-logistic-regression.html">03-03</a></td>
+</tr>
+<tr>
+<td>早停</td>
+<td>early stopping</td>
+<td>验证集变差就停训，防过拟合</td>
+<td><a href="../03-machine-learning/03-04-bias-variance.html">03-04</a></td>
+</tr>
+<tr>
+<td>肘部法则</td>
+<td>elbow</td>
+<td>看&quot;误差下降拐点&quot;选簇数的方法</td>
+<td><a href="../03-machine-learning/03-07-unsupervised.html">03-07</a></td>
+</tr>
+<tr>
+<td>标准化</td>
+<td>StandardScaler</td>
+<td>减均值除标准差的缩放器</td>
+<td><a href="../03-machine-learning/03-08-feature-engineering.html">03-08</a></td>
+</tr>
+<tr>
+<td>归一化</td>
+<td>MinMaxScaler</td>
+<td>压到 [0,1] 区间的缩放器</td>
+<td><a href="../03-machine-learning/03-08-feature-engineering.html">03-08</a></td>
+</tr>
+<tr>
+<td>目标编码</td>
+<td>target encoding</td>
+<td>用目标统计量给类别特征编码</td>
+<td><a href="../03-machine-learning/03-08-feature-engineering.html">03-08</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="04-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">04 深度学习</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>神经元</td>
+<td>neuron</td>
+<td>加权求和加非线性的基本计算单元</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>单元</td>
+<td>unit</td>
+<td>神经元在同层语境下的别名</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>权重</td>
+<td>weights</td>
+<td>输入的加权系数，训练要学的参数</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>偏置</td>
+<td>bias</td>
+<td>加权和之后的平移量，让拟合更灵活</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>激活函数</td>
+<td>activation function</td>
+<td>引入非线性的函数</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>深度网络</td>
+<td>deep network</td>
+<td>多个隐藏层堆叠的网络</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>隐藏层</td>
+<td>hidden layer</td>
+<td>输入输出之间的中间层</td>
+<td><a href="../04-deep-learning/04-01-neural-net-intuition.html">04-01</a></td>
+</tr>
+<tr>
+<td>反向传播</td>
+<td>backpropagation</td>
+<td>链式法则自动算出全部梯度的算法</td>
+<td><a href="../04-deep-learning/04-02-backpropagation.html">04-02</a></td>
+</tr>
+<tr>
+<td>链式法则</td>
+<td>chain rule</td>
+<td>复合函数的导数逐层相乘法则</td>
+<td><a href="../04-deep-learning/04-02-backpropagation.html">04-02</a></td>
+</tr>
+<tr>
+<td>计算图</td>
+<td>computational graph</td>
+<td>把计算画成图以便系统性求导</td>
+<td><a href="../04-deep-learning/04-02-backpropagation.html">04-02</a></td>
+</tr>
+<tr>
+<td>前向传播</td>
+<td>forward pass</td>
+<td>从输入算到输出的过程</td>
+<td><a href="../04-deep-learning/04-02-backpropagation.html">04-02</a></td>
+</tr>
+<tr>
+<td>反向传播</td>
+<td>backward pass</td>
+<td>从输出损失反推各层梯度的过程</td>
+<td><a href="../04-deep-learning/04-02-backpropagation.html">04-02</a></td>
+</tr>
+<tr>
+<td>梯度消失</td>
+<td>vanishing gradient</td>
+<td>梯度逐层缩小导致深层学不动</td>
+<td><a href="../04-deep-learning/04-03-activations.html">04-03</a></td>
+</tr>
+<tr>
+<td>ELU</td>
+<td>Exponential Linear Unit</td>
+<td>负区平滑趋近 -1 的激活函数</td>
+<td><a href="../04-deep-learning/04-03-activations.html">04-03</a></td>
+</tr>
+<tr>
+<td>困惑度</td>
+<td>perplexity</td>
+<td>困惑度：下一词的平均选择数，越低越好</td>
+<td><a href="../04-deep-learning/04-04-loss-functions.html">04-04</a></td>
+</tr>
+<tr>
+<td>峡谷</td>
+<td>ravine</td>
+<td>狭长陡峭的山谷地形，梯度下降易震荡</td>
+<td><a href="../04-deep-learning/04-05-optimizers.html">04-05</a></td>
+</tr>
+<tr>
+<td>Adam</td>
+<td>Adaptive Moment Estimation</td>
+<td>自适应动量的优化器 Adam</td>
+<td><a href="../04-deep-learning/04-05-optimizers.html">04-05</a></td>
+</tr>
+<tr>
+<td>余弦退火</td>
+<td>cosine annealing</td>
+<td>学习率按余弦曲线先慢后快再缓降</td>
+<td><a href="../04-deep-learning/04-05-optimizers.html">04-05</a></td>
+</tr>
+<tr>
+<td>滤波器</td>
+<td>filter / kernel</td>
+<td>也叫卷积核</td>
+<td><a href="../04-deep-learning/04-07-cnn.html">04-07</a></td>
+</tr>
+<tr>
+<td>感受野</td>
+<td>receptive field</td>
+<td>一个输出像素能&quot;看到&quot;的输入区域大小</td>
+<td><a href="../04-deep-learning/04-07-cnn.html">04-07</a></td>
+</tr>
+<tr>
+<td>池化</td>
+<td>pooling</td>
+<td>局部取最大/平均来缩小特征图</td>
+<td><a href="../04-deep-learning/04-07-cnn.html">04-07</a></td>
+</tr>
+<tr>
+<td>残差连接</td>
+<td>skip connection</td>
+<td>跨层直连，让梯度有高速公路</td>
+<td><a href="../04-deep-learning/04-07-cnn.html">04-07</a></td>
+</tr>
+<tr>
+<td>LSTM</td>
+<td>Long Short-Term Memory</td>
+<td>长短期记忆</td>
+<td><a href="../04-deep-learning/04-08-rnn-lstm.html">04-08</a></td>
+</tr>
+<tr>
+<td>细胞状态</td>
+<td>cell state</td>
+<td>LSTM 中贯穿时间的信息传送带</td>
+<td><a href="../04-deep-learning/04-08-rnn-lstm.html">04-08</a></td>
+</tr>
+<tr>
+<td>GRU</td>
+<td>Gated Recurrent Unit</td>
+<td>LSTM 的简化版门控循环单元</td>
+<td><a href="../04-deep-learning/04-08-rnn-lstm.html">04-08</a></td>
+</tr>
+<tr>
+<td>出现空闲</td>
+<td>bubble</td>
+<td>流水线气泡</td>
+<td><a href="../04-deep-learning/04-09-distributed.html">04-09</a></td>
+</tr>
+<tr>
+<td>梯度累积</td>
+<td>gradient accumulation</td>
+<td>多个小 batch 梯度攒起来再更新，等效大 batch</td>
+<td><a href="../04-deep-learning/04-09-distributed.html">04-09</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="05-nlp-%E4%B8%8E-transformer">05 NLP 与 Transformer</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大语言模型</td>
+<td>LLM</td>
+<td>大语言模型</td>
+<td><a href="../05-nlp-transformers/05-01-lm-basics.html">05-01</a></td>
+</tr>
+<tr>
+<td>向量</td>
+<td>vector</td>
+<td>一组数表示的有序列表</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>词向量 / 词嵌入</td>
+<td>word embedding</td>
+<td>把词映射为稠密向量</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>分布假说</td>
+<td>Distributional Hypothesis</td>
+<td>上下文相似的词语义相近</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>CBOW</td>
+<td>Continuous Bag of Words</td>
+<td>用上下文预测中心词的词向量训练法</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>GloVe</td>
+<td>Global Vectors</td>
+<td>全局向量</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>上下文相关的表示</td>
+<td>contextualized embeddings</td>
+<td>随上下文变化的词表示</td>
+<td><a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a></td>
+</tr>
+<tr>
+<td>序列到序列</td>
+<td>Sequence-to-Sequence</td>
+<td>Seq2Seq</td>
+<td><a href="../05-nlp-transformers/05-04-seq2seq.html">05-04</a></td>
+</tr>
+<tr>
+<td>编码器-解码器</td>
+<td>Encoder-Decoder</td>
+<td>先把输入压成表示、再从表示生成输出的两段结构</td>
+<td><a href="../05-nlp-transformers/05-04-seq2seq.html">05-04</a></td>
+</tr>
+<tr>
+<td>编码器</td>
+<td>Encoder</td>
+<td>把输入序列变成表示的部分</td>
+<td><a href="../05-nlp-transformers/05-04-seq2seq.html">05-04</a></td>
+</tr>
+<tr>
+<td>解码器</td>
+<td>Decoder</td>
+<td>从表示逐词生成输出的部分</td>
+<td><a href="../05-nlp-transformers/05-04-seq2seq.html">05-04</a></td>
+</tr>
+<tr>
+<td>贪心解码</td>
+<td>greedy search</td>
+<td>每步都取当前概率最高的词</td>
+<td><a href="../05-nlp-transformers/05-04-seq2seq.html">05-04</a></td>
+</tr>
+<tr>
+<td>QKV</td>
+<td>Query-Key-Value</td>
+<td>注意力的检索三件套</td>
+<td><a href="../05-nlp-transformers/05-05-attention.html">05-05</a></td>
+</tr>
+<tr>
+<td>自注意力</td>
+<td>self-attention</td>
+<td>序列内部元素互相注意的机制</td>
+<td><a href="../05-nlp-transformers/05-05-attention.html">05-05</a></td>
+</tr>
+<tr>
+<td>多头注意力</td>
+<td>Multi-Head Attention</td>
+<td>多组注意力并行捕捉不同关系</td>
+<td><a href="../05-nlp-transformers/05-05-attention.html">05-05</a></td>
+</tr>
+<tr>
+<td>交叉注意力</td>
+<td>cross-attention</td>
+<td>解码器查询编码器输出的注意力</td>
+<td><a href="../05-nlp-transformers/05-06-transformer.html">05-06</a></td>
+</tr>
+<tr>
+<td>因果掩码</td>
+<td>causal mask</td>
+<td>禁止看到未来位置的掩码</td>
+<td><a href="../05-nlp-transformers/05-06-transformer.html">05-06</a></td>
+</tr>
+<tr>
+<td>置换不变</td>
+<td>permutation invariant</td>
+<td>打乱输入顺序输出不变</td>
+<td><a href="../05-nlp-transformers/05-07-positional-encoding.html">05-07</a></td>
+</tr>
+<tr>
+<td>正弦波</td>
+<td>sinusoidal</td>
+<td>不同频率 sin/cos 叠加的位置编码</td>
+<td><a href="../05-nlp-transformers/05-07-positional-encoding.html">05-07</a></td>
+</tr>
+<tr>
+<td>旋转位置编码</td>
+<td>RoPE</td>
+<td>Rotary Position Embedding</td>
+<td><a href="../05-nlp-transformers/05-07-positional-encoding.html">05-07</a></td>
+</tr>
+<tr>
+<td>长度外推</td>
+<td>length extrapolation</td>
+<td>用比训练更长的序列推理</td>
+<td><a href="../05-nlp-transformers/05-07-positional-encoding.html">05-07</a></td>
+</tr>
+<tr>
+<td>预训练 + 微调</td>
+<td>pretrain + finetune</td>
+<td>先通用预训练、再下游任务微调的两段范式</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>掩码语言建模</td>
+<td>Masked Language Modeling</td>
+<td>MLM</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>自回归语言建模</td>
+<td>autoregressive LM</td>
+<td>根据前文预测下一词的建模方式</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>任务头</td>
+<td>head</td>
+<td>骨干网络顶部的小任务专属层</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>灾难性遗忘</td>
+<td>catastrophic forgetting</td>
+<td>学新任务时旧能力大幅丢失</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>提示工程</td>
+<td>prompting</td>
+<td>不训练、只改输入来引导模型</td>
+<td><a href="../05-nlp-transformers/05-08-pretraining.html">05-08</a></td>
+</tr>
+<tr>
+<td>命名实体识别</td>
+<td>NER</td>
+<td>从文本中找出人名/地名/机构名等实体</td>
+<td><a href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="06-llm-%E5%9F%BA%E7%A1%80">06 LLM 基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幻觉</td>
+<td>hallucination</td>
+<td>模型一本正经地编造</td>
+<td><a href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01</a></td>
+</tr>
+<tr>
+<td>输出头</td>
+<td>LM Head</td>
+<td>把隐藏状态映射到词表概率的输出层</td>
+<td><a href="../06-llm-fundamentals/06-02-token-through-model.html">06-02</a></td>
+</tr>
+<tr>
+<td>贪心</td>
+<td>greedy</td>
+<td>每步取概率最高的词</td>
+<td><a href="../06-llm-fundamentals/06-02-token-through-model.html">06-02</a></td>
+</tr>
+<tr>
+<td>采样</td>
+<td>sampling</td>
+<td>按概率分布随机取词</td>
+<td><a href="../06-llm-fundamentals/06-02-token-through-model.html">06-02</a></td>
+</tr>
+<tr>
+<td>缩放定律</td>
+<td>Scaling Laws</td>
+<td>缩放=规模化</td>
+<td><a href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04</a></td>
+</tr>
+<tr>
+<td>RLHF</td>
+<td>Reinforcement Learning from Human Feedback</td>
+<td>基于人类反馈的强化学习；强化学习见 <a href="../01-math-foundations/README.html">01 章</a> 之外的 <a href="../08-agent-foundations/README.html">08</a> 语境，这里只需理解为&quot;用奖励信号训练模型&quot;</td>
+<td><a href="../06-llm-fundamentals/06-05-training-stages.html">06-05</a></td>
+</tr>
+<tr>
+<td>上下文窗口</td>
+<td>context window</td>
+<td>模型一次能看到的 token 上限</td>
+<td><a href="../06-llm-fundamentals/06-07-context-window.html">06-07</a></td>
+</tr>
+<tr>
+<td>涌现能力</td>
+<td>emergent capabilities</td>
+<td>规模到一定程度才显现的新能力</td>
+<td><a href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="07-llm-%E5%B7%A5%E7%A8%8B">07 LLM 工程</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检查点</td>
+<td>checkpoint</td>
+<td>训练中途保存的完整状态</td>
+<td><a href="../07-llm-engineering/07-01-training-engineering.html">07-01</a></td>
+</tr>
+<tr>
+<td>知识蒸馏</td>
+<td>knowledge distillation</td>
+<td>用大模型输出教小模型</td>
+<td><a href="../07-llm-engineering/07-02-inference-optimization.html">07-02</a></td>
+</tr>
+<tr>
+<td>上下文工程</td>
+<td>context engineering</td>
+<td>设计&quot;模型每次看到什么&quot;的工程</td>
+<td><a href="../07-llm-engineering/07-03-context-engineering.html">07-03</a></td>
+</tr>
+<tr>
+<td>自洽性</td>
+<td>self-consistency</td>
+<td>多次采样取多数答案</td>
+<td><a href="../07-llm-engineering/07-03-context-engineering.html">07-03</a></td>
+</tr>
+<tr>
+<td>思维树</td>
+<td>Tree-of-Thoughts</td>
+<td>让模型沿多条思路分支探索再择优</td>
+<td><a href="../07-llm-engineering/07-03-context-engineering.html">07-03</a></td>
+</tr>
+<tr>
+<td>对齐</td>
+<td>alignment</td>
+<td>让模型行为符合人类意图的调适</td>
+<td><a href="../07-llm-engineering/07-04-alignment.html">07-04</a></td>
+</tr>
+<tr>
+<td>奖励模型</td>
+<td>reward model</td>
+<td>学会给回答打分的模型</td>
+<td><a href="../07-llm-engineering/07-04-alignment.html">07-04</a></td>
+</tr>
+<tr>
+<td>KL 散度</td>
+<td>KL divergence</td>
+<td>衡量两个分布差异的非对称度量</td>
+<td><a href="../07-llm-engineering/07-04-alignment.html">07-04</a></td>
+</tr>
+<tr>
+<td>DPO</td>
+<td>Direct Preference Optimization</td>
+<td>直接偏好优化</td>
+<td><a href="../07-llm-engineering/07-05-dpo.html">07-05</a></td>
+</tr>
+<tr>
+<td>RAG</td>
+<td>Retrieval-Augmented Generation</td>
+<td>检索增强生成</td>
+<td><a href="../07-llm-engineering/07-08-rag.html">07-08</a></td>
+</tr>
+<tr>
+<td>全量微调</td>
+<td>full fine-tuning</td>
+<td>更新全部参数的微调</td>
+<td><a href="../07-llm-engineering/07-09-finetuning.html">07-09</a></td>
+</tr>
+<tr>
+<td>参数高效微调</td>
+<td>PEFT</td>
+<td>只训练少量新增参数的微调家族</td>
+<td><a href="../07-llm-engineering/07-09-finetuning.html">07-09</a></td>
+</tr>
+<tr>
+<td>LoRA</td>
+<td>Low-Rank Adaptation</td>
+<td>低秩适配</td>
+<td><a href="../07-llm-engineering/07-09-finetuning.html">07-09</a></td>
+</tr>
+<tr>
+<td>指令微调（SFT）</td>
+<td>SFT</td>
+<td>用指令-回答对监督训练</td>
+<td><a href="../07-llm-engineering/07-09-finetuning.html">07-09</a></td>
+</tr>
+<tr>
+<td>继续预训练</td>
+<td>domain-adaptive pretraining</td>
+<td>在领域语料上继续预训练</td>
+<td><a href="../07-llm-engineering/07-09-finetuning.html">07-09</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="08-agent-%E5%9F%BA%E7%A1%80">08 Agent 基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>闭环</td>
+<td>closed loop</td>
+<td>行动结果回流影响下一步决策</td>
+<td><a href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01</a></td>
+</tr>
+<tr>
+<td>ReAct</td>
+<td>Reason + Act</td>
+<td>思考与行动交替</td>
+<td><a href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01</a></td>
+</tr>
+<tr>
+<td>循环（loop）</td>
+<td>loop</td>
+<td>&quot;调模型-执行-再调&quot;的反复过程</td>
+<td><a href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01</a></td>
+</tr>
+<tr>
+<td>能力缝</td>
+<td>capability seam</td>
+<td>定义/提供者/消费者三件套的扩展点</td>
+<td><a href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01</a></td>
+</tr>
+<tr>
+<td>工具（tools）</td>
+<td>tools</td>
+<td>模型可调用的外部能力</td>
+<td><a href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02</a></td>
+</tr>
+<tr>
+<td>Agent 循环</td>
+<td>agent loop</td>
+<td>Agent 反复&quot;请求-执行-观察&quot;的主循环</td>
+<td><a href="../08-agent-foundations/08-03-agent-loop.html">08-03</a></td>
+</tr>
+<tr>
+<td>规划</td>
+<td>planning</td>
+<td>把目标拆成可执行子任务</td>
+<td><a href="../08-agent-foundations/08-05-planning.html">08-05</a></td>
+</tr>
+<tr>
+<td>多步推理</td>
+<td>multi-step reasoning</td>
+<td>多步推导而非一步出答案</td>
+<td><a href="../08-agent-foundations/08-07-multi-step.html">08-07</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="09-agent-%E6%9E%B6%E6%9E%84">09 Agent 架构</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关注点分离</td>
+<td>separation of concerns</td>
+<td>各模块只管一件事</td>
+<td><a href="../09-agent-architecture/09-01-design-principles.html">09-01</a></td>
+</tr>
+<tr>
+<td>最小权限</td>
+<td>least privilege</td>
+<td>只给完成任务所需的最小权限</td>
+<td><a href="../09-agent-architecture/09-06-scope-permission.html">09-06</a></td>
+</tr>
+<tr>
+<td>沙箱</td>
+<td>sandbox</td>
+<td>限制进程能力的隔离执行环境</td>
+<td><a href="../09-agent-architecture/09-06-scope-permission.html">09-06</a></td>
+</tr>
+<tr>
+<td>纵深防御</td>
+<td>defense in depth</td>
+<td>多层防线叠加，单层失效不致全局失守</td>
+<td><a href="../09-agent-architecture/09-06-scope-permission.html">09-06</a></td>
+</tr>
+<tr>
+<td>多智能体</td>
+<td>multi-agent</td>
+<td>多个 Agent 分工协作</td>
+<td><a href="../09-agent-architecture/09-08-multi-agent.html">09-08</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-%E5%AE%9E%E6%88%98-lab">10 实战 Lab</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP</td>
+<td>Model Context Protocol</td>
+<td>连接外部工具服务器的开放协议</td>
+<td><a href="../10-practical-lab/10-07-mcp.html">10-07</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-%E5%AE%89%E5%85%A8%E4%B8%8E%E6%B2%BB%E7%90%86">11 安全与治理</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提示注入</td>
+<td>prompt injection</td>
+<td>把恶意指令混进模型输入的攻击</td>
+<td><a href="../11-safety-governance/11-03-prompt-injection.html">11-03</a></td>
+</tr>
+<tr>
+<td>凭据引用</td>
+<td>credential reference</td>
+<td>配置只存代号、执行时才解析注入</td>
+<td><a href="../11-safety-governance/11-05-privacy.html">11-05</a></td>
+</tr>
+<tr>
+<td>脱敏</td>
+<td>sanitize/mask</td>
+<td>把敏感片段替换成打码形式</td>
+<td><a href="../11-safety-governance/11-05-privacy.html">11-05</a></td>
+</tr>
+<tr>
+<td>红队</td>
+<td>red team</td>
+<td>用攻击者思维主动找漏洞</td>
+<td><a href="../11-safety-governance/11-06-redteam.html">11-06</a></td>
+</tr>
+<tr>
+<td>不可抵赖性</td>
+<td>non-repudiation</td>
+<td>事后无法否认动作确实发生过</td>
+<td><a href="../11-safety-governance/11-07-audit.html">11-07</a></td>
+</tr>
+<tr>
+<td>门禁（gate）</td>
+<td>gate</td>
+<td>不通过自动检查就不放行的关卡</td>
+<td><a href="../11-safety-governance/11-08-eval-driven.html">11-08</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="08-agent-%E5%9F%BA%E7%A1%80-1">08 Agent 基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent（智能体）</td>
+<td>Agent</td>
+<td>能调用工具、观察结果、循环行动直到完成任务的语言模型系统</td>
+<td><a href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01</a></td>
+</tr>
+<tr>
+<td>turn</td>
+<td>turn</td>
+<td>一次完整处理</td>
+<td><a href="../08-agent-foundations/08-03-agent-loop.html">08-03</a></td>
+</tr>
+<tr>
+<td>step</td>
+<td>step</td>
+<td>turn 内的一次模型请求及其工具执行</td>
+<td><a href="../08-agent-foundations/08-03-agent-loop.html">08-03</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="06-llm-%E5%9F%BA%E7%A1%80-1">06 LLM 基础</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokenizer</td>
+<td>Tokenizer</td>
+<td>把文本切分为 token 的工具</td>
+<td><a href="../06-llm-fundamentals/06-03-tokenizer.html">06-03</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="09-agent-%E6%9E%B6%E6%9E%84-1">09 Agent 架构</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>英文</th>
+<th>一句话说明</th>
+<th>讲解页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>model-visible ⟺ logged</td>
+<td>model-visible ⟺ logged</td>
+<td>模型可见输入必须可从会话日志重建的硬规则</td>
+<td><a href="../09-agent-architecture/09-05-session-log.html">09-05</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>想系统性补概念，回到对应章的 README；想看 harness 官方定义，见仓库 <a href="../../docs/glossary.html">docs/glossary.md</a>。</p>
+</blockquote>
+<p><a href="../README.html">返回目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>循环神经网络（RNN/LSTM）：为序列而生，LLM 的亲爷爷 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88rnn%2Flstm%EF%BC%89%EF%BC%9A%E4%B8%BA%E5%BA%8F%E5%88%97%E8%80%8C%E7%94%9F%EF%BC%8Cllm-%E7%9A%84%E4%BA%B2%E7%88%B7%E7%88%B7">循环神经网络（RNN/LSTM）：为序列而生，LLM 的亲爷爷</h1>
+<blockquote>
+<p>目标：理解循环网络如何处理&quot;有顺序的数据&quot;，明白 LSTM 如何用门控对抗梯度消失。读完这一页，你能解释为什么 RNN 天然适合序列，也知道它最终为何被注意力取代——这正是第五章的伏笔。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E6%99%AE%E9%80%9A%E7%BD%91%E7%BB%9C%E5%A4%84%E7%90%86%E4%B8%8D%E4%BA%86%E5%BA%8F%E5%88%97">为什么普通网络处理不了序列</h2>
+<p>前面所有网络（全连接、CNN）都假设输入是<strong>定长、无序</strong>的：你把像素顺序打乱，图片的语义就没了，但网络并不知道&quot;顺序&quot;这回事。</p>
+<p>可很多数据天生是<strong>有序序列</strong>：</p>
+<pre><code class="language-text">文本：每个词按顺序出现，顺序决定含义
+语音：音频帧按时间排列
+时间序列：股价、传感器读数
+</code></pre>
+<p>RNN（Recurrent Neural Network，循环神经网络，&quot;循环&quot;指同一单元的输出会绕回自己作为下一步输入）的设计目标就是：<strong>显式地让网络记住&quot;读过的内容&quot;，按顺序处理输入。</strong></p>
+<h2 id="rnn-%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%B8%A6%22%E8%AE%B0%E5%BF%86%22%E7%9A%84%E5%8D%95%E5%85%83%EF%BC%8C%E9%80%90%E6%97%B6%E9%97%B4%E6%AD%A5%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8">RNN 的核心：一个带&quot;记忆&quot;的单元，逐时间步重复使用</h2>
+<p>RNN 的核心想法极其简单：<strong>同一个神经元结构在时间轴上被反复使用</strong>，每一步输入当前数据 <code>x_t</code> 和上一步的<strong>隐藏状态</strong> <code>h_{t-1}</code>（hidden state——网络内部自己维护的&quot;至今读到了什么&quot;的摘要向量），输出新的隐藏状态 <code>h_t</code>：</p>
+<pre><code class="language-text">h_t = tanh(W·[h_{t-1}, x_t] 或 W_h·h_{t-1} + W_x·x_t + b)
+</code></pre>
+<p><code>h_t</code> 就是这个时间步的&quot;记忆摘要&quot;，它携带了截至当前步的所有信息。处理整个序列时，网络一个词一个词地读取，不断更新这个记忆：</p>
+<pre><code class="language-text">h_0 → h_1 → h_2 → ... → h_T
+</code></pre>
+<p><img src="../assets/figures/fig-rnn-unrolled.svg" alt="RNN 时间展开：同一个单元在每一步复用，隐藏状态 h 携带记忆"></p>
+<p>上方把&quot;循环&quot;铺平来看：同一套单元在时间轴上重复，每一步接收当前的输入 <code>x_t</code> 和上一步的隐藏状态 <code>h_{t-1}</code>，输出新的 <code>h_t</code>。水平橙色箭头表示&quot;上一步的记忆传给下一步&quot;，这就是记忆的载体。下方是 LSTM 的升级思路：用遗忘、输入、输出三个门去控制细胞状态 <code>c</code> 该忘什么、记什么、输出什么，让旧信息能跨很长的序列持续留存。</p>
+<p>关键点：<strong>每一步使用同一套权重 W_h、W_x、b</strong>（参数共享），所以 RNN 可以处理任意长度的序列。这有点像 CNN 的参数共享——CNN 在空间上共享，RNN 在时间上共享。</p>
+<h3 id="%E4%B8%A4%E7%A7%8D%E8%AF%BB%E6%B3%95">两种读法</h3>
+<ul>
+<li><strong>多到一（sequence → one）</strong>：只看最后一步的 <code>h_T</code> 做预测，例如&quot;整句话是正面还是负面&quot;。</li>
+<li><strong>多到多（sequence → sequence）</strong>：每一步都输出一个东西，例如&quot;每个词的词性标签&quot;，或机器翻译的 decoder（每一步生成一个词）。</li>
+</ul>
+<h2 id="%E7%9B%B4%E6%8E%A5%E6%89%8B%E7%AE%97%E4%B8%80%E4%B8%AA%E4%B8%80%E6%AD%A5-rnn">直接手算一个一步 RNN</h2>
+<p>为了真正&quot;摸到&quot;这种重复结构，手算一个单时间步：</p>
+<pre><code class="language-text">假设隐藏维度 = 2
+W_h = [[0.5, -0.2], [0.6, 0.1]]
+W_x = [[0.3, 1.0], [-0.4, 0.7]]
+b   = [0.1, -0.2]
+</code></pre>
+<p>上一步隐藏状态 <code>h_{t-1} = [1, 0.5]</code>，当前输入 <code>x_t = [2, -1]</code>：</p>
+<pre><code class="language-text">W_h·h_{t-1} = [[0.5, -0.2],[0.6, 0.1]]·[1, 0.5]
+             = [0.5*1 + (-0.2)*0.5,  0.6*1 + 0.1*0.5] = [0.4, 0.65]
+W_x·x_t = [[0.3, 1.0],[-0.4, 0.7]]·[2, -1]
+         = [0.3*2 + 1.0*(-1),  -0.4*2 + 0.7*(-1)] = [-0.4, -1.5]
+总和 + b = [0.4 + (-0.4) + 0.1,  0.65 + (-1.5) + (-0.2)]
+        = [0.1, -1.05]
+h_t = tanh([0.1, -1.05]) ≈ [0.0997, -0.7818]
+</code></pre>
+<p>注意：<code>h_t</code> 同时受&quot;过去记忆 h_{t-1}&quot;和&quot;当前输入 x_t&quot;影响。同一个公式在下一个时间步重复，就形成&quot;记住前面、结合当下&quot;的能力。</p>
+<h2 id="rnn-%E7%9A%84%E4%B8%89%E5%BA%A7%E5%A4%A7%E5%B1%B1%EF%BC%9A%E9%95%BF%E6%9C%9F%E4%BE%9D%E8%B5%96%E3%80%81%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%2F%E7%88%86%E7%82%B8%E3%80%81%E6%85%A2">RNN 的三座大山：长期依赖、梯度消失/爆炸、慢</h2>
+<p>RNN 原理漂亮，但实践有几处硬伤：</p>
+<ol>
+<li><strong>长期依赖（long-term dependency）困难</strong>：信息要跨越很多时间步。第 1 个词要影响第 50 个词的输出，中间要经过 49 次非线性变换，梯度早就消失了。</li>
+<li><strong>梯度爆炸/消失</strong>：在时间轴上展开后，RNN 相当于一个&quot;共享权重的深网络&quot;，梯度在时间上反复相乘。乘的数大于 1 就爆炸（需梯度裁剪，<a href="04-06-training-tricks.html">04-06</a>），小于 1 就消失（长时间步学不到）。</li>
+<li><strong>训练慢</strong>：时间步必须<strong>串行</strong>处理，后一步依赖前一步的隐藏状态，没法像 CNN 那样并行。这在大序列上非常致命。</li>
+</ol>
+<p>最后一条（串行）是 RNN 被 Transformer 取代的<strong>决定性原因</strong>之一，第五章会细说。</p>
+<h2 id="lstm%EF%BC%9A%E7%94%A8%22%E9%97%A8%22%E6%9D%A5%E9%80%89%E6%8B%A9%E6%80%A7%E8%AE%B0%E5%BF%86%E4%B8%8E%E9%81%97%E5%BF%98">LSTM：用&quot;门&quot;来选择性记忆与遗忘</h2>
+<p><strong>LSTM（Long Short-Term Memory，长短期记忆）<strong>针对梯度消失设计，引入了</strong>细胞状态（cell state）</strong> <code>c_t</code> 和三个&quot;门&quot;：</p>
+<ul>
+<li><strong>遗忘门</strong>：决定&quot;过去的记忆该忘多少&quot;。</li>
+<li><strong>输入门</strong>：决定&quot;新信息该记住多少&quot;。</li>
+<li><strong>输出门</strong>：决定&quot;把记忆的哪部分输出给 h_t&quot;。</li>
+</ul>
+<p>每个门都是一个「sigmoid 再乘」的机制（<strong>门</strong> = 一个 0 到 1 之间的开关比例，乘到某路信号上决定放行多少）。sigmoid 输出 0-1，表示&quot;放行比例&quot;：</p>
+<pre><code class="language-text">0 = 完全关闭（忘掉/不写入/不输出）
+1 = 完全打开（保留/写入/输出）
+</code></pre>
+<p>粗略的结构：</p>
+<pre><code class="language-text">候选 c_tilde = tanh(...)                新的候选记忆
+遗忘 f_t = σ(...)                      过去记忆保留比例
+输入 i_t = σ(...)                      新记忆写入比例
+细胞 c_t = f_t ⊙ c_{t-1} + i_t ⊙ c_tilde   线性更新记忆
+输出 o_t = σ(...)                      输出比例
+h_t = o_t ⊙ tanh(c_t)
+</code></pre>
+<p>关键是 <code>c_t = f_t⊙c_{t-1} + i_t⊙c_tilde</code>：<strong>细胞状态是一条&quot;线性&quot;通路</strong>，遗忘门决定保留多少旧记忆。正因为这条通路几乎线性，旧信息能&quot;涓涓细流&quot;般持续留存在很长的序列里，梯度不会在时间上被非线性地反复压扁——这极大缓解了长期依赖和梯度消失。</p>
+<h3 id="gru%EF%BC%9Alstm-%E7%9A%84%E8%BD%BB%E9%87%8F%E7%89%88">GRU：LSTM 的轻量版</h3>
+<p>**GRU（Gated Recurrent Unit）**把 LSTM 简化：只有两个门（更新门、重置门），没有单独的细胞状态。效果接近 LSTM，但参数更少、更快。工程上常作为 RNN 家族的首选入门。</p>
+<h2 id="rnn-%E5%AE%B6%E6%97%8F%E5%AF%B9%E6%AF%94">RNN 家族对比</h2>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>记忆机制</th>
+<th>门</th>
+<th>长期能力</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>朴素 RNN</td>
+<td>隐藏状态 h</td>
+<td>无</td>
+<td>差（梯度消失）</td>
+<td>概念基础</td>
+</tr>
+<tr>
+<td>LSTM</td>
+<td>h + 细胞状态 c</td>
+<td>遗忘/输入/输出</td>
+<td>好（线性记忆通路）</td>
+<td>经典主力</td>
+</tr>
+<tr>
+<td>GRU</td>
+<td>简化隐藏状态</td>
+<td>更新/重置</td>
+<td>好（参数更少）</td>
+<td>轻量替代</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E7%94%A8-pytorch-%E6%90%AD%E4%B8%80%E4%B8%AA%E5%8F%A5%E5%AD%90%E5%88%86%E7%B1%BB-rnn">用 PyTorch 搭一个句子分类 RNN</h2>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+
+# 简单&quot;最后一步输出做分类&quot;的 RNN
+class SentimentRNN(nn.Module):
+    def __init__(self, vocab, embed_dim=64, hidden=32, num_classes=2):
+        super().__init__()
+        self.embed = nn.Embedding(vocab, embed_dim)
+        self.rnn = nn.GRU(embed_dim, hidden, batch_first=True)
+        self.fc = nn.Linear(hidden, num_classes)
+
+    def forward(self, x):            # x: (batch, seq_len) 词索引
+        e = self.embed(x)            # (batch, seq_len, embed_dim)
+        out, h = self.rnn(e)         # out: 每步输出; h: 最后一步隐藏
+        last = h[-1]                 # 取最后一个时间步的隐藏
+        return self.fc(last)         # (batch, num_classes)
+</code></pre>
+<p>流程是：每个词索引 → 查嵌入得到向量 → 喂给 GRU 按顺序处理 → 取最后一步隐藏做分类。这就是一个&quot;读完整个句子再表态&quot;的序列模型。</p>
+<h2 id="%E4%BB%8E-rnn-%E5%88%B0-transformer%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E5%8F%96%E4%BB%A3">从 RNN 到 Transformer：为什么被取代</h2>
+<p>RNN 的&quot;长依赖难 + 必须串行&quot;，在需要长文本、超大模型的时代越来越难以承受。注意力机制（<a href="../05-nlp-transformers/README.html">05</a>）给出两条致命优势：</p>
+<pre><code class="language-text">1. 任一位置能直接看到&quot;任意遥远&quot;的其他位置，没有长依赖问题
+2. 所有位置并行计算，不需要逐时间步串行
+</code></pre>
+<p>所以现代 NLP 和 LLM 几乎不再用 RNN 做骨干。理解 RNN 的价值在于：</p>
+<ul>
+<li>它是&quot;序列=记忆+顺序处理&quot;这个心智模型的来源。</li>
+<li>LSTM 的&quot;门控+线性记忆通路&quot;思想至今影响很多架构设计。</li>
+<li>读旧论文、理解历史演进必需。</li>
+</ul>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>RNN 的参数为什么可以在不同时间步共享？这和 CNN 的共享有何类比？</li>
+<li>一步 RNN 的 <code>h_t</code> 依赖于哪些量？为什么说它&quot;记住过去、结合当下&quot;？</li>
+<li>朴素 RNN 处理长序列会遇到哪两个核心问题？</li>
+<li>LSTM 用&quot;三个门 + 细胞状态&quot;解决了 RNN 的什么问题？细胞状态的&quot;线性通路&quot;为何关键？</li>
+<li>GRU 相比 LSTM 简化了什么？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>RNN 把同一套权重在每个时间步复用，因为它处理的是&quot;同一种顺序变换&quot;——每个时间步的更新规律相同。这类似 CNN 在空间上共享权重的思路：CNN 空间共享、RNN 时间共享，都通过复用一套参数降参量并捕捉对应结构。</li>
+<li><code>h_t</code> 依赖当前输入 <code>x_t</code> 和上一步隐藏状态 <code>h_{t-1}</code>（经 W_h、W_x 和 tanh）。<code>h_{t-1}</code> 携带了此前所有读到内容的摘要，所以 <code>h_t</code> 兼具&quot;记住前面 + 结合这一步&quot;，正体现序列建模。</li>
+<li>长期依赖困难（早先信息跨大量时间步难以保留到下）和梯度爆炸/消失（时间轴展开后梯度反复相乘，&gt;1 爆炸、&lt;1 消失）。串行计算导致的训练慢是另一工程问题。</li>
+<li>LSTM 用遗忘/输入/输出门控制记忆写入与读取，引入近乎线性的细胞状态通路 <code>c_t = f⊙c_{t-1} + i⊙c_tilde</code>，让旧信息能跨越很长的序列持续留存，缓解梯度消失和长期依赖。</li>
+<li>GRU 只有更新门和重置门两个门，没有单独的细胞状态（隐藏状态直接承担记忆），参数更少、计算更快，长期记忆能力仍较好，常在资源敏感场景当首选。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想看清&quot;为什么序列实现要转向注意力/并行&quot; → <a href="../05-nlp-transformers/README.html">05 NLP 与 Transformer</a>。</li>
+<li>想回顾与 LSTM 门控同源的正则/稳定性手段 → <a href="04-06-training-tricks.html">04-06 训练技巧</a>。</li>
+<li>想把序列模型放到语言建模的大背景下 → <a href="../06-llm-fundamentals/README.html">06 LLM 原理</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

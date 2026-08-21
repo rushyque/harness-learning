@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tokenizer 深入：为什么&amp;quot;token 不是字也不是词&amp;quot; · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="tokenizer-%E6%B7%B1%E5%85%A5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%22token-%E4%B8%8D%E6%98%AF%E5%AD%97%E4%B9%9F%E4%B8%8D%E6%98%AF%E8%AF%8D%22">Tokenizer 深入：为什么&quot;token 不是字也不是词&quot;</h1>
+<blockquote>
+<p>目标：搞懂 token 到底怎么算、为什么按 token 计费、为什么同一个词在不同模型里 token 数不同。读完这一页，你能估算一段文本的 token 数与成本，也能看懂为什么分词会影响模型的行为。</p>
+</blockquote>
+<h2 id="%E5%85%88%E7%A0%B4%E9%99%A4%E4%B8%80%E4%B8%AA%E7%9B%B4%E8%A7%89%E8%AF%AF%E5%8C%BA">先破除一个直觉误区</h2>
+<p>很多人以为&quot;token = 字&quot;或&quot;token = 词&quot;。其实<strong>token 是一个模型自己定义的最小编码单元</strong>，介于字和词之间：</p>
+<pre><code class="language-text">词表里有&quot;完整高频词&quot;（如 the、理解）
+也有&quot;可复用的片段&quot;（如 un、ing、##ly）
+罕见词会被拆成好几个 token
+</code></pre>
+<p>同一段文字，不同 tokenizer 会切成不同的 token 序列。所以：</p>
+<blockquote>
+<p>token 不是自然语言概念，是&quot;模型数学里的说法&quot;。谁长得像词，取决于这个词在训练语料里的频率。</p>
+</blockquote>
+<h2 id="%E4%B8%80%E4%B8%AA%E8%8B%B1%E6%96%87%E5%AE%9E%E4%BE%8B">一个英文实例</h2>
+<p>英文里一个 token 可以是一个词：</p>
+<pre><code class="language-text">&quot;hello&quot; → [hello]（1 token）
+</code></pre>
+<p>也可以被拆分：</p>
+<pre><code class="language-text">&quot;unhappiness&quot; → [un, happi, ness]（3 个 token）
+</code></pre>
+<p>&quot;happi&quot;、&quot;ness&quot; 这种子词被复用到很多词里（happiness、unhappiness、happily），所以&quot;一个词 = 一个 token&quot;是<strong>错觉</strong>，只有常见词才常是一对一。</p>
+<h2 id="%E4%B8%AD%E6%96%87%E4%B8%BA%E4%BB%80%E4%B9%88%22%E4%B8%80%E5%AD%97%E5%A4%9A-token%22">中文为什么&quot;一字多 token&quot;</h2>
+<p>中文在很多 tokenizer 里一个字（甚至半个字）就是 1~2 个 token。原因：</p>
+<pre><code class="language-text">英文常见词：词表里存完整词 → 一个词 1 个 token
+中文：常用汉字/词入词表，但很多字词被切分成 byte 或子词 → 1 个汉字常 1-2 token
+</code></pre>
+<p>于是<strong>中文文本通常&quot;token 密度&quot;高于英文</strong>：表达同一段意思，中文用的 token 更多，成本也更高。这是做中文产品和 Agent 时非常实际的成本问题（<a href="../07-llm-engineering/README.html">07</a>）。</p>
+<p><img src="../assets/figures/fig-token-density.svg" alt="中英文 token 密度对比：同一段意思中文常需要更多 token"></p>
+<p>上图左右对照：左边的英文，常见词（hello、world、this、is、a、test）大多整词入库，一个词基本对应一个 token，粗估约 4 个字符一个 token；右边的中文，每个汉字通常就要 1~2 个 token（很多字词被切成子词或 byte 化）。所以表达同样的意思，中文的 token 数往往更多，按 token 计费时成本也更高。</p>
+<h2 id="%E4%BC%B0%E7%AE%97-token-%E6%95%B0%E7%9A%84%E7%BB%8F%E9%AA%8C%E6%B3%95%E5%88%99">估算 token 数的经验法则</h2>
+<p>没有精确公式，但有粗估：</p>
+<pre><code class="language-text">英文：约 4 个字符 ≈ 1 token
+中文：约 1 个汉字 ≈ 1~2 token
+</code></pre>
+<p>更可靠的做法是用<strong>模型的 tokenizer 直接数</strong>。HuggingFace 一条命令可查：</p>
+<pre><code class="language-python">from transformers import AutoTokenizer
+
+tok = AutoTokenizer.from_pretrained(&quot;gpt2&quot;)   # 仅演示计数思路
+text = &quot;你好，世界！Hello world! This is a test.&quot;
+print(&quot;token 数量:&quot;, len(tok.encode(text)))
+print(tok.encode(text))
+</code></pre>
+<p>注意：不同模型 tokenizer 不同，<strong>同一个文本在不同模型的 token 数不一样</strong>。想精确知道，就用目标模型自己的 tokenizer 数。</p>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8C%89-token-%E8%AE%A1%E8%B4%B9">为什么按 token 计费</h2>
+<p>API 计费按 token 而非&quot;字数&quot;，因为：</p>
+<pre><code class="language-text">算力与内存消耗由 token 数决定（上下文越长，前向计算越多）
+token 是模型真正&quot;消费&quot;的最小单位
+输入 + 输出都被计入
+</code></pre>
+<p>于是&quot;你的对话历史越长、回答越长&quot;，成本越高。做 Agent（<a href="../08-agent-foundations/README.html">08</a>）时，优化 token 用量是降本的关键——这也催生了&quot;精简 prompt、缓存上下文、摘要压缩旧对话&quot;等手段（<a href="../07-llm-engineering/README.html">07</a>）。</p>
+<p><img src="../assets/figures/fig-token-cost.svg" alt="为什么按 token 计费：输入与输出都计入成本"></p>
+<p>上图把&quot;按 token 计费&quot;的成本模型拆成两块：左侧蓝色是输入（prompt），包含系统说明、历史对话与文档，上下文越长前向计算越多、越贵；右侧绿色是输出（生成），模型回答越长 token 越多也越贵。中间紫色提示：token 是模型真正&quot;消费&quot;的最小单位。底部琥珀色给出降本手段——精简 prompt、缓存上下文、摘要压缩旧对话，这也正是做 Agent 时优化 token 的核心工程。</p>
+<h2 id="tokenizer-%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%BA%E7%9A%84%E9%9A%90%E8%97%8F%E8%81%94%E7%B3%BB">Tokenizer 与模型行为的隐藏联系</h2>
+<p>分词还悄悄影响能力：</p>
+<ul>
+<li><strong>生僻/细分词</strong>：被拆太碎，模型对它的&quot;整体语义&quot;掌握就差。</li>
+<li><strong>数字</strong>：有的 tokenizer 把一个数拆成多个 token（如 &quot;2024&quot;→&quot;20&quot;,&quot;24&quot;），模型算算术就更难。</li>
+<li><strong>多语言</strong>：低资源语言的词常被拆成很多 byte，模型对该语言的&quot;整词语义&quot;变弱。</li>
+</ul>
+<p>这些工程细节解释了为什么&quot;给模型好 token&quot;也是一门手艺，也关乎 <a href="06-09-limits-hallucination.html">06-09</a> 里的某些失败模式。</p>
+<h2 id="%E7%89%B9%E6%AE%8A-token-%E5%8F%88%E8%A7%81%E9%9D%A2">特殊 token 又见面</h2>
+<p>真实词表还有一堆特殊 token：</p>
+<pre><code class="language-text">&lt;BOS&gt; 开始、&lt;EOS&gt; 结束、&lt;PAD&gt; 填充
+&lt;unk&gt; 未知、&lt;|im_start|&gt;/&lt;|im_end|&gt; 对话建模标记
+</code></pre>
+<p>这些标记不表达语义，而是<strong>约定模型&quot;这一段是什么&quot;</strong>（用户话、助手话、系统说明）。你在 <a href="../07-llm-engineering/README.html">07</a> 和 deepseek-harness 的 prompt 处理里会很常见。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>为什么说 token&quot;不是字也不是词&quot;？决定一个 token 长什么样的关键是什么？</li>
+<li>中文相比英文，token 密度通常更高还是更低？为什么？</li>
+<li>用&quot;4 字符≈1 token&quot;估算，一段 800 个英文字符（含空格）的文本大约多少 token？</li>
+<li>为什么 API 按 token 计费而不是按字数？</li>
+<li>tokenizer 怎样影响模型对&quot;数字&quot;&quot;罕见词&quot;的表现？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>因为 token 是模型自定的最小编码单元，常见词整体入库（像词），罕见词被拆成子词/byte（像字根）。决定一个 token 长什么样的是&quot;该片段在训练语料里的频率&quot;。</li>
+<li>通常更高。中文一个汉字常需要 1~2 个 token，因为很多字词并非整词入库或被 byte 化；而英文常见词常整体一个 token，所以表达同样意思中文 token 数更多。</li>
+<li>按 4 字符≈1 token，800 字符约 200 token。这只是一个粗估，实际以目标模型 tokenizer 为准。</li>
+<li>因为模型的计算量、内存、上下文消耗都由 token 决定，token 是模型真正消费的最小单位；输入输出都算 token，故按 token 计价最能反映真实成本。</li>
+<li>生僻词被拆碎时模型对整体语义掌握下降；数字在 tokenizer 里可能被拆成多个 token 导致算术变难；低资源语言被 byte 化时整词语义变弱。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想理解&quot;规模&quot;如何带来能力与成本 → <a href="06-04-scaling-laws.html">06-04 缩放定律</a>。</li>
+<li>想控制采样与 token 成本 → <a href="../07-llm-engineering/README.html">07 LLM 工程</a>。</li>
+<li>想复习子词分词原理 → <a href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

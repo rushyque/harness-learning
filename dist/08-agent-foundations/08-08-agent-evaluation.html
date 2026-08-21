@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent 评估：怎么知道一个 Agent 好不好 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="agent-%E8%AF%84%E4%BC%B0%EF%BC%9A%E6%80%8E%E4%B9%88%E7%9F%A5%E9%81%93%E4%B8%80%E4%B8%AA-agent-%E5%A5%BD%E4%B8%8D%E5%A5%BD">Agent 评估：怎么知道一个 Agent 好不好</h1>
+<blockquote>
+<p>目标：把 <a href="../07-llm-engineering/07-07-evaluation.html">07-07</a> 的评测延伸到&quot;整个 Agent 系统&quot;。读完这一页，你能说出 Agents 评测不同于单模型评测的维度、常见方法和陷阱。</p>
+</blockquote>
+<h2 id="%E8%AF%84%E6%B5%8B-agent-%E2%89%A0-%E8%AF%84%E6%B5%8B%E6%A8%A1%E5%9E%8B">评测 Agent ≠ 评测模型</h2>
+<p>单模型评测看&quot;一句回答&quot;（<a href="../07-llm-engineering/07-07-evaluation.html">07-07</a>）。但 Agent 是一整套&quot;感知、规划、行动、记忆&quot;的系统——一句回答好不好远远不够。你要评估的是<strong>整条任务的完成质量</strong>。</p>
+<pre><code class="language-text">是否完成了用户的真实目标？
+调了该调的工具、参数对不对？
+轨迹是否合理（有没有绕远、反复试错）？
+安不安全？花了多少 token/时间？
+</code></pre>
+<h2 id="%E4%BA%94%E7%B1%BB%E6%A0%B8%E5%BF%83%E6%8C%87%E6%A0%87">五类核心指标</h2>
+<pre><code class="language-text">任务成功率：目标达成的比例（最重要）
+轨迹质量：规划是否合理、工具使用是否高效
+效率成本：轮数、token 数、耗时
+安全性：是否触发危险操作/越权
+鲁棒性：面对干扰/异常是否仍能完成
+</code></pre>
+<p>一个&quot;能在 20 步内高效完成、从不出危险操作&quot;的 Agent，可能比&quot;能完成但绕了 50 步、冒了风险&quot;的更好。</p>
+<p><img src="../assets/figures/fig-eval-five-metrics.svg" alt="Agent 五类核心指标"></p>
+<p>上图把五类核心指标并排列出：任务成功率（达成目标的比例，最重要）、轨迹质量（规划是否合理、工具使用是否高效）、效率成本（轮数/token/耗时）、安全性（是否触发危险操作或越权）、鲁棒性（面对干扰异常仍能完成）。一个 Agent 好不好，是多维度权衡，而不是单看&quot;给没给出正确文本&quot;。</p>
+<h2 id="%E4%B8%89%E7%A7%8D%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95">三种评估方法</h2>
+<h3 id="1.-%E5%8F%AF%E7%BC%96%E7%A8%8B%2F%E5%8F%AF%E5%88%A4%E5%AE%9A%E7%9A%84%E4%BB%BB%E5%8A%A1%EF%BC%88golden%EF%BC%89">1. 可编程/可判定的任务（golden）</h3>
+<p>结果可以自动判断：比如&quot;能否从仓库构建出程序&quot;&quot;某文件内容是否符合预期&quot;。golden 在这里指&quot;预先写好的标准答案/判定条件&quot;——任务带着一份期望结果，跑完直接比对，不需要人参与。这种最硬核、可复现。</p>
+<pre><code class="language-text">优点：客观、可重复、能自动跑
+缺点：只覆盖&quot;结果可判定&quot;的任务
+</code></pre>
+<h3 id="2.-llm-as-a-judge-%2F-%E4%BA%BA%E7%B1%BB%E8%AF%84%E6%B5%8B">2. LLM-as-a-Judge / 人类评测</h3>
+<p>对开放结果用大模型或人工评分（<a href="../07-llm-engineering/07-07-evaluation.html">07-07</a>）：从&quot;是否正确利用工具&quot;&quot;规划是否合理&quot;等角度打分。</p>
+<pre><code class="language-text">优点：覆盖开放任务
+缺点：有偏、贵（人工）
+</code></pre>
+<h3 id="3.-%E8%BD%A8%E8%BF%B9%E5%9B%9E%E6%94%BE%E4%B8%8E%E5%A4%8D%E7%9B%98">3. 轨迹回放与复盘</h3>
+<p>通过<strong>会话日志/轨迹</strong>回放 Agent 每一步，人工或自动复盘&quot;哪里开始出错、为什么&quot;（deepseek-harness 的 session 日志就是为此准备的）。</p>
+<pre><code class="language-text">价值：不只判断&quot;成没成&quot;，还能定位&quot;为什么失败&quot;
+</code></pre>
+<p><img src="../assets/figures/fig-eval-methods.svg" alt="三种评估方法"></p>
+<p>上图把三种方法并列：可判定任务靠自动化判断结果（客观、可重复但覆盖面窄）；开放任务用 LLM 裁判或人工评分（覆盖面广但有偏、贵）；轨迹回放复盘则通过会话日志回放每一步、定位&quot;从哪一步开始错、为什么&quot;。下方强调复现性：固定 seed/环境/工具返回、多次运行取统计，重放稳定才能支撑迭代。</p>
+<h2 id="%E5%A4%8D%E7%8E%B0%E6%80%A7%EF%BC%9A%E8%AF%84%E6%B5%8B%E8%A6%81%E8%83%BD%22%E9%87%8D%E6%94%BE%22">复现性：评测要能&quot;重放&quot;</h2>
+<p>Agent 评测最大的坑是<strong>不可复现</strong>：</p>
+<pre><code class="language-text">模型输出有随机性（采样）→ 同问题可能不同结果
+外部工具/网络状态变化 → 结果漂移
+</code></pre>
+<p>改善手段：</p>
+<pre><code class="language-text">固定 temperature/seed（尽量）——采样温度与随机种子，见 [06-02](../06-llm-fundamentals/06-02-token-through-model.md)
+固定环境（沙箱快照）
+多次运行取统计（跑 N 次看成功率）
+固定 tool 返回（mock 掉外部不确定性）
+</code></pre>
+<p>其中 <strong>mock（模拟替身）</strong> 是测试术语：用一个&quot;返回值写死的假实现&quot;替换真实外部依赖（网络、数据库），让被测对象以为自己在调真东西。只有&quot;重放能得到稳定结果&quot;的评测，才能支撑迭代决策。</p>
+<h2 id="%E8%AF%84%E6%B5%8B%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%EF%BC%9Aagent-%E4%B9%9F%E6%98%AF%E8%BF%99%E4%B9%88%E8%BF%AD%E4%BB%A3%E5%87%BA%E6%9D%A5%E7%9A%84">评测驱动开发：Agent 也是这么迭代出来的</h2>
+<p>一个健康的循环：</p>
+<pre><code class="language-text">定任务集（真实/典型的用户场景）
+→ 跑 Agent
+→ 自动+人工评估
+→ 定位失败点（轨迹复盘）
+→ 改进 prompt/工具/规划/守卫
+→ 再跑，确认提升且没回归
+</code></pre>
+<p>没有这个循环，&quot;感觉变好了&quot;是虚幻的，无法保证可靠。</p>
+<h3 id="deepseek-harness-%E7%9A%84%E6%A0%B7%E6%9C%AC%EF%BC%9A%E5%BF%AB%E7%85%A7%E6%B5%8B%E8%AF%95%E5%B0%B1%E6%98%AF-agent-%E8%AF%84%E6%B5%8B">deepseek-harness 的样本：快照测试就是 Agent 评测</h3>
+<p>仓库自己的测试策略就是这套方法的落地样本。<code>pnpm run test:snapshot</code>（快照测试）的思路：给一个固定的 Agent 任务，把它跑出的<strong>完整输出轨迹</strong>录下来作为&quot;期望产物&quot;；以后每次改动都重跑一遍、与期望比对——任何行为漂移（工具调用变了、回答结构变了）都会被立刻发现。而无密钥时测试自动跳过、<code>test:e2e</code> 只在有真实 API key 时运行，则是&quot;可复现性&quot;的另一种体现：<strong>外部依赖（模型 API）的可用性不决定测试套件是否健康</strong>。</p>
+<p>对照来看：golden 任务 ≈ 快照比对；轨迹复盘 ≈ 读 session 日志定位漂移步骤；多次运行统计 ≈ CI 在多平台上跑。方法与工程是一一对应的。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>为什么说&quot;评测 Agent ≠ 评测模型&quot;？</li>
+<li>五类核心指标分别是什么？</li>
+<li>什么是&quot;可编程/可判定&quot;任务？它的优缺点是什么？</li>
+<li>Agent 评测为什么容易&quot;不可复现&quot;？如何改善？</li>
+<li>轨迹回放的价值主要体现在哪里？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>因为 Agent 是一整套感知/规划/行动/记忆系统，&quot;一句回答好不好&quot;不足以反映&quot;是否完成用户目标、是否高效安全&quot;。必须评估整条任务的完成质量与轨迹。</li>
+<li>任务成功率、轨迹质量、效率成本（轮数/token/耗时）、安全性、鲁棒性。</li>
+<li>结果可以自动化判断的任务（如&quot;构建成功&quot;&quot;文件内容符合预期&quot;）。优点是客观、可重复、能自动跑；缺点是只覆盖结果可判定的任务。</li>
+<li>因为模型采样有随机性、外部工具/网络状态会变化。改善：固定 temperature/seed、固定沙箱环境与 tool 返回、多次运行取成功率统计。</li>
+<li>不只判断&quot;成没成&quot;，还能定位&quot;从哪一步开始错、为什么错&quot;，从而指导改进（改 prompt/工具/规划/守卫），是评估驱动开发的关键。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想知道 Agent 为什么&quot;跑偏/卡死&quot; → <a href="08-09-failure-modes.html">08-09 常见失败模式</a>。</li>
+<li>想研究评估落地的平台 → <a href="../10-practical-lab/README.html">10 实战 Lab</a>。</li>
+<li>想在架构里嵌评估 → <a href="../09-agent-architecture/README.html">09 Agent 架构</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

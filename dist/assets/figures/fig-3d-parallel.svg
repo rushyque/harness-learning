@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="3D 并行拆解">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">3D 并行：三个方向切分工</text>
+  <rect x="55" y="90" width="170" height="150" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="140" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">数据并行</text>
+  <text x="140" y="154" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">多卡分数据</text>
+  <text x="140" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">AllReduce 梯度</text>
+  <text x="140" y="214" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">切的方向：数据</text>
+  <rect x="265" y="90" width="170" height="150" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="350" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">张量并行</text>
+  <text x="350" y="154" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">切同一层权重</text>
+  <text x="350" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">聚合矩阵乘</text>
+  <text x="350" y="214" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">切的方向：权重</text>
+  <rect x="475" y="90" width="170" height="150" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="560" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#b26a00">流水线并行</text>
+  <text x="560" y="154" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">按层切</text>
+  <text x="560" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#33475b">接力前向/反向</text>
+  <text x="560" y="214" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">切的方向：层</text>
+  <rect x="55" y="262" width="570" height="60" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.5"/>
+  <text x="340" y="288" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#5b3aa6">叠加起来 = 3D：数据 × 张量 × 流水线并行</text>
+  <text x="340" y="310" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">序列并行则对长序列的 attention 再切一刀</text>
+</svg>

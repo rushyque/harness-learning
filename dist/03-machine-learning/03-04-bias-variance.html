@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>偏差-方差与正则化：越复杂不一定越好 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%9A%E8%B6%8A%E5%A4%8D%E6%9D%82%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%B6%8A%E5%A5%BD">偏差-方差与正则化：越复杂不一定越好</h1>
+<blockquote>
+<p>目标：理解机器学习最核心的张力——过拟合与欠拟合。读完这一页，你能拆解&quot;误差 = 偏差 + 方差 + 噪声&quot;，解释 L1/L2 正则化分别怎么起作用、各有什么偏好，并知道如何用它们控制模型复杂度。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%22%E8%B6%8A%E5%A4%8D%E6%9D%82%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%B6%8A%E5%A5%BD%22">为什么&quot;越复杂不一定越好&quot;</h2>
+<p>一个直觉：模型越复杂，它在训练数据上往往越准。但如果它只是把训练数据<strong>背下来</strong>，拿到新数据就失灵。这里的核心问题是<strong>权衡</strong>：模型要有足够能力学到真实规律（不能太简单），又不能太灵活到把噪声也当规律（不能太复杂）。</p>
+<p>一个关键心态：</p>
+<blockquote>
+<p>误差不是单一来源。真正专业的做法是把它拆成&quot;因为太简单没学会&quot;和&quot;因为太灵活被噪声带偏&quot;两部分，然后对症下药。</p>
+</blockquote>
+<h2 id="%E8%AF%AF%E5%B7%AE%E4%B8%89%E4%BB%B6%E5%A5%97%EF%BC%9A%E5%81%8F%E5%B7%AE-%2B-%E6%96%B9%E5%B7%AE-%2B-%E5%99%AA%E5%A3%B0">误差三件套：偏差 + 方差 + 噪声</h2>
+<p>一个模型在测试集上的总误差可以分解成三部分：</p>
+<pre><code class="language-text">总误差 = 偏差²(bias) + 方差(variance) + 不可约噪声(noise)
+</code></pre>
+<p>换个通俗说法：</p>
+<ul>
+<li><strong>偏差</strong>：模型&quot;固有的天真程度&quot;。简单模型常假设不对，偏离真实规律 → 高偏差。</li>
+<li><strong>方差</strong>：模型&quot;对训练数据变化的敏感程度&quot;。复杂模型换个训练集结果就大变 → 高方差。（这里借用了 <a href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a> 里&quot;方差衡量波动&quot;的直觉：把&quot;换一批训练数据&quot;当成随机性，预测结果随之晃动越剧烈，方差越大。）</li>
+<li><strong>噪声</strong>：数据本身不可预测的部分，任何模型都无法消除。</li>
+</ul>
+<h3 id="%E7%9B%B4%E8%A7%89%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%89%93%E9%9D%B6">直觉例子：打靶</h3>
+<ul>
+<li><strong>高偏差、低方差</strong>：弹孔都集中在偏离靶心的一小片——很稳定但整体打偏（欠拟合，总是错）。</li>
+<li><strong>低偏差、高方差</strong>：弹孔围绕靶心但四散——平均准但每次不稳定（过拟合，换数据就变）。</li>
+<li><strong>低偏差、低方差</strong>：弹孔稳定地集中在靶心——这才是理想的。</li>
+</ul>
+<p>这个&quot;精准 vs 稳定&quot;的对比是理解全部复杂度的钥匙。</p>
+<h2 id="%E8%BF%87%E6%8B%9F%E5%90%88%E4%B8%8E%E6%AC%A0%E6%8B%9F%E5%90%88">过拟合与欠拟合</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>欠拟合</th>
+<th>过拟合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练误差</td>
+<td>高</td>
+<td>很低</td>
+</tr>
+<tr>
+<td>测试误差</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>原因</td>
+<td>模型太简单</td>
+<td>模型太复杂</td>
+</tr>
+<tr>
+<td>偏差</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>方差</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>对策</td>
+<td>加能力/换复杂模型</td>
+<td>加正则/减复杂度/加数据</td>
+</tr>
+</tbody>
+</table>
+<p>关键信号：<strong>测试误差的走向</strong>。</p>
+<ul>
+<li>训练和测试都差 → 欠拟合，还不够力。</li>
+<li>训练很好但测试差 → 过拟合，太能背。</li>
+<li>训练好、测试也好 → 状态合适。</li>
+</ul>
+<p><img src="../assets/figures/fig-bias-variance.svg" alt="欠拟合与过拟合：模型复杂度与拟合曲线对比"></p>
+<p>左图是太简单的模型：虚线表示真实规律，蓝线过于平坦，跟不上弯曲的数据（高偏差）；右图是太复杂的模型：蓝线弯弯绕绕穿过每个训练点，把噪声也记住了（高方差）。两个极端都不是我们想要的。</p>
+<pre><code class="language-mermaid">flowchart TB
+  S[&quot;训练与验证误差怎么走？&quot;] --&gt; B[&quot;都高，两线贴近&quot;]
+  S --&gt; C[&quot;训练低、验证高，中间有沟&quot;]
+  B --&gt; B1[&quot;高偏差：加能力、去正则、换复杂的模型&quot;]
+  C --&gt; C1[&quot;高方差：加数据、加正则、减小容量&quot;]
+</code></pre>
+<h2 id="%E5%A6%82%E4%BD%95%22%E8%B0%83%E5%A4%8D%E6%9D%82%E5%BA%A6%22">如何&quot;调复杂度&quot;</h2>
+<p>复杂度不是二选一，而是一个旋钮，可以从两个方向拧：</p>
+<ol>
+<li><strong>改变模型容量</strong>：特征更多、层更多、树更深 → 容量变大。<strong>容量</strong>（capacity）指&quot;模型能表达多复杂的关系&quot;——容量小的模型只画得出直线，容量大的能画出任意弯的曲线。</li>
+<li><strong>正则化</strong>：不改变模型结构，但<strong>惩罚过度复杂</strong>的参数（正则化 = 往损失里额外加一项&quot;参数太大致罚&quot;，逼模型保持简单）。</li>
+</ol>
+<p>对深度模型，容量通常通过调结构（层数/宽度）来变；对表格模型，往往靠<strong>正则化</strong>来抑制过拟合而不牺牲表达能力。</p>
+<h2 id="l2-%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%88%E5%B2%AD%E5%9B%9E%E5%BD%92%EF%BC%89">L2 正则化（岭回归）</h2>
+<p>L2 是在损失函数里给&quot;权重的平方和&quot;加惩罚（这个方法叫<strong>岭回归</strong>，ridge regression——名字里的&quot;岭&quot;指损失曲面被 λ 项垫起了一道脊，把极端权重压下去）：</p>
+<pre><code class="language-text">L_target = MSE + λ · Σ w_i²
+</code></pre>
+<p>这里 <code>λ</code>（正则强度）越大，越逼权重往 <strong>0 附近缩</strong>——但不完全等于 0，只是整体变小。L2 的效果：</p>
+<ul>
+<li>惩罚&quot;参数很大&quot;的模型 → 权重向 0 收缩。</li>
+<li>让模型更&quot;平滑&quot;、对噪声的每个特征不那么敏感 → 降方差。</li>
+<li>好处是损失仍可导、凸性好，优化稳定。</li>
+</ul>
+<p>直觉：L2 让模型&quot;不要把所有赌注押在某个特征上&quot;，把权重均匀地分摊、压小。</p>
+<h2 id="l1-%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%88lasso%EF%BC%89">L1 正则化（Lasso）</h2>
+<p>L1 惩罚的是权重的<strong>绝对值之和</strong>：</p>
+<pre><code class="language-text">L_target = MSE + λ · Σ |w_i|
+</code></pre>
+<p>L1 的独特之处：它会迫使部分权重<strong>精确地变成 0</strong>，实现<strong>特征选择</strong>（自动挑出有用的特征、丢弃没用的）。<strong>Lasso</strong> 就是&quot;用 L1 正则化的线性回归&quot;的名字（lasso 意为&quot;套索&quot;——它像套索一样把一部分系数整个套住拖到 0），lasso 自己会&quot;挑出&quot;哪些特征真正有用，把没用的清零。</p>
+<p>为什么 L1 会让权重为零而 L2 不会？</p>
+<ul>
+<li>L2 的惩罚是平方，越靠近 0 惩罚越小，权重停在&quot;小但不为 0&quot;。</li>
+<li>L1 的惩罚是绝对值，在 0 处有一个&quot;尖角&quot;，梯度恒定；最小化会在尖锐处把权重压到 0。</li>
+</ul>
+<p>几何上，L1 的约束区域是&quot;菱形&quot;（角落在轴上），最优解更容易落在轴上（稀疏）；L2 是&quot;圆&quot;，最优解一般不在轴上。<strong><a href="../01-math-foundations/01-01-linear-algebra.html">01-01</a> 里提过 L1 鼓励稀疏</strong>——正是这里。</p>
+<h2 id="%E4%B8%A4%E7%A7%8D%E6%AD%A3%E5%88%99%E5%AF%B9%E6%AF%94">两种正则对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>L1 (Lasso)</th>
+<th>L2 (Ridge)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>惩罚项</td>
+<td><code>Σ|w_i|</code></td>
+<td><code>Σ w_i²</code></td>
+</tr>
+<tr>
+<td>权重要么</td>
+<td>可能精确变 0（稀疏）</td>
+<td>变小但一般不为 0</td>
+</tr>
+<tr>
+<td>主要作用</td>
+<td>特征选择、稀疏解</td>
+<td>权重收缩、防过拟合</td>
+</tr>
+<tr>
+<td>合适场景</td>
+<td>特征多、怀疑很多无关</td>
+<td>各特征都有一点用</td>
+</tr>
+</tbody>
+</table>
+<p>实操里常两者组合（<strong>ElasticNet</strong>——L1 与 L2 按比例混合的正则化，兼得&quot;稀疏选择&quot;与&quot;稳定收缩&quot;）。而&quot;深度学习里的<strong>权重衰减</strong>（weight decay）&quot;——每步更新后把权重按一个小比例整体缩小——本质就是 L2 正则化，你会不断在 <a href="../04-deep-learning/README.html">04 章</a> 看到它。</p>
+<h2 id="%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8D%E5%8F%AA%E6%98%AF%E6%9D%83%E9%87%8D%E6%83%A9%E7%BD%9A">正则化不只是权重惩罚</h2>
+<p>正则化的精神是&quot;抑制过拟合&quot;，手段不止 L1/L2 一种：</p>
+<ul>
+<li><strong>Dropout</strong>：训练时随机&quot;关掉&quot;部分神经元，强迫网络不依赖单个神经元（<a href="../04-deep-learning/README.html">04 章</a>）。</li>
+<li><strong>早停（early stopping）</strong>：验证集误差开始上升就停止训练（详见 <a href="03-09-learning-curves.html">03-09</a>）。</li>
+<li><strong>数据增强</strong>：对输入做合理变换造更多样本（如图片旋转裁剪、文本同义改写）。</li>
+<li><strong>降低模型容量</strong>：更小的层/树深，最直接的&quot;惩罚&quot;。</li>
+</ul>
+<p>在语言模型领域，正则化思想也贯穿：标签平滑（把&quot;完全确定的正确答案&quot;软化为&quot;绝大多数概率给正确答案、留一小撮给其他词&quot;，防止模型过度自信）、权重衰减、dropout 都会在 <a href="../06-llm-fundamentals/README.html">06/07 章</a> 出现。理解&quot;抑制过拟合&quot;这个通用目标，你就能一眼看懂这些看似不同的技术想解决同一个问题。</p>
+<h2 id="%E5%8A%A8%E6%89%8B%EF%BC%9A%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E5%AF%B9%E6%AF%94">动手：过拟合的可视化与正则化对比</h2>
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(1)
+x = rng.uniform(-3, 3, size=40)
+y = np.sin(x) + rng.normal(0, 0.3, size=40)
+
+# 高维多项式特征 → 容易过拟合
+from numpy.polynomial import polynomial as P
+X = P.polyvander(x, 15)          # 15 阶，容易过拟合
+
+w_lstsq, *_ = np.linalg.lstsq(X, y, rcond=None)
+
+# 加上 L2 惩罚 (λ) 的岭回归解法：w = (XᵀX + λI)⁻¹ Xᵀ y
+lam = 1.0
+XTX = X.T @ X + lam * np.eye(X.shape[1])
+w_ridge = np.linalg.solve(XTX, X.T @ y)
+
+# 比较对训练数据的拟合程度
+pred_train = X @ w_lstsq
+print(&quot;无正则训练MSE:&quot;, ((y - pred_train)**2).mean().round(4))
+print(&quot;无正则权重范数:&quot;, np.linalg.norm(w_lstsq).round(2))
+print(&quot;L2正则权重范数:&quot;, np.linalg.norm(w_ridge).round(2))
+print(&quot;L2正则 权重范数更小:&quot;, np.linalg.norm(w_ridge) &lt; np.linalg.norm(w_lstsq))
+</code></pre>
+<p>你会看到加正则后权重范数明显变小、预测更平滑——这就是&quot;牺牲一点训练拟合，换取更稳的泛化&quot;。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>高偏差、高方差分别对应什么现象？分别应该怎么办？</li>
+<li>L1 和 L2 正则化在效果上的核心区别是什么？</li>
+<li>为什么把 λ 调得太大反而会变差？</li>
+<li>一个模型&quot;训练好、测试差&quot;，它是过拟合还是欠拟合？该往哪个方向调整？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>高偏差是模型太简单，训练测试都差（欠拟合），应增加能力、换更复杂模型；高方差是模型太复杂，训练好测试差（过拟合），应加正则、减容量或加数据。</li>
+<li>L2 把权重整体向 0 收缩但不精确变 0；L1 会把部分权重<strong>精确压成 0</strong>，从而实现特征选择、得到稀疏解。</li>
+<li>因为 λ 太大时惩罚压过拟合信号，模型被迫把权重全部压向 0，失去了学习真实规律的能力，偏差大增，整体又变差（从过拟合滑向欠拟合）。</li>
+<li>是<strong>过拟合</strong>。因为训练好而测试差说明它记住了训练数据但没有泛化。应增加正则（L1/L2、dropout、早停）、减小模型容量或增加数据。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想知道&quot;泛化好不好&quot;怎么公平衡量 → <a href="03-05-evaluation-metrics.html">03-05 评估指标</a>。</li>
+<li>想系统地诊断模型&quot;卡在哪&quot; → <a href="03-09-learning-curves.html">03-09 学习曲线与诊断</a>。</li>
+<li>想在深度模型里用同样的思想 → <a href="../04-deep-learning/README.html">04 深度学习</a> 的权重衰减与 Dropout。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

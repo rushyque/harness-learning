@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最优化：如何最小化损失 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E6%9C%80%E4%BC%98%E5%8C%96%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9C%80%E5%B0%8F%E5%8C%96%E6%8D%9F%E5%A4%B1">最优化：如何最小化损失</h1>
+<blockquote>
+<p>目标：把&quot;找最优参数&quot;变成一套方法论。读完这一页，你能讲清凸性与局部/全局最优、梯度下降与变体（随机梯度、带动量、Adam）、以及约束与惩罚如何在优化里运作。</p>
+</blockquote>
+<h2 id="%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E7%9A%84%E9%AA%A8%E6%9E%B6">最优化问题的骨架</h2>
+<p>先看一个不涉及任何技术的日常场景：你要从山顶走到山谷的最低点，但雾很大，只能看见脚下这一小块坡。这时你会怎么走？大概是这样——<strong>感受一下脚下是上坡还是下坡，然后朝着下坡的方向迈一步，再重复</strong>。你不需要看清整座山，只需要&quot;每一步都让海拔降低一点&quot;，方向大致对就能接近谷底。</p>
+<p>这个&quot;每一步朝着让目标变小的方向走&quot;的通用套路，就是<strong>最优化（optimization）</strong>：我们要找一个输入，让某个目标函数尽量小（或尽量大）。目标函数可以是&quot;走路的海拔&quot;、&quot;做某件事的总成本&quot;、也可以是你想平衡或优化的任何数量。只要它能量化，就能问&quot;怎么调输入才能让它最理想&quot;。</p>
+<p>数学上，把它写成：对输入 $\theta$，找到一个让它达到最小值（或接近最小）的选择 $\theta^{*}$：</p>
+<p>$$
+\min_\theta\ L(\theta)\qquad\text{subject to 可能的额外约束 }g(\theta)\le 0
+$$</p>
+<p>这里 $L$ 叫目标（也可以叫&quot;代价/损失&quot;），$\theta$ 是那些能调节的输入。我们希望找到让 $L$ 最小的 $\theta^{*}$。也许你还对&quot;损失&quot;&quot;参数&quot;这些词有些陌生——先别急，这一页会把&quot;怎么走下山&quot;这套逻辑讲透，等你后面真正遇到需要&quot;调一堆旋钮来让错误变小&quot;的问题时，会自然认出它。这一页从&quot;损失地形&quot;出发建立直觉：</p>
+<p><img src="../assets/figures/fig-gradient-descent.svg" alt="损失地形与梯度下降"></p>
+<h2 id="%E5%87%B8%E6%80%A7%E4%B8%8E%E5%B1%80%E9%83%A8%2F%E5%85%A8%E5%B1%80%E6%9C%80%E4%BC%98">凸性与局部/全局最优</h2>
+<p>凸函数有非常美好的性质：<strong>任何局部最小都是全局最小</strong>。直观上它像一个碗，只有一个最低点；而凹函数/多峰函数像丘陵，可能有很多坑，掉进去未必是最低处。</p>
+<p>$$
+\text{凸函数：任意两点连线的值}\ge\text{函数值}\quad\Rightarrow\quad\text{只有一个谷底}
+$$</p>
+<p>$$
+\text{非凸函数：有很多局部谷底}\quad\Rightarrow\quad\text{容易困在次优解}
+$$</p>
+<p>经典的线性回归损失是凸的（所以有唯一解）；而神经网络损失通常非凸（所以初始化、随机性、动量都很重要）。</p>
+<blockquote>
+<p>深挖：如何判断凸性？一个常见判据是看二阶导数——多元情形下所有二阶偏导排成的矩阵叫 <strong>Hessian</strong>（海森矩阵）。若 $f''(x)\ge0$（一元）或 Hessian 半正定（多元），函数是凸的。举例：$x^2$ 凸（$f''=2&gt;0$）、$-\log x$ 凸（$f''=1/x^2&gt;0$）——这解释了为什么&quot;平方损失&quot;(01-03) 与&quot;交叉熵&quot;(01-05) 单独看都是凸的；但它们叠加进深度网络后整体却非凸。</p>
+</blockquote>
+<h3 id="%E4%B8%BA%E4%BB%80%E4%B9%88%22%E5%87%B8%22%E9%82%A3%E4%B9%88%E9%87%8D%E8%A6%81">为什么&quot;凸&quot;那么重要</h3>
+<ul>
+<li>凸问题有高效的确定算法。</li>
+<li>非凸问题只能靠近似优化（如随机梯度下降），结果依赖初始点和超参数（<strong>超参数</strong>：你在训练<strong>开始前</strong>设定、训练中不被动学习的配置，如学习率、批大小——区别于模型自己学出来的&quot;参数&quot;）。</li>
+<li>理解这一点，就能明白为什么深度学习训练&quot;看运气 + 看调参&quot;。</li>
+</ul>
+<h2 id="%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%8A%E5%85%B6%E5%8F%98%E4%BD%93">梯度下降及其变体</h2>
+<p>四种策略可以用一张对照图记住：</p>
+<pre><code class="language-mermaid">flowchart TB
+  GD[&quot;批量梯度下降&lt;br/&gt;看全部数据，方向最准但每步慢&quot;]
+  SGD[&quot;随机/小批量 SGD&lt;br/&gt;看部分数据，快、带噪声&quot;]
+  MOM[&quot;动量 Momentum&lt;br/&gt;叠加惯性，穿过窄谷、抑制震荡&quot;]
+  ADAM[&quot;Adam&lt;br/&gt;自适应步长，几乎免调学习率&quot;]
+  GD --&gt; MOM
+  SGD --&gt; MOM
+  MOM --&gt; ADAM
+</code></pre>
+<h3 id="%E6%89%B9%E9%87%8F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-batch-gd">批量梯度下降 Batch GD</h3>
+<p>每次用<strong>全部</strong>数据算梯度再更新：</p>
+<p>$$
+\theta\leftarrow\theta-\eta\cdot\frac1n\sum_i\nabla L_i(\theta)
+$$</p>
+<p>优点：梯度方向最准；缺点：数据多时每步太慢。</p>
+<h3 id="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-sgd">随机梯度下降 SGD</h3>
+<p>每次只用<strong>一个</strong>样本（或一小批 mini-batch——比如每次取 32 个样本一起算，兼顾速度和稳定性）算梯度：</p>
+<p>$$
+\theta\leftarrow\theta-\eta,\nabla L_i(\theta)
+$$</p>
+<p>优点：快、天然带噪声（有时能帮跳出浅坑）；缺点：方向抖。小批量（batch=32/64）是实践中的最佳平衡。</p>
+<h3 id="%E5%8A%A8%E9%87%8F-momentum">动量 Momentum</h3>
+<p>给更新叠加&quot;上一步的方向惯性&quot;：</p>
+<p>$$
+v\leftarrow\beta,v-\eta,\nabla L;\qquad\theta\leftarrow\theta+v
+$$</p>
+<p>$\beta$ 常见取值 $0.9$。它能平滑震荡、加速朝同一方向前进，尤其帮梯度下降穿过窄谷。</p>
+<h3 id="adam">Adam</h3>
+<p>实践里最常用的自适应优化器，它结合了动量（一阶矩）和梯度平方的衰减平均（二阶矩），自动给每个参数&quot;按量放大/缩小&quot;：</p>
+<p>$$
+m\leftarrow\beta_1 m+(1-\beta_1)g;\qquad
+v\leftarrow\beta_2 v+(1-\beta_2)g^2
+$$</p>
+<p>$$
+\hat{m}=\frac{m}{1-\beta_1^t};\qquad
+\hat{v}=\frac{v}{1-\beta_2^t}
+$$</p>
+<p>$$
+\theta\leftarrow\theta-\text{lr}\cdot\frac{\hat{m}}{\sqrt{\hat{v}}+\varepsilon}
+$$</p>
+<p>（$\text{lr}$ 就是学习率 $\eta$ 的代码写法——几乎所有深度学习框架里这个参数都叫 <code>lr</code>；$\varepsilon$ 是一个极小的常数，如 $10^{-8}$，只为防止除以 0。）其中 $t$ 是当前步数。$\hat{m},\hat{v}$ 是<strong>偏差修正</strong>：$m$、$v$ 都从 0 起步，前几步会系统性偏小，除以 $1-\beta^t$（训练初期接近 0，修正幅度大；随 $t$ 增大趋于 1，修正自动消失）把它们拉回真实量级，避免开局步长过小。</p>
+<p>效果上，梯度长期大的参数分母大、步子被压小；梯度小而稳定的参数分母小、步子相对放大——&quot;每个参数有自己的有效学习率&quot;。它不是你非要手推的公式，但要知道它在&quot;自动适配每一步的大小&quot;。</p>
+<h2 id="%E5%AD%A6%E4%B9%A0%E7%8E%87%EF%BC%9A%E6%9C%80%E5%85%B3%E9%94%AE%E7%9A%84%E8%B6%85%E5%8F%82%E6%95%B0">学习率：最关键的超参数</h2>
+<p>学习率 $\eta$ 决定每一步跨多大：</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练曲线很久不下降</td>
+<td>学习率太小</td>
+</tr>
+<tr>
+<td>损失震荡甚至发散</td>
+<td>学习率太大</td>
+</tr>
+<tr>
+<td>训练后期&quot;卡死&quot;</td>
+<td>需要学习率衰减或更精细的调度</td>
+</tr>
+</tbody>
+</table>
+<p>常见做法是<strong>学习率调度</strong>：先大后小，先在远处快速接近，再在最小值附近精细收敛。你会在深度学习章节反复见到 <code>warmup + decay</code>。</p>
+<blockquote>
+<p>深挖：学习率与收敛的理论直觉。对凸函数，梯度下降以 $O(1/T)$ 收敛；学习率太大时更新会&quot;跳过&quot;最小值来回弹，太小则收敛极慢。实践里还常用<strong>步长缩放</strong>（learning rate warmup）先让小步适应梯度量级，再放大，最后按计划衰减。</p>
+</blockquote>
+<h2 id="%E7%BA%A6%E6%9D%9F%E4%B8%8E%E6%83%A9%E7%BD%9A%EF%BC%88%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%89">约束与惩罚（正则化）</h2>
+<p>有时我们希望参数不只让损失小，还要&quot;别太复杂&quot;。常见做法是给损失加惩罚：</p>
+<p>$$
+L'(\theta)=L(\theta)+\lambda,R(\theta)
+$$</p>
+<p>常见正则项：</p>
+<p>$$
+L2:\ R(\theta)=\tfrac12|\theta|^2\quad\Rightarrow\ \text{把大权重往 0 方向拉（权重衰减）}
+$$</p>
+<p>$$
+L1:\ R(\theta)=|\theta|_1\quad\Rightarrow\ \text{鼓励稀疏（很多分量恰好为 0）}
+$$</p>
+<p>$\lambda$ 控制惩罚强度。大量参数、较大 $\lambda$ 会更&quot;保守&quot;。这和 <a href="01-04-bayesian.html">01-04 贝叶斯视角</a> 里的&quot;先验&quot;直接对应——正则化是加了先验的优化。</p>
+<h2 id="%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96%EF%BC%9A%E5%8F%AF%E8%A1%8C%E5%9F%9F%E4%B8%8E%E6%8A%95%E5%BD%B1">约束优化：可行域与投影</h2>
+<p>有些时候参数必须落在某个区域内（如概率必须非负且和为 1）。两种思路：</p>
+<ul>
+<li><strong>投影法</strong>：先更新，再&quot;拉回&quot;到可行域里。</li>
+<li><strong>softmax</strong>：用可导函数直接输出满足&quot;非负且和为 1&quot;的向量——它是 soft argmax（软的最大值选取）的名字来源，得分最高的类别拿到最大概率。</li>
+</ul>
+<p>softmax 是语言模型输出的默认收尾，因为 next-token 必须是一个合法概率分布。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%B4%E8%A7%89">一个可视化直觉</h2>
+<p>把损失想成地形，参数是位置，梯度是&quot;最陡的坡&quot;：</p>
+<pre><code class="language-text">批量 GD：看完整地图，走大方向，稳但慢
+SGD：    随手抓一个点测坡，快但抖
+动量：   带惯性冲，能穿过小坑
+Adam：   自适应步长，几乎免调学习率
+</code></pre>
+<h2 id="%E5%8A%A8%E6%89%8B%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9E%8B%E4%BC%98%E5%8C%96%E6%BC%94%E7%A4%BA">动手：一个小型优化演示</h2>
+<pre><code class="language-python">import numpy as np
+
+def loss(x):
+    return (x - 3) ** 2        # 一个凸碗，最优点在 x=3
+def grad(x):
+    return 2 * (x - 3)
+
+# 朴素梯度下降
+x = 0.0; lr = 0.1
+for _ in range(100):
+    x -= lr * grad(x)
+print(&quot;converged x:&quot;, round(x, 4))      # 3.0
+
+# 模拟一个震荡场景：加大学习率看发散
+x = 0.0; lr = 1.2
+for _ in range(50):
+    x -= lr * grad(x)
+print(&quot;large lr final:&quot;, round(x, 4))   # 会来回弹甚至发散
+</code></pre>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>为什么凸优化的&quot;全局最优&quot;保证在神经网络里不成立？</li>
+<li>动量 $\beta$ 取大一点会让训练更稳还是更震荡？</li>
+<li>L1 和 L2 正则化的效果分别是什么？它们的几何差异在哪？</li>
+<li>学习率一直太大，损失曲线常出现什么特征？</li>
+<li>为什么小批量 SGD 的&quot;噪声&quot;有时反而是优点？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>凸优化能保证全局最优，是因为凸函数只有一个谷底。而神经网络损失通常是<strong>非凸</strong>的（多峰、多鞍点），所以只能保证收敛到某个局部最优点，结果依赖初始化、优化器与超参数。</li>
+<li>动量 $\beta$ 越大、&quot;惯性&quot;越强，能更平滑地穿过窄谷、抑制高频震荡；但取得过大也可能矫枉过正、在拐弯处冲过头造成震荡。实践里 $0.9$ 左右是常见平衡。</li>
+<li>L2 把权重平滑地压向 0（处处变小），L1 会把一部分权重<strong>恰好压成 0</strong>（得到稀疏解）。几何上，L2 是圆形（球）约束，L1 是菱形约束——菱形有&quot;角&quot;，最优解常落在轴上，从而产生稀疏。</li>
+<li>损失曲线会<strong>来回震荡甚至发散</strong>：不下降、呈锯齿状，数值可能一直上升甚至溢出到 NaN。</li>
+<li>噪声让参数更新不是死板地朝&quot;当前批的最陡坡&quot;走，而是带随机扰动——有时能帮跳出浅的局部谷底或穿过鞍点，从而找到更平的局部最优。这也是 SGD 在深度网络上常优于朴素全批量梯度下降的原因之一。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想把这些工具真正落到&quot;训练神经网络&quot; → <a href="../04-deep-learning/README.html">04 深度学习</a>。</li>
+<li>想理解模型评估与诊断 → <a href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a>。</li>
+<li>想看这在整个 Agent/LLM 训练链路怎么出现 → <a href="../07-llm-engineering/README.html">07 LLM 工程</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

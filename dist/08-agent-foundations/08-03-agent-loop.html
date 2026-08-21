@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent 循环：思考–行动–观察的工程化 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="agent-%E5%BE%AA%E7%8E%AF%EF%BC%9A%E6%80%9D%E8%80%83%E2%80%93%E8%A1%8C%E5%8A%A8%E2%80%93%E8%A7%82%E5%AF%9F%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96">Agent 循环：思考–行动–观察的工程化</h1>
+<blockquote>
+<p>目标：把 ReAct 从&quot;概念&quot;变成&quot;代码里能跑的循环&quot;。读完这一页，你能说清 turn 与 step、终止条件、最大步数、循环守卫这些&quot;把模型转成 Agent&quot;的工程零件。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%22%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%B0%83%E7%94%A8%22%E8%BF%98%E4%B8%8D%E5%A4%9F">为什么&quot;一个模型的调用&quot;还不够</h2>
+<p>function calling（<a href="08-02-tools-and-function-calling.html">08-02</a>）让我们&quot;一次让模型调用一个工具&quot;。但真实任务往往需要<strong>连续多步</strong>：先查、再决策、再执行、再验证。这一连串&quot;调用模型→执行工具→看结果→再调用模型&quot;的循环，就是 <strong>Agent 循环（agent loop）</strong>。</p>
+<p>一个任务不是&quot;一次模型请求&quot;，而是一<strong>系列</strong>迭代：</p>
+<pre><code class="language-text">模型思考 → 调工具 → 看结果 → 再思考 → 再调工具 → ... → 完成
+</code></pre>
+<h2 id="turn-%E4%B8%8E-step%EF%BC%9A%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E5%8D%95%E4%BD%8D">turn 与 step：两个关键单位</h2>
+<p>先建立清晰术语（deepseek-harness 也这么用）：</p>
+<pre><code class="language-text">turn（一轮）：一次请求-响应的完整回合（比如&quot;用户发话，到模型给最终答复&quot;）
+step（一步）：一轮里&quot;模型请求一次并执行其工具调用&quot;的单位
+</code></pre>
+<p>一个 turn 可以包含很多 step：</p>
+<pre><code class="language-text">turn: 处理用户&quot;帮我部署&quot;
+  step 1: 模型请求 → 调用 ls
+  step 2: 模型请求 → 调用 git status
+  step 3: 模型请求 → 调用 pnpm build
+  ...
+</code></pre>
+<p>理解这两个单位，是设计循环控制（步数上限、token、超时）的基础。</p>
+<p><img src="../assets/figures/fig-turn-step.svg" alt="turn 与 step 的关系"></p>
+<p>上图用一个具体例子说明两者：外层是我们熟悉的 <code>turn</code>（&quot;用户发话 → 模型最终答复&quot;的一轮），内层是这一轮里多次发生的 <code>step</code>（每一次&quot;模型请求 + 一次工具执行&quot;）。同一个 turn 里可以连续发生 <code>step 1</code>（调 <code>ls</code>）、<code>step 2</code>（调 <code>git status</code>）、<code>step 3</code>（调 <code>pnpm build</code>），直到收敛。步数、token、超时这些预算，都是按 <code>step</code> 这个最小单位来设的。</p>
+<h2 id="%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0%EF%BC%9A%E6%80%9D%E8%80%83%E3%80%81%E8%A1%8C%E5%8A%A8%E3%80%81%E8%A7%82%E5%AF%9F%E6%80%8E%E4%B9%88%E8%90%BD%E5%9C%B0">循环的三要素：思考、行动、观察怎么落地</h2>
+<p>在代码层面，循环大致是：</p>
+<pre><code class="language-text">while (未结束) {
+  response = 调用模型(messages, tools)      // 思考 + 可能输出 tool_call
+  if (response 是最终答案) break;           // 无工具调用 → 完成
+  把 response 追加到 messages               // 先记住&quot;我请求了什么&quot;
+  for (每个 tool_call) {
+    结果 = 执行工具(tool_call)               // 行动
+    把结果作为 tool 消息追加到 messages      // 观察
+  }
+}
+</code></pre>
+<p>三个关键判断：</p>
+<ul>
+<li><strong>是否继续</strong>：如果模型只回复文字、没有 tool_call，就说明它认为任务完成，可以终止。</li>
+<li><strong>是否安全</strong>：每步执行前检查审批/白名单。</li>
+<li><strong>何时强制停</strong>：要有硬性上限，防无限循环。</li>
+</ul>
+<h2 id="%E7%BB%88%E6%AD%A2%E6%9D%A1%E4%BB%B6%EF%BC%9A%E8%AE%A9%E5%BE%AA%E7%8E%AF%22%E4%BC%9A%E5%81%9C%22">终止条件：让循环&quot;会停&quot;</h2>
+<p>循环不能无限跑（模型可能一直调工具转圈）。终止靠几类条件：</p>
+<pre><code class="language-text">正常终止：模型输出最终答案（无 tool_call）
+步数上限：超过最大 step 数强制停（如 20 步）
+turn / token 上限：超过预算停
+用户中断：用户喊停
+工具致命错误：无法继续时停
+</code></pre>
+<p>尤其<strong>最大步数</strong>是防死循环的必备保险：</p>
+<pre><code class="language-python">max_steps = 20
+for step in range(max_steps):
+    ...
+</code></pre>
+<h2 id="%E5%BE%AA%E7%8E%AF%E5%AE%88%E5%8D%AB%EF%BC%9A%E9%98%B2%E6%A8%A1%E5%9E%8B%E8%B7%91%E5%81%8F">循环守卫：防模型跑偏</h2>
+<p>&quot;守卫（guard）&quot;是循环里的安全与健康检查——在循环体里额外插的一道道检查点，不参与决策、只负责&quot;发现异常就拦下或上报&quot;：</p>
+<pre><code class="language-text">工具超时：单工具太久要中断
+结果过大：工具输出太长要截断/摘要，防止爆上下文
+敏感操作：写文件/删文件/跑命令要审批
+重复检测：模型反复做同一件事要干预
+</code></pre>
+<p>deepseek-harness 的 <code>guard</code>/<code>interaction</code> 插件（权限与审批）就是干这个的（<a href="../11-safety-governance/README.html">11</a>）。</p>
+<p><img src="../assets/figures/fig-loop-skeleton.svg" alt="Agent 循环骨架与终止"></p>
+<p>上图是循环骨架与终止条件的合体：中间一段是&quot;调模型 → 执行工具 → 结果回填 → 循环回去&quot;，右侧列出若干硬性上限（最大步数、token/turn 预算、用户中断、致命错误）以及循环守卫（超时、审批、重复检测）。无 <code>tool_call</code> 时模型给出最终答案、循环正常终止；其余全是&quot;会停下来&quot;的保险丝，缺一不可。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84-agent-%E5%BE%AA%E7%8E%AF%E7%A4%BA%E6%84%8F">一个最小的 Agent 循环示意</h2>
+<pre><code class="language-python">def run_agent(model, messages, tools, max_steps=20):
+    tool_by_name = {t[&quot;function&quot;][&quot;name&quot;]: t for t in tools}
+    for _ in range(max_steps):
+        msg = model(messages, tools)            # 模型决定：最终答案 or tool_call
+        # getattr(msg, &quot;tool_calls&quot;, None)：读 msg 的 tool_calls 属性，
+        # 没有这个属性时返回 None 而不报错（消息可能根本没有工具调用）
+        if not getattr(msg, &quot;tool_calls&quot;, None):
+            return msg.content                  # 无工具调用 → 完成
+        messages.append(msg)                    # 先把带 tool_call 的助手消息记入历史
+        for tc in msg.tool_calls:
+            fn = tool_by_name[tc.function.name]
+            result = execute(fn, tc.function.arguments)   # 真实执行
+            messages.append(tool_message(tc.id, result))  # 结果作为 tool 消息回填
+    return &quot;达到步数上限，已停止&quot;
+</code></pre>
+<p>这个骨架抓住了循环的本质：<strong>反复让模型决定，执行命中的工具，把真实结果回填，直到无工具调用的最终答案。</strong></p>
+<h2 id="%E5%9C%A8-deepseek-harness-%E9%87%8C%E7%9A%84%E5%AF%B9%E5%BA%94">在 deepseek-harness 里的对应</h2>
+<p>官方范式（<a href="08-01-what-is-an-agent.html">08-01</a> 提过）：</p>
+<pre><code class="language-text">ctx.agentLoop：默认 turn/step 驱动
+session：把每一步 event 追加进 append-only 日志（persist 可回放）
+tools：作用域化工具注册表，循环在这里查表执行
+</code></pre>
+<p>这意味着整个循环的&quot;决策轨迹&quot;被记录、可审计——这正是可靠 Agent 的基石（<a href="../09-agent-architecture/README.html">09</a>）。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>turn 和 step 的区别是什么？一个 turn 里能有多少 step？</li>
+<li>Agent 循环&quot;何时终止&quot;通常由哪几类条件决定？</li>
+<li>为什么必须设&quot;最大步数&quot;？只靠模型自己判断会有什么风险？</li>
+<li>循环守卫通常检查哪些健康/安全问题？</li>
+<li>为什么工具结果必须来自真实执行、作为新消息回填？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>turn 是一次请求-响应的完整回合；step 是回合内&quot;一次模型请求 + 执行其工具调用&quot;的单位。一个 turn 可以包含多个 step（连续查、执行、验证）。</li>
+<li>模型输出最终答案（无 tool_call）、达到最大步数、token/预算超限、用户中断、工具致命错误无法继续。</li>
+<li>因为模型可能陷入无限转圈（反复调用工具不收敛）。只靠模型自己判断没有硬保障，最大步数是防死循环、防烧钱的硬保险。</li>
+<li>工具超时、工具结果过大要截断/摘要、敏感/危险操作要审批、重复动作要检测和干预。</li>
+<li>因为模型只能&quot;说&quot;，不能&quot;做&quot;，工具必须由框架真实执行并把真实输出回填，这样决策才基于真实状态，避免模型&quot;猜结果&quot;导致幻觉和误判（<a href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09</a>）。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想让 Agent 记得过往与长期目标 → <a href="08-04-memory-systems.html">08-04 记忆系统</a>。</li>
+<li>想理解复杂任务的拆解 → <a href="08-05-planning.html">08-05 规划</a>。</li>
+<li>想把这些循环放进真实框架 → <a href="../09-agent-architecture/README.html">09 Agent 架构</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

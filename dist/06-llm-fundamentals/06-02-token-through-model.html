@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从输入到输出：一次推理的完整流程 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E4%BB%8E%E8%BE%93%E5%85%A5%E5%88%B0%E8%BE%93%E5%87%BA%EF%BC%9A%E4%B8%80%E6%AC%A1%E6%8E%A8%E7%90%86%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B">从输入到输出：一次推理的完整流程</h1>
+<blockquote>
+<p>目标：跟着一个 token 走完 LLM 推理的每一步。读完这一页，你能画出&quot;token → embedding → 各层 → 分布 → 采样&quot;的完整链路，并解释为什么输出是&quot;概率采样&quot;而非&quot;必然答案&quot;。</p>
+</blockquote>
+<h2 id="%E4%B8%80%E6%AC%A1%E6%8E%A8%E7%90%86%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88">一次推理在做什么</h2>
+<p>给 LLM 一句 prompt，它&quot;思考&quot;然后吐出一段回答。听起来神奇，其实场景内每个 token 都走同一套链条：</p>
+<pre><code class="language-text">1. Tokenize：文本 → token 索引列表
+2. Embed  : token 索引 → 向量 + 位置编码
+3. Forward: N 层 Transformer 编码，得到每个 token 的表示
+4. Head    : 用最后一层输出预测词表概率分布
+5. Sample  : 从这个分布里采样出一个新 token
+6. Append  : 接回上下文，再走一遍第 2-6 步（自回归；token 已存在，无需重新 tokenize）
+</code></pre>
+<p>直到采到&quot;结束 token&quot;或达到长度上限才停。下面逐步拆。</p>
+<p><img src="../assets/figures/fig-inference-pipeline.svg" alt="一次推理六步：tokenize、embed、forward、head、sample、append"></p>
+<p>上图把六步流水线画成一条横链：先 tokenize 成索引，再 embedding + 位置编码成向量，接着 N 层 Transformer 前向编码，输出头（Head）算出词表 logits，采样出一个新 token，最后 append 接回上下文。底部绿色框提示第 3 步的因果掩码、以及第 6 步之后会回到第 1 步的自回归循环。</p>
+<h2 id="%E7%AC%AC-1-%E6%AD%A5%EF%BC%9Atokenize">第 1 步：Tokenize</h2>
+<p>文本先被 <a href="../05-nlp-transformers/05-03-tokenization.html">05-03</a> 的 tokenizer 切成 token，每个 token 查词表得到一个整数索引。</p>
+<pre><code class="language-text">&quot;你好，世界&quot; → [1000, 2001, 101, 3002]（示意索引）
+</code></pre>
+<p>这一步决定了模型真正&quot;看&quot;到的原子单位，也决定了长度/成本（<a href="06-07-context-window.html">06-07</a>）。</p>
+<h2 id="%E7%AC%AC-2-%E6%AD%A5%EF%BC%9Aembedding-%2B-%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81">第 2 步：Embedding + 位置编码</h2>
+<p>每个 token 索引去查 <a href="../05-nlp-transformers/05-02-word-representation.html">05-02</a> 的嵌入表，得到 <code>d_model</code> 维向量；再叠上 <a href="../05-nlp-transformers/05-07-positional-encoding.html">05-07</a> 的位置编码，让模型知道顺序。</p>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+
+d_model, vocab = 32, 1000
+emb = nn.Embedding(vocab, d_model)
+pos = nn.Embedding(128, d_model)   # 可学习位置编码（示意）
+x = torch.tensor([[100, 200, 300, 400]])   # (1, 4)
+positions = torch.arange(x.size(1))
+h = emb(x)
+h = h + pos(positions)             # 词向量 + 位置向量
+print(&quot;输入表示形状:&quot;, h.shape)      # (1, 4, 32)
+</code></pre>
+<p><code>h</code> 的形状是 <code>(batch, seq_len, d_model)</code>，就是 Transformer 每一步的输入。</p>
+<h2 id="%E7%AC%AC-3-%E6%AD%A5%EF%BC%9A%E9%80%90%E5%B1%82%E7%BC%96%E7%A0%81%EF%BC%88forward%EF%BC%89">第 3 步：逐层编码（Forward）</h2>
+<p><code>h</code> 依次流过 N 层 decoder block。每层做：</p>
+<pre><code class="language-text">多头自注意力（融合所有位置的信息）+ 残差 + LayerNorm
+前馈网络 FFN（每个位置非线性加工）+ 残差 + LayerNorm
+</code></pre>
+<p>（完整 block 你已在 <a href="../05-nlp-transformers/05-06-transformer.html">05-06</a> 看过。）关键：<strong>因果掩码</strong>保证第 i 个 token 的表示只能看到 0..i 的信息，不能偷看它右边的未来 token。</p>
+<p>经过多层，最后一层每个位置的向量就携带了&quot;结合上下文的、该位置的深层语义&quot;。</p>
+<h2 id="%E7%AC%AC-4-%E6%AD%A5%EF%BC%9A%E8%BE%93%E5%87%BA%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83">第 4 步：输出概率分布</h2>
+<p>最关键的一步：对最后一个 token 的表示（或训练时针对要预测的下一 token 位置）过一个<strong>输出头（LM Head）</strong>：</p>
+<pre><code class="language-text">最后一个位置表示 → Linear(d_model → vocab) → logits
+logits → softmax → 整个词表上的概率分布
+</code></pre>
+<p><code>logits</code> 是词表大小的一串分数，<code>softmax</code> 后变成&quot;每个 token 是下一个词的概率&quot;。这就是 <a href="06-06-loss-objective.html">06-06</a> 讲的那个分布。</p>
+<pre><code class="language-python">import torch.nn.functional as F
+
+lm_head = nn.Linear(d_model, vocab)
+last_h = h[:, -1, :]                    # 最后位置表示 (1,32)
+logits = lm_head(last_h)                # (1, vocab)
+probs = F.softmax(logits, dim=-1)       # 概率分布
+print(&quot;词表概率和:&quot;, probs.sum().item())  # ≈ 1.0
+</code></pre>
+<h2 id="%E7%AC%AC-5-%E6%AD%A5%EF%BC%9A%E9%87%87%E6%A0%B7%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-token">第 5 步：采样一个新的 token</h2>
+<p>分布算出来了，但<strong>下一个 token 不是&quot;必选概率最大的&quot;</strong>。不同解码策略：</p>
+<ul>
+<li><strong>贪心（greedy）</strong>：直接取概率最大的 token。稳定但容易单调、重复。</li>
+<li><strong>采样（sampling）</strong>：按概率分布随机抽。更自然、多样，但可能不稳。</li>
+<li><strong>top-k / top-p</strong>：只在概率最高的前 k 个（或累计概率到 p）里采样，兼顾多样与稳定。</li>
+</ul>
+<p>这些策略（top-k、top-p、temperature）是 <a href="../07-llm-engineering/README.html">07</a> 的核心参数，你现在先理解&quot;输出 = 采样，不是查表&quot;。</p>
+<h2 id="%E7%AC%AC-6-%E6%AD%A5%EF%BC%9A%E8%87%AA%E5%9B%9E%E5%BD%92%E5%BE%AA%E7%8E%AF">第 6 步：自回归循环</h2>
+<p>新采到的 token 索引<strong>拼回原序列末尾</strong>，整个序列再走一遍第 2-6 步：</p>
+<pre><code class="language-text">[..., 400] → 再次 forward → 新分布 → 采样 → [..., 400, 新token] → ...
+</code></pre>
+<p>这就是&quot;一个字一个字蹦出来&quot;的原因：<strong>每个新 token 都要让整个模型重新前向一遍</strong>（虽然工程上有 KV cache 加速——把已算过的历史 K、V 向量缓存起来不重算，<a href="../07-llm-engineering/README.html">07</a> 讲），代价随序列变长而增长。</p>
+<h2 id="%E6%B8%A9%E5%BA%A6%E3%80%81top-k%E3%80%81top-p-%E7%9A%84%E7%9B%B4%E8%A7%89">温度、top-k、top-p 的直觉</h2>
+<p>几个最常用的&quot;输出旋钮&quot;：</p>
+<pre><code class="language-text">temperature T：调 softmax 的尖锐度
+   T&lt;1 → 分布更尖，更确定、重复
+   T&gt;1 → 分布更平，更随机、有创意
+top-k：只从概率最高的 k 个 token 里采样
+top-p：只从累计概率达到 p 的最小集合里采样
+</code></pre>
+<p>这些直接控制&quot;稳 vs 奇&quot;，是产品调性的关键。你会反复在 <a href="../07-llm-engineering/README.html">07</a> 用到。</p>
+<p><img src="../assets/figures/fig-temperature.svg" alt="采样策略：temperature / top-k / top-p 如何控制“稳 vs 奇”"></p>
+<p>上图把三个&quot;输出旋钮&quot;归纳在一起：左侧蓝色是温度 temperature，<code>T&lt;1</code> 让分布更尖（更确定、易重复），<code>T&gt;1</code> 让分布更平（更随机、有创意）；右侧绿色是 top-k / top-p，前者只在概率最高的前 k 个里采样，后者只从累计概率达到 p 的最小集合里采样，用来截断&quot;低概率尾巴&quot;。下方琥珀色再点出对照：贪心永远取最大、稳定但易单调，采样按分布随机、自然多样但可能不稳。这些参数共同决定产品是&quot;稳&quot;还是&quot;奇&quot;。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>从文本到新 token，一次推理的六步是什么？</li>
+<li>为什么第 i 个 token 的表示要受因果掩码限制？它限制什么、不限制什么？</li>
+<li>输出头（LM Head）把什么映射成什么？softmax 之后得到什么？</li>
+<li>为什么下一个 token 常常不是&quot;必选概率最大&quot;？采样策略在调节什么？</li>
+<li>自回归循环每生成一个新 token 要做什么事？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>① tokenize 成索引；② embedding+位置编码成向量；③ N 层 Transformer 前向编码；④ 用输出头预测词表概率分布；⑤ 采样出一个 token；⑥ 接回上下文再循环。</li>
+<li>因果掩码把&quot;未来位置&quot;的注意力分数置为 -inf，softmax 后权重为 0，限制第 i 个 token 只能用 0..i 的信息。它限制&quot;往后看&quot;，不限制&quot;往前往自己&quot;，保证自回归、不偷看答案。</li>
+<li>把最后一层表示（d_model 维）线性映射成整个词表的 logits（vocab 维），softmax 后变成词表上的概率分布（和为 1）。它决定了&quot;每个词作为下一个词的可能性&quot;。</li>
+<li>因为&quot;下一个词&quot;本质是概率事件，取最大易导致单调重复；采样按分布随机抽，能产生多样、自然的文本。top-k/top-p/temperature 调节&quot;探索与稳定&quot;的平衡。</li>
+<li>把新 token 接回序列末端，重新对整个序列做一次 embedding、N 层前向、输出分布再采样，重复直到结束 token 或长度上限。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想深挖 tokenizer 的&quot;非词非字&quot;细节 → <a href="06-03-tokenizer.html">06-03 Tokenizer 深入</a>。</li>
+<li>想理解语言建模损失对应的数学目标 → <a href="06-06-loss-objective.html">06-06 损失与目标</a>。</li>
+<li>想控制采样&quot;稳 vs 奇&quot;的实际参数 → <a href="../07-llm-engineering/README.html">07 LLM 工程</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG：检索增强生成，把外部知识注入模型 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="rag%EF%BC%9A%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%8A%8A%E5%A4%96%E9%83%A8%E7%9F%A5%E8%AF%86%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9E%8B">RAG：检索增强生成，把外部知识注入模型</h1>
+<blockquote>
+<p>目标：理解 RAG 的&quot;检索-注入-生成&quot;框架，以及它为何是解决&quot;过时知识、幻觉、长文档&quot;的关键。读完这一页，你能说清 RAG 的模块、向量检索的大致原理，以及它的局限。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-rag">为什么需要 RAG</h2>
+<p>LLM 有几个&quot;治不好&quot;的毛病（<a href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09</a>）：</p>
+<pre><code class="language-text">知识有截止日期（预训练时点）
+爱编造（凭记忆容易幻觉）
+长文档塞不进上下文（窗口有限，[06-07](../06-llm-fundamentals/06-07-context-window.md)）
+</code></pre>
+<p><strong>RAG（Retrieval-Augmented Generation，检索增强生成）<strong>的思路：让模型</strong>先检索外部资料，再把检索结果放进上下文一起回答</strong>，而不是全靠记忆。</p>
+<p><img src="../assets/figures/fig-rag-flow.svg" alt="RAG 三段式流程"></p>
+<p>上图画出了 RAG 的完整链路：先从外部资料库检索出与问题相关的片段，再把这些片段注入 prompt，最后让模型基于&quot;片段 + 问题&quot;生成答案。下方紫色条点出这套机制一次性解决了 LLM 的三个短板——知识有截止日期、爱凭记忆编造、长文档塞不进有限窗口；同时无论走朴素、进阶还是 Agentic RAG，本质都围绕&quot;检索什么、什么时候检索&quot;这个动作。</p>
+<h2 id="rag-%E7%9A%84%E4%B8%89%E6%AE%B5%E5%BC%8F%E6%B5%81%E7%A8%8B">RAG 的三段式流程</h2>
+<pre><code class="language-text">检索（Retrieve）：从外部资料库（文档、数据库、网页）找出相关问题片段
+注入（Augment）：把检索到的片段拼成 prompt 的一部分
+生成（Generate）：模型基于&quot;检索片段 + 问题&quot;生成答案
+</code></pre>
+<p>例：</p>
+<pre><code class="language-text">问题：公司 2024 年营收是多少？
+检索：从公司知识库取出一段&quot;2024 年营收 X 亿&quot;
+注入：资料 = X 亿；问题 = ...
+生成：模型据资料回答 → 引用出处
+</code></pre>
+<p>这不仅提升正确率，更重要的是<strong>让答案有据可查</strong>、能更新知识而不必重训模型。</p>
+<h2 id="%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%E4%B8%8E%22%E6%A3%80%E7%B4%A2%22%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C">核心模块与&quot;检索&quot;怎么工作</h2>
+<p>RAG 的几个部件：</p>
+<pre><code class="language-text">资料库：把文档切块（chunk，chunk=把长文切成的小段）+ 转成向量存起来
+Embedding：用模型把文本块变成向量（[05-02](../05-nlp-transformers/05-02-word-representation.md)）
+检索：把问题也转成向量，找&quot;语义最接近&quot;的资料块（向量相似度）
+生成：把命中块塞进 prompt
+</code></pre>
+<p>向量检索近似&quot;语义搜索&quot;：<code>问题向量</code> 与每个 <code>资料块向量</code> 算相似度，取最接近的几段。常用工具如向量数据库（专为存向量、快速算相似度设计的数据库）。也可结合关键字（BM25，经典的关键词打分检索算法，靠词频等统计量匹配）做混合检索提高召回——向量管&quot;意思相近&quot;，关键词管&quot;字面精确&quot;。</p>
+<p><img src="../assets/figures/fig-vector-retrieval.svg" alt="向量检索原理"></p>
+<p>上图把向量检索画成一个&quot;语义地图&quot;：顶部的红色问题向量向四周的绿色资料块打虚线，越近的线代表语义越接近；先算相似度、再取 top-k 相关片段注入上下文。绿色条带与右侧灰色无关块呼应一个关键点——检索找的是&quot;意思相近&quot;而非&quot;字面相同&quot;，必要时还要混合关键字（BM25）来提高召回。</p>
+<h2 id="rag-%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8F%98%E4%BD%93">RAG 的常见变体</h2>
+<pre><code class="language-text">朴素 RAG：一次性检索几段直接塞入
+进阶：query 改写（把口语问题改写成更适合检索的问法）、多跳检索（multi-hop，回答需要&quot;A 的作者写过什么&quot;这类问题时要先查 A 再查作者，检索多跳着走）、重排序（rerank，用更精细的模型给初步检回的候选重新打分排序）
+Agentic RAG：让 agent 自主决定检索哪些、查几次（[08](../08-agent-foundations/README.md)）
+</code></pre>
+<p>演进方向是&quot;更智能地决定检索什么、什么时候检索、要不要再查&quot;，这正好和 agent 的&quot;行动循环&quot;结合。</p>
+<h2 id="rag-%E4%B8%8D%E6%98%AF%E9%93%B6%E5%BC%B9%EF%BC%9A%E5%B1%80%E9%99%90">RAG 不是银弹：局限</h2>
+<pre><code class="language-text">检索可能漏掉关键片段（召回不足）
+检索质量差 → 注入的也是错的
+分块粒度：切太碎丢上下文，切太粗噪音大（chunk 大小通常几百 token 量级，要按文档结构试）
+向量检索对&quot;事实精确匹配&quot;有时不如关键词（如型号、编号）
+仍可能被模型忽略/误用注入内容
+</code></pre>
+<p>所以工程上常常<strong>评估 RAG 的检索质量</strong>（<a href="07-07-evaluation.html">07-07</a>）：不仅要看&quot;答案对不对&quot;，还要看&quot;命中的资料对不对&quot;。</p>
+<h2 id="%E4%B8%80%E4%B8%AA-rag-%E7%9A%84%E6%9C%80%E5%B0%8F%E7%A4%BA%E6%84%8F%E6%80%9D%E8%B7%AF">一个 RAG 的最小示意思路</h2>
+<pre><code class="language-python"># 概念演示，不是生产代码
+def rag_answer(question, doc_chunks, embed_fn, llm):
+    q_vec = embed_fn(question)
+    # 找 top-k 最相近的资料块
+    scored = sorted(
+        ((embed_fn(c), c) for c in doc_chunks),
+        key=lambda pair: cosine(pair[0], q_vec), reverse=True)
+    context = &quot;\n&quot;.join(c for _, c in scored[:3])
+    prompt = f&quot;根据以下资料回答，不要编造。\n资料：{context}\n问题：{question}&quot;
+    return llm(prompt)
+</code></pre>
+<p>看到的骨架：<strong>嵌入→检索→注入→生成</strong>，就是 RAG。</p>
+<h2 id="rag-%E4%B8%8E-agent-%E7%9A%84%E6%9C%AA%E6%9D%A5">RAG 与 Agent 的未来</h2>
+<p>对 agent（<a href="../08-agent-foundations/README.html">08</a>），RAG 是&quot;给模型当外部记忆与工具&quot;的一种。deepseek-harness 的 web 搜索、文件读取等能力，本质上都在做&quot;把外部信息取回、放进上下文再决策&quot;这件事（<a href="../08-agent-foundations/README.html">08</a>）。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>RAG 的三个阶段是什么？</li>
+<li>向量检索大致如何工作？在检索语义时它找的是什么？</li>
+<li>RAG 解决了 LLM 的哪几个问题？</li>
+<li>RAG 的常见局限有哪些？</li>
+<li>为什么评估 RAG 时还要看&quot;检索质量&quot;而非只看答案？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>检索（从外部资料库找出相关片段）、注入（把片段拼进 prompt）、生成（基于&quot;片段+问题&quot;产出答案并带依据）。</li>
+<li>把文本块和问题都转成向量，再算向量之间的相似度，找出与问题语义最接近的资料块。它找的是&quot;语义相近的内容&quot;，而非仅字面匹配。</li>
+<li>缓解过时知识（可更新外部资料无需重训）、降低幻觉（答案建立在检索依据上）、处理长文档（只注入相关片段，规避窗口塞满）。</li>
+<li>检索可能召回不足、检索质量差会注入错误、分块粒度影响效果、向量检索对精确事实匹配有时不如关键词、模型仍可能忽略或误用注入内容。</li>
+<li>因为&quot;答案对&quot;建立在&quot;检索对了&quot;之上：若命中资料是错的/漏了关键块，模型就算忠实于材料也会答错。分开评估检索召回率与答案正确性，才能定位问题在检索还是生成。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想防幻觉的更多手段 → <a href="07-06-hallucination.html">07-06 幻觉与缓解</a>。</li>
+<li>想评估这种系统 → <a href="07-07-evaluation.html">07-07 评估基准</a>。</li>
+<li>想看到 RAG 如何融进&quot;会行动的 agent&quot; → <a href="../08-agent-foundations/README.html">08 Agent 基础</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

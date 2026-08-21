@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="语言建模的链式分解：整句概率拆成逐词条件概率连乘，每个词预测下一个词">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#1c2733">语言建模的链式分解：整句概率 = 逐词条件概率连乘</text>
+  <rect x="80" y="118" width="60" height="38" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="110" y="141" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#0f4c81">我</text>
+  <text x="110" y="90" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w1</text>
+  <rect x="220" y="118" width="60" height="38" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="250" y="141" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#0f4c81">爱</text>
+  <text x="250" y="90" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w2</text>
+  <rect x="360" y="118" width="60" height="38" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="390" y="141" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#0f4c81">北京</text>
+  <text x="390" y="90" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w3</text>
+  <text x="110" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">P(w₁)</text>
+  <text x="250" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">P(w₂|w₁)</text>
+  <text x="390" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">P(w₃|w₁,w₂)</text>
+  <text x="530" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">P(w₄|w₁,w₂,w₃)</text>
+  <text x="180.0" y="230" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#b26a00">×</text>
+  <text x="320.0" y="230" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#b26a00">×</text>
+  <text x="460.0" y="230" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#b26a00">×</text>
+  <line x1="60" y1="270" x2="620" y2="270" stroke="#9db4cc" stroke-width="2"/>
+  <text x="340.0" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#33475b">整句概率  P(w₁,w₂,w₃,w₄) = Π P(w_t | 前面所有词)</text>
+  <text x="340.0" y="335" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">这个等式没有做任何近似，只是条件概率的链式法则</text>
+  <rect x="470" y="45" width="180" height="46" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="560" y="64" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">每个词的“答案”</text>
+  <text x="560" y="82" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">就是它后面那个词</text>
+  <text x="340.0" y="370" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">把“整句太难”变成“一步步预测下一个词”，正是便于自监督的原因</text>
+</svg>

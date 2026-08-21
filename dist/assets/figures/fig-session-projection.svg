@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="append-only 事件流 + 投影成会话状态">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#1c2733">事件只增不改；投影把事件流折叠成当前状态</text>
+  <rect x="70" y="90" width="80" height="64" rx="6" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.8"/>
+  <text x="110" y="124" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#0f4c81">E1 user 消息</text>
+  <rect x="160" y="90" width="80" height="64" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.8"/>
+  <text x="200" y="124" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#0e7c66">E2 tool_call</text>
+  <rect x="250" y="90" width="80" height="64" rx="6" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.8"/>
+  <text x="290" y="124" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b26a00">E3 tool_result</text>
+  <rect x="340" y="90" width="80" height="64" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.8"/>
+  <text x="380" y="124" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#0e7c66">E4 assistant 答</text>
+  <rect x="430" y="90" width="80" height="64" rx="6" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.8"/>
+  <text x="470" y="124" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#5b3aa6">E5 状态更新</text>
+  <path d="M 70.0,182.0 L 510.0,182.0" fill="none" stroke="#0f4c81" stroke-width="2"/>
+  <text x="300" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#5e6b7a">追加顺序就是时间顺序</text>
+  <line x1="300" y1="250" x2="300.0" y2="224.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M300.0 224.0 L305.0 224.0 L295.0 224.0 Z" fill="#b26a00"/>
+  <text x="300" y="244" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#b26a00">projection 折叠</text>
+  <rect x="180" y="256" width="240" height="60" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="300" y="284" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#5b3aa6">当前会话状态</text>
+  <text x="300" y="306" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#33475b">消息序列 / 进度 / 模型视角</text>
+  <rect x="470" y="256" width="150" height="60" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="545" y="284" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">可回放</text>
+  <text x="545" y="306" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#33475b">重放重建任意时刻</text>
+  <path d="M 470.0,286.0 L 428.0,286.0" fill="none" stroke="#0e7c66" stroke-width="2"/>
+  <rect x="70" y="342" width="540" height="44" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.8"/>
+  <text x="340" y="368" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#b23a2a">凡是模型看到的，都必须能从日志重建（model-visible = logged）</text>
+</svg>

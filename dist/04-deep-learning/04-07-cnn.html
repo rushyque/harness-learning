@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卷积神经网络（CNN）：专门处理网格结构的模型族 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88cnn%EF%BC%89%EF%BC%9A%E4%B8%93%E9%97%A8%E5%A4%84%E7%90%86%E7%BD%91%E6%A0%BC%E7%BB%93%E6%9E%84%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%97%8F">卷积神经网络（CNN）：专门处理网格结构的模型族</h1>
+<blockquote>
+<p>目标：理解卷积、池化、感受野等概念，以及它们为什么适合图像这类&quot;密集网格&quot;数据。读完这一页，你既能看懂经典 CNN 结构，也知道为什么它天然比全连接层&quot;省参数、抗平移&quot;。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-cnn%EF%BC%9A%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E5%AF%B9%E5%9B%BE%E5%83%8F%E6%98%AF%E6%B5%AA%E8%B4%B9">为什么需要 CNN：全连接层对图像是浪费</h2>
+<p>把一张 224×224×3 的图片丢进一个全连接层，仅输入就是约 15 万个数字。接一个同样规模的隐层，参数量就是几百亿——训练不动又严重过拟合。更糟的是，全连接层把每个像素都当成独立、无空间关系的维度，完全浪费了图像&quot;相邻像素高度相关&quot;的结构。</p>
+<p>CNN 的核心洞察：</p>
+<pre><code class="language-text">图像是网格：像素在空间上有局部相关的结构。
+同样的局部模式换个位置出现，语义基本不变（平移不变性）。
+→ 何不让同一套&quot;局部检测器&quot;在整张图上滑动复用？
+</code></pre>
+<h2 id="%E5%8D%B7%E7%A7%AF%EF%BC%9A%E7%94%A8%E4%B8%80%E4%B8%AA%22%E5%B0%8F%E6%BB%A4%E6%B3%A2%E5%99%A8%22%E6%89%AB%E6%8F%8F%E6%95%B4%E5%BC%A0%E5%9B%BE">卷积：用一个&quot;小滤波器&quot;扫描整张图</h2>
+<p>卷积操作的核心是一个<strong>滤波器（filter / kernel，也叫卷积核）</strong>——一个很小的权重网格，比如 3×3。它在这张图（或特征图）上从左到右、从上到下滑动，每到一个位置，把窗口里的像素和滤波器逐元素相乘再求和，输出一个数。（CNN 里的&quot;卷积&quot;是从信号处理借来的名字，实际算的是这种&quot;滑动窗口点积&quot;。）</p>
+<p>例如一个 3×3 卷积，输出某个位置 <code>(i,j)</code> 的值：</p>
+<pre><code class="language-text">out(i,j) = Σ_{a,b} input(i+a, j+b) * K(a,b)
+</code></pre>
+<p>其中 <code>K</code> 是 3×3 的滤波器权重，<code>a,b</code> 遍历 3×3。</p>
+<p>可以这样理解：</p>
+<pre><code class="language-text">每个滤波器 = 一个&quot;局部模式探测器&quot;（例如竖边缘、横边缘、某个纹理）
+滑动扫描 = 到每个位置问&quot;这里有没有这种模式？&quot;
+</code></pre>
+<p><img src="../assets/figures/fig-conv-scan.svg" alt="卷积：3×3 滤波器在图像上滑动扫描，把窗口内的像素质与权重逐元素相乘再求和"></p>
+<p>图中的橙色窗口是滤波器当前停留在输入图的某个位置。这个 3×3 的滤波器（以竖边缘检测器为例，权重视觉化成 <code>[1,0,-1]</code> 三行）与窗口内的像素逐元素相乘再求和，得到一个输出数。滤波器再沿行、列滑动到下一个位置重复同样的计算，最终生成一整张响应图。</p>
+<p>关键优势：<strong>同一个滤波器在整个图上复用，参数量只和一个滤波器一样大</strong>（3×3 就 9 个权重加偏置），不像全连接要为每个位置单独配权重。这是&quot;共享权重&quot;（weight sharing）带来的参数效率。</p>
+<h2 id="%E5%A4%9A%E9%80%9A%E9%81%93%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%BB%A4%E6%B3%A2%E5%99%A8%E5%8F%AA%E8%83%BD%E7%9C%8B%E4%B8%80%E7%A7%8D%E6%A8%A1%E5%BC%8F">多通道：一个滤波器只能看一种模式</h2>
+<p>一张图有三个颜色通道（RGB，红绿蓝三张同尺寸的叠层）。若我们想要很多种模式（竖边、横边、圆、纹理……），就放<strong>多个滤波器</strong>，每个负责一种模式，各自输出一张&quot;响应图&quot;。所有响应图叠起来就是<strong>多个通道</strong>的特征图（feature map，滤波器扫完整张图后得到的整张响应矩阵；一个通道 = 一个滤波器的完整输出）。</p>
+<p>假设输入有 <code>C_in</code> 个通道、滤波器有 <code>F</code> 个，那么这层有 <code>C_in × F</code> 个卷积核，输出 <code>F</code> 个通道。现代 CNN 就是靠&quot;一层层堆叠、每层用更多滤波器&quot;来逐步抽象特征。</p>
+<h2 id="%E5%BC%95%E5%85%A5%E9%A2%9D%E5%A4%96%E7%9A%84%E8%B6%85%E5%8F%82%E6%95%B0%EF%BC%9Astride%E3%80%81padding">引入额外的超参数：stride、padding</h2>
+<p>卷积过程还受两个超参数控制：</p>
+<ul>
+<li><strong>Stride（步长）</strong>：滤波器每次滑多少格。步长 1 是逐格滑；步长 2 会跳格，输出尺寸变小、同层覆盖更快。</li>
+<li><strong>Padding（填充）</strong>：在图像边缘补一圈 0，让滤波器能扫到边缘像素，并控制输出尺寸。<code>same</code> padding 让输出大小和输入一致。</li>
+</ul>
+<p>输出尺寸公式（忽略边界细节）：</p>
+<pre><code class="language-text">out = floor((input - kernel + 2*padding) / stride) + 1
+</code></pre>
+<p>掌握这个公式就够了：<strong>stride 压缩、padding 补偿</strong>，两者共同决定特征图尺寸。</p>
+<h2 id="%E6%84%9F%E5%8F%97%E9%87%8E%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%BE%93%E5%87%BA%E7%82%B9%22%E7%9C%8B%22%E5%88%B0%E5%A4%9A%E5%A4%A7%E9%9D%A2%E7%A7%AF">感受野：一个输出点&quot;看&quot;到多大面积</h2>
+<p>卷积的层叠形成了<strong>感受野（receptive field）</strong>：某个输出层像素，原始输入里有哪些面积影响它。</p>
+<pre><code class="language-text">第一层 3×3：输出点看到 3×3
+堆第二层 3×3：输出点看到 5×5
+堆第三层 3×3：输出点看到 7×7
+</code></pre>
+<p>注意感受野是<strong>线性叠加</strong>的：每多一层 3×3，感受野只加 2 格。为了让高层看到全图，CNN 会越堆越深，或用 stride 2 / 池化加速&quot;视野扩大&quot;。</p>
+<p><img src="../assets/figures/fig-receptive-field.svg" alt="感受野随层数扩大：3×3 → 5×5 → 7×7"></p>
+<p>每个正方形代表某一层输出点能看到原始输入的面积，中心点颜色越深表示网络越深。第一层的一个 3×3 卷积只看得到 3×3；叠上第二层，视野扩到 5×5；叠上第三层，扩大到 7×7。每多一层 3×3，感受野向外只扩大一圈（2 格），所以想看全图就要堆深或用 stride 2 / 池化加速扩大。</p>
+<h2 id="%E6%B1%A0%E5%8C%96%EF%BC%9A%E7%BC%A9%E5%B0%8F%E5%B9%B6%E5%A2%9E%E5%8A%A0%E5%B9%B3%E7%A7%BB%E9%B2%81%E6%A3%92%E6%80%A7">池化：缩小并增加平移鲁棒性</h2>
+<p>**池化（pooling）**是另一种局部操作，常见两种：</p>
+<ul>
+<li><strong>Max pooling</strong>：取窗口内最大值。</li>
+<li><strong>Average pooling</strong>：取窗口内均值。</li>
+</ul>
+<p>典型是 2×2、stride 2，把特征图尺寸减半，保留每个局部最强的响应。</p>
+<p>作用：</p>
+<ul>
+<li><strong>减少空间尺寸</strong>：参数和计算量下降。</li>
+<li><strong>轻微平移鲁棒</strong>：物体移动一两格，窗口内的最大值基本不变。</li>
+<li><strong>增加感受野</strong>：压缩后每层覆盖更大的原始面积。</li>
+</ul>
+<p>现在的趋势是：<strong>能用 stride 卷积达到压缩效果的，可以不额外用池化</strong>；但理解池化仍是读懂旧架构的钥匙。</p>
+<h2 id="%E7%BB%8F%E5%85%B8%E7%9A%84-cnn-%E7%BB%93%E6%9E%84%EF%BC%9A%E4%BB%8E-lenet-%E5%88%B0-resnet">经典的 CNN 结构：从 LeNet 到 ResNet</h2>
+<p>一个典型 CNN 的&quot;骨架&quot;是：<strong>若干个 [卷积+激活+池化] 块，然后展平，接全连接层</strong>。</p>
+<p>几个里程碑：</p>
+<ul>
+<li><strong>LeNet-5</strong>（98 年）：最早用于手写数字识别，卷积+池化+FC 的模板。</li>
+<li><strong>AlexNet</strong>（2012）：靠更深的卷积和 GPU，在 ImageNet 上引爆深度学习复兴。用 ReLU 和 dropout。</li>
+<li><strong>VGG</strong>：把架构化成&quot;统一 3×3 堆叠 + 2×2 池化&quot;的极简模板。</li>
+<li><strong>GoogLeNet / Inception</strong>：同一层用多尺度卷积（1×1、3×3、5×5）再拼接，讲究&quot;网络中的网络&quot;。</li>
+<li><strong>ResNet</strong>：引入<strong>残差连接（skip connection）</strong>——让层学习&quot;残差&quot;而不是&quot;完整映射&quot;，一举让非常深的网络能训练。这是划时代的，也是后来 Transformer 用残差的先声。</li>
+</ul>
+<h3 id="resnet-%E7%9A%84%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5">ResNet 的残差连接</h3>
+<p>普通层学习 <code>H(x)</code>；残差块让它学习 <code>F(x) = H(x) - x</code>，然后输出 <code>x + F(x)</code>（其实就是恒等加上要学的残差）。</p>
+<pre><code class="language-text">输出 = x + F(x)
+</code></pre>
+<p>好处：即使 <code>F</code> 学得不好，恒等 <code>x</code> 也能让梯度顺畅流过（反向传播时多一条&quot;短路&quot;），深层网络不再因梯度消失而难训练。<strong>残差是新架构（包括 Transformer）反复复用的大杀器。</strong></p>
+<h2 id="cnn-%E4%B8%8D%E6%AD%A2%E7%94%A8%E4%BA%8E%E5%9B%BE%E5%83%8F">CNN 不止用于图像</h2>
+<p>卷积思想的本质是&quot;处理网格上的局部共享模式&quot;，所以用途远超图像：</p>
+<ul>
+<li>音频：把声音切成时间-频率的二维图，用 2D CNN。</li>
+<li>文本：把句子看成&quot;词向量排成一行&quot;的 1D 序列，用 1D 卷积提取局部 n-gram 模式。</li>
+<li>视频：加上时间维的 3D 卷积。</li>
+</ul>
+<p>它教会了深度学习一个普适原则：<strong>在数据有明显局部结构的维度上，用&quot;小核+共享权重&quot;比&quot;全连接&quot;高效得多。</strong></p>
+<h2 id="%E4%B8%80%E4%B8%AA-pytorch-%E5%B0%8F-cnn">一个 PyTorch 小 CNN</h2>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+
+class TinyCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=3, padding=1),  # 1通道→16通道
+            nn.ReLU(),
+            nn.MaxPool2d(2),                             # 尺寸减半
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+        )
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(32*7*7, 10),   # 若输入 28x28，池化两次后 7x7
+        )
+
+    def forward(self, x):
+        return self.classifier(self.features(x))
+
+net = TinyCNN()
+x = torch.randn(4, 1, 28, 28)      # batch=4, 1通道, 28x28
+print(&quot;输出形状:&quot;, net(x).shape)     # (4, 10)
+</code></pre>
+<p>注意两点：第一层卷积把 1 通道扩到 16 通道，两次池化把 28×28 缩到 7×7；分类头把 32×7×7 展平后映射到 10 类。</p>
+<h2 id="%E4%B8%8E%E5%90%8E%E7%BB%AD%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88-llm-%E4%B8%8D%E7%94%A8-cnn-%E4%B8%BB%E5%AF%BC">与后续的关系：为什么 LLM 不用 CNN 主导</h2>
+<p>CNN 对<strong>局部平移模式</strong>几乎完美，但语言不完全是&quot;局部平移&quot;的：一个句子的含义依赖<strong>任意远、任意位置的词</strong>之间的关系。CNN 的感受野要叠很多层才够长，这在长文本上很吃亏。这直接指向了第五章的动机：<strong>注意力机制</strong>让一个输出点能直接联系任意遥远的输入，不需要层层堆叠。你在 <a href="../05-nlp-transformers/README.html">05 NLP 与 Transformer</a> 会看清这条进化路线。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>卷积的&quot;权重共享&quot;带来什么好处？相比全连接层省在哪？</li>
+<li>通道（channel）在卷积层里代表什么？为什么需要多个滤波器？</li>
+<li>stride 和 padding 各自影响特征图尺寸的哪个方向？</li>
+<li>什么是感受野？为什么堆叠更多 3×3 卷积可以让高层&quot;看&quot;到更大面积？</li>
+<li>ResNet 的残差连接 <code>y = x + F(x)</code> 解决了什么问题？为什么能帮梯度流通？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>同一个滤波器在整个特征图上滑动，参数只在滤波器内计数，而不是每个位置一套权重。相比全连接层的&quot;每像素一套参数&quot;，参数量大幅下降，同时天然复用局部模式、具备平移不变性。</li>
+<li>通道对应&quot;不同种类的特征响应&quot;，一个通道就是一类模式在图上各位置的响应图。要表达多个模式（边缘、纹理、形状）就需要多个滤波器、多个输出通道，所以卷积层通常要扩通道。</li>
+<li>stride 让输出更小（跳格扫描）；padding 在边缘补 0，让输出更大或被补偿到与原输入一致。二者共同满足&quot;控制输出尺寸 + 覆盖边缘&quot;的需求。</li>
+<li>感受野是某一输出位置在原始输入中受到影响的区域。堆叠 3×3 卷积时，每多一层，输出点对应的原始面积就向外扩一圈，所以越深覆盖越大（也可以靠 stride/池化加速扩大）。</li>
+<li>ResNet 让块学习残差 <code>F(x)</code> 而非完整映射，输出 <code>x+F(x)</code>。即便 F 学不好，恒等路径 <code>x</code> 也能让梯度从深层&quot;短路&quot;回浅层，缓解梯度消失，使非常深的网络可训练；这也是 Transformer 复用残差的原因。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想处理&quot;序列数据&quot;（词、时间步）→ <a href="04-08-rnn-lstm.html">04-08 RNN/LSTM</a>。</li>
+<li>想知道&quot;注意力如何克服 CNN 的长距离短板&quot; → <a href="../05-nlp-transformers/README.html">05 NLP 与 Transformer</a>。</li>
+<li>想补卷积对应的线性代数/矩阵直觉 → <a href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

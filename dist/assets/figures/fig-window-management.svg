@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="Agent 窗口管理：该塞的塞、该省的省">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">上下文窗口有限 → Agent 主动管理它</text>
+  <rect x="55" y="90" width="270" height="210" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="190" y="118" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">放什么进窗口</text>
+  <rect x="80" y="138" width="220" height="26" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="190" y="156" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">系统说明</text>
+  <rect x="80" y="174" width="220" height="26" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="190" y="192" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">当前问题</text>
+  <rect x="80" y="210" width="220" height="26" rx="6" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="190" y="228" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#b26a00">检索到的相关片段</text>
+  <rect x="80" y="246" width="220" height="26" rx="6" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="190" y="264" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#b26a00">最近对话摘要</text>
+  <text x="190" y="292" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">只给“最该看的内容”</text>
+  <rect x="355" y="90" width="270" height="210" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="490" y="118" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">手段</text>
+  <rect x="380" y="138" width="220" height="26" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="490" y="156" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">截断旧对话</text>
+  <rect x="380" y="174" width="220" height="26" rx="6" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.5"/>
+  <text x="490" y="192" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0e7c66">摘要压缩</text>
+  <rect x="380" y="210" width="220" height="26" rx="6" fill="#dce8f5" stroke="#0f4c81" stroke-width="1.5"/>
+  <text x="490" y="228" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0f4c81">RAG 检索相关片段</text>
+  <rect x="380" y="246" width="220" height="26" rx="6" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.5"/>
+  <text x="490" y="264" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#5b3aa6">内容结构化标记</text>
+  <text x="490" y="292" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">既省成本又不丢关键信息</text>
+  <rect x="55" y="320" width="570" height="60" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="1.5"/>
+  <text x="340" y="346" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b26a00">长文档中间的内容容易被忽略 → 把关键放前/后、或只取相关段</text>
+  <text x="340" y="368" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#33475b">RAG：让模型基于“这次给的文档”作答</text>
+</svg>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梯度与微分：学习是怎么发生的 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E6%A2%AF%E5%BA%A6%E4%B8%8E%E5%BE%AE%E5%88%86%EF%BC%9A%E5%AD%A6%E4%B9%A0%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%91%E7%94%9F%E7%9A%84">梯度与微分：学习是怎么发生的</h1>
+<blockquote>
+<p>目标：弄懂&quot;下降&quot;的数学。读完这一页，你能解释导数、偏导、梯度、链式法则、Jacobian，并理解深度学习里&quot;反向传播&quot;为什么本质上就是反复用链式法则算梯度。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%A2%AF%E5%BA%A6">为什么需要梯度</h2>
+<p>先讲一个你天天都在用、却没意识到的东西：<strong>&quot;变化有多快&quot;</strong>。</p>
+<ul>
+<li>一辆车开得多快？那是&quot;位置&quot;随时间变化的快慢。</li>
+<li>一段坡有多陡？那是&quot;高度&quot;随水平距离变化的快慢。</li>
+<li>一件商品销量随价格怎么变？那是&quot;销量&quot;随&quot;价格&quot;变化的快慢。</li>
+</ul>
+<p>生活中到处都要回答&quot;一个东西跟着另一个东西变，变得有多急&quot;，也就是<strong>变化率</strong>。导数（微分）就是给这个直觉一个精确、可计算的形状：它告诉你，当输入稍微动一点点时，输出跟着动多少。本质上等于&quot;输入变动一个微小单位的瞬间，输出变化的比例&quot;。</p>
+<p>这个工具为什么&quot;万能&quot;？因为只要有&quot;某个结果跟某个因变量有关&quot;，就能问&quot;改变因变量时结果怎么变&quot;，而**&quot;怎么变&quot;正是决定&quot;往哪调更有利&quot;的向导**。举个例子：假如你想让某个结果变小，就先看它随某个输入如何变化——如果结果是随输入增大而增大的，那就往减小的方向调；反过来就往增大的方向调。这个&quot;顺着变化方向去调整&quot;的思路，正是后面所谓&quot;让结果变小&quot;类问题的通用骨架。</p>
+<p>$$
+\text{损失 }L(\theta)\ \text{对参数 }\theta\text{ 的导数}\ =\ \text{“}\theta\text{ 动一点点，}L\text{ 变多少”}
+$$</p>
+<p>$$
+\text{顺梯度反方向走，}L\text{ 就会下降}
+$$</p>
+<p>所以，当一个系统有一堆&quot;可调节的旋钮&quot;，我们要找&quot;让某个目标（错误、成本）变小&quot;的拧法时，导数和梯度就给出了方向性的答案：顺着让目标变小的方向去调。这个思路就叫<strong>梯度下降</strong>，它是许多&quot;靠数据来调旋钮&quot;的场景共同的骨架。下面这张图给出&quot;损失地形 + 梯度方向 + 谷底&quot;的整体画面：</p>
+<p><img src="../assets/figures/fig-gradient-descent.svg" alt="梯度下降：沿负梯度方向下降到最小值"></p>
+<h2 id="%E5%AF%BC%E6%95%B0%EF%BC%9A%E7%9E%AC%E6%97%B6%E5%8F%98%E5%8C%96%E7%8E%87">导数：瞬时变化率</h2>
+<p>把上面的直觉落到一元函数 $f(x)$。我们在 $x_0$ 处问：当 $x$ 从 $x_0$ 稍微挪一点点（记为 $h$，趋近于 0），$f$ 跟着变多少？&quot;变化量之比&quot;即 $\frac{f(x_0+h)-f(x_0)}{h}$。当 $h$ 无限缩小时得到的那个极限，就叫导数：</p>
+<p>$$
+f'(x_0)=\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h}
+$$</p>
+<p>几何上，它是曲线在 $x_0$ 处<strong>切线的斜率</strong>。</p>
+<p>常见导数公式，务必熟到脱口而出：</p>
+<p>$$
+\frac{d}{dx}[c]=0;\quad
+\frac{d}{dx}[x^n]=n,x^{n-1};\quad
+\frac{d}{dx}[e^x]=e^x;\quad
+\frac{d}{dx}[\ln x]=\frac1x
+$$</p>
+<p>$$
+\frac{d}{dx}[\sin x]=\cos x;\quad
+\frac{d}{dx}[a,f(x)]=a,f'(x);\quad
+\frac{d}{dx}[f+g]=f'+g'
+$$</p>
+<p>两个非常常用的法则：</p>
+<p><strong>乘积法则</strong>：</p>
+<p>$$
+(fg)'=f'g+fg'
+$$</p>
+<p><strong>链式法则</strong>：</p>
+<p>$$
+\frac{d}{dx}\big[f(g(x))\big]=f'\big(g(x)\big)\cdot g'(x)
+$$</p>
+<p>链式法则是整个深度学习的关键——反向传播就是它。先把它记牢。</p>
+<blockquote>
+<p>深挖：为什么是乘积法则而非&quot;各自求导再相乘&quot;？对 $fg$ 来说，两边同时有一点改变，变化量既来自 $f$ 也来自 $g$，还来自两者同时变的二阶小量（可忽略），所以 $f'g+fg'$——一阶近似里要保留所有可能来源。</p>
+</blockquote>
+<h2 id="%E5%81%8F%E5%AF%BC%E6%95%B0%EF%BC%9A%E5%A4%9A%E5%8F%98%E9%87%8F%E6%83%85%E5%BD%A2">偏导数：多变量情形</h2>
+<p>当函数有多个输入 $f(x_1,x_2,\dots,x_n)$，我们只能在一个方向动。<strong>偏导数</strong>就是&quot;固定其他变量，只看某个变量的导数&quot;：</p>
+<p>$$
+\frac{\partial f}{\partial x_1}=\ \text{把 }x_2..x_n\text{ 当作常数，对 }x_1\text{ 求导}
+$$</p>
+<p>例子 $f(x,y)=x^2+3xy$：</p>
+<p>$$
+\frac{\partial f}{\partial x}=2x+3y;\qquad
+\frac{\partial f}{\partial y}=3x
+$$</p>
+<p>每个偏导只回答&quot;沿这一个坐标轴动，函数怎么变&quot;。</p>
+<h2 id="%E6%A2%AF%E5%BA%A6-gradient">梯度 Gradient</h2>
+<p>把所有偏导排成一个向量，就是<strong>梯度</strong>，记作 $\nabla f$：</p>
+<p>$$
+\nabla f=\left[\frac{\partial f}{\partial x_1},,\frac{\partial f}{\partial x_2},,\dots,,\frac{\partial f}{\partial x_n}\right]
+$$</p>
+<p>梯度的关键性质：</p>
+<p>$$
+\text{梯度指向函数上升最快的方向};\quad
+\text{负梯度指向下降最快的方向};\quad
+\text{梯度的大小}=\text{这个方向的陡峭程度}
+$$</p>
+<p>这就是梯度下降的直接依据。一个直观但重要的观察：<strong>梯度垂直于等值线</strong>（因为在等值线上函数值不变，任何&quot;往等值线方向&quot;的移动都不改变函数值）。</p>
+<h2 id="%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%EF%BC%9A%E6%8A%8A%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E6%8B%86%E5%BC%80">链式法则：把复杂网络拆开</h2>
+<p>神经网络是一个函数嵌套：每层的输出进入下一层。用链式法则，我们可以把&quot;最终损失对深层参数的导数&quot;拆成一段段乘积。</p>
+<p>假设</p>
+<p>$$
+\mathbf{z}=\mathbf{W}\mathbf{x}+\mathbf{b};\qquad
+\mathbf{a}=\sigma(\mathbf{z});\qquad
+L=\ell(\mathbf{a})
+$$</p>
+<p>那么</p>
+<p>$$
+\frac{\partial L}{\partial \mathbf{W}}=\frac{\partial L}{\partial\mathbf{a}}\cdot
+\frac{\partial\mathbf{a}}{\partial\mathbf{z}}\cdot
+\frac{\partial\mathbf{z}}{\partial\mathbf{W}}
+$$</p>
+<p><strong>反向传播</strong>做的，就是从 $\partial L/\partial\mathbf{a}$ 开始，从后往前逐层乘上这些局部导数。梯度就像&quot;误差信号&quot;在每一层逐段传递。</p>
+<p>用一张简图看清&quot;前向传值、反向传梯度&quot;这对镜像过程：</p>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph forward[&quot;前向：往前传值&quot;]
+    F1[&quot;x&quot;] --&gt; F2[&quot;z = Wx + b&quot;]
+    F2 --&gt; F3[&quot;a = σ(z)&quot;]
+    F3 --&gt; F4[&quot;L = ℓ(a)&quot;]
+  end
+  subgraph backward[&quot;反向：往回调梯度&quot;]
+    B4[&quot;∂L/∂a&quot;] --&gt; B3[&quot;∂L/∂z = ∂L/∂a · σ'(z)&quot;]
+    B3 --&gt; B2[&quot;∂L/∂W = ∂L/∂z · xᵀ&quot;]
+  end
+  F4 -.-&gt; B4
+</code></pre>
+<p>先是脑海中建立这个图：</p>
+<pre><code class="language-text">前向：输入 → 各层 → 损失
+反向：损失 → 各层局部梯度 → 参数更新量
+</code></pre>
+<h2 id="jacobian%EF%BC%9A%E4%B8%80%E9%98%B6%E5%81%8F%E5%AF%BC%E7%9A%84%E7%9F%A9%E9%98%B5">Jacobian：一阶偏导的矩阵</h2>
+<p>当<strong>输出也是向量</strong>时，一阶偏导排成一个矩阵，叫 <strong>Jacobian</strong>：</p>
+<p>$$
+J[i][j]=\frac{\partial f_i}{\partial x_j}
+$$</p>
+<p>它把&quot;输入的小变化&quot;映射成&quot;输出的小变化&quot;：$\delta\mathbf{z}\approx J,\delta\mathbf{x}$。在深度学习里，多层网络的梯度传播常写成 Jacobian 的连乘。</p>
+<p>两条形状规则值得记牢（以一个把长度 $n$ 的输入 $\mathbf{x}$ 映射成长度 $m$ 的输出 $\mathbf{z}$ 的层为例）：</p>
+<ul>
+<li>该层的 Jacobian 是 $m\times n$ 矩阵——<strong>输出维度在前，输入维度在后</strong>。</li>
+<li>反向传播时，上游传来长度 $m$ 的误差向量 $\mathbf{g}=\partial L/\partial\mathbf{z}$，往回传给输入要左乘 Jacobian：$\partial L/\partial\mathbf{x}=J^{\mathsf{T}}\mathbf{g}$，形状 $(n\times m)\cdot m=n$，正好对上。<strong>转置不是装饰，是让形状闭合的必然</strong>。</li>
+</ul>
+<p>你不用手推每个 Jacobian 的元素，但&quot;高维导数是矩阵、反向传播是转置左乘、形状必须闭合&quot;这三个事实，是第 04 章反向传播的全部骨架。</p>
+<h2 id="%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%9B%B4%E6%96%B0%E6%B3%95%E5%88%99">梯度下降更新法则</h2>
+<p>最常见的更新：</p>
+<p>$$
+\theta\leftarrow\theta-\eta,\nabla L(\theta)
+$$</p>
+<p>其中 $\eta$ 是<strong>学习率</strong>：</p>
+<ul>
+<li>$\eta$ 太小 → 学得慢。</li>
+<li>$\eta$ 太大 → 越过最低点、反复震荡甚至发散。</li>
+</ul>
+<p>这个 $\eta$ 的选择是训练里最需要调的超参数之一。后面 <a href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估与训练诊断</a> 和深度学习章节会反复谈到。</p>
+<h2 id="%E5%8A%A8%E6%89%8B%EF%BC%9A%E6%95%B0%E5%80%BC%E9%AA%8C%E8%AF%81%E6%A2%AF%E5%BA%A6">动手：数值验证梯度</h2>
+<p>用&quot;差分&quot;近似验证解析导数是工程里的常用手段。注意用<strong>中心差分</strong>误差更小：</p>
+<pre><code class="language-python">import numpy as np
+
+def f(x):
+    return x**3 + 2*x
+
+# 解析导数：f'(x) = 3x² + 2
+def df(x):
+    return 3*x**2 + 2
+
+x = 2.0
+h = 1e-6
+forward = (f(x + h) - f(x)) / h          # 前向差分
+central = (f(x + h) - f(x - h)) / (2*h)  # 中心差分，误差更小
+print(&quot;forward:&quot;,  forward.round(7))     # ≈ 14.000001
+print(&quot;central:&quot;,  central.round(7))     # ≈ 14.000000
+print(&quot;analytic:&quot;, df(x).round(7))       # 14.0
+
+# 梯度下降：找 f 的最小值（一元演示）
+# f(x) = (x - 2)²，最小值在 x = 2，f'(x) = 2(x - 2)
+theta = 5.0
+lr = 0.05
+for _ in range(200):
+    theta -= lr * 2 * (theta - 2)
+print(&quot;converged theta:&quot;, round(theta, 4))   # → 2.0，落在导数为 0 的谷底
+</code></pre>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>为什么更新时用的是负梯度而不是正梯度？</li>
+<li>链式法则和反向传播是什么关系？</li>
+<li>学习率太大或太小时，训练曲线各会呈现什么样子？</li>
+<li>梯度为 0 的点意味着什么？它一定是全局最小吗？</li>
+<li>为什么数值验证梯度常用&quot;中心差分&quot;而不是简单的前向差分？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>梯度指向函数<strong>上升最快</strong>的方向；要让损失下降，必须朝其<strong>反方向</strong>（负梯度）走。</li>
+<li>反向传播就是链式法则的系统化应用：从最终损失出发，把局部导数一层层向前（反向）相乘，得到每个参数的梯度。</li>
+<li>学习率太小：损失缓慢下降，训练&quot;爬得很慢&quot;；学习率太大：容易越过最低点来回震荡，甚至发散（损失不降反升）。</li>
+<li>梯度为 0 的点叫<strong>驻点</strong>（导数在该处&quot;停住&quot;了），它可能是局部最小、局部最大或鞍点（鞍点：某些方向看是谷底、另一些方向看是山顶，形状像马鞍；高维函数里大量驻点其实是鞍点）。要保证它是全局最小，需要函数具备凸性；对非凸函数，梯度为 0 并不能保证全局最优。</li>
+<li>前向差分 $(f(x+h)-f(x))/h$ 的误差大约是 $O(h)$（还含一阶偏差），中心差分 $(f(x+h)-f(x-h))/(2h)$ 的误差大约是 $O(h^2)$——同样步长下中心差分更准，所以工程里用于&quot;验证梯度是否正确&quot;时优先选它。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想深入了解&quot;怎么高效地走到最低点&quot; → <a href="01-07-optimization.html">01-07 最优化</a>。</li>
+<li>想看它在神经网络训练里的完整面貌 → <a href="../04-deep-learning/README.html">04 深度学习</a>。</li>
+<li>想懂贝叶斯与概率那边如何配合 → <a href="01-04-bayesian.html">01-04 贝叶斯视角</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

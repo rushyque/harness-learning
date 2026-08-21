@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="配置驱动的插件装配">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">声明式配置，启动时拼装</text>
+  <rect x="60" y="90" width="180" height="180" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="150" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">配置 config</text>
+  <text x="150" y="150" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">要加载哪些插件</text>
+  <text x="150" y="170" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">各自参数/开关</text>
+  <text x="150" y="194" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">依赖/禁用关系</text>
+  <rect x="60" y="294" width="180" height="46" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="1.8"/>
+  <text x="150" y="322" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#0e7c66">bundle 打包分发</text>
+  <line x1="244" y1="136" x2="286.0" y2="136.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M286.0 136.0 L286.0 141.0 L286.0 131.0 Z" fill="#b26a00"/>
+  <rect x="300" y="90" width="130" height="44" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="365" y="112" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0e7c66">resolve</text>
+  <text x="365" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#33475b">解析依赖</text>
+  <line x1="430" y1="112" x2="460.0" y2="112.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M460.0 112.0 L460.0 117.0 L460.0 107.0 Z" fill="#b26a00"/>
+  <rect x="474" y="90" width="140" height="44" rx="8" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="544" y="112" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">load</text>
+  <text x="544" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#33475b">加载插件</text>
+  <rect x="474" y="156" width="140" height="70" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="544" y="182" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#5b3aa6">注册</text>
+  <text x="544" y="204" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">工具/服务/事件</text>
+  <rect x="474" y="248" width="140" height="70" rx="8" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="544" y="274" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">装配成 Agent</text>
+  <text x="544" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="400" fill="#33475b">shell+fs+web+llm</text>
+  <line x1="544" y1="90" x2="544.0" y2="82.0" stroke="#b26a00" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M544.0 82.0 L549.0 82.0 L539.0 82.0 Z" fill="#b26a00"/>
+  <text x="544" y="66" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#b26a00">改配置而重建</text>
+  <rect x="70" y="350" width="540" height="40" rx="8" fill="#f6dddc" stroke="#b23a2a" stroke-width="1.5"/>
+  <text x="340" y="374" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#b23a2a">依赖显式声明，缺失启动即报错：显式大于隐式，快速失败</text>
+</svg>

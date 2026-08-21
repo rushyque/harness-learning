@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上下文窗口：模型&amp;quot;一次能看多远&amp;quot;与它的边界 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AA%97%E5%8F%A3%EF%BC%9A%E6%A8%A1%E5%9E%8B%22%E4%B8%80%E6%AC%A1%E8%83%BD%E7%9C%8B%E5%A4%9A%E8%BF%9C%22%E4%B8%8E%E5%AE%83%E7%9A%84%E8%BE%B9%E7%95%8C">上下文窗口：模型&quot;一次能看多远&quot;与它的边界</h1>
+<blockquote>
+<p>目标：搞懂上下文窗口是什么、为什么有限、以及它与&quot;模型知识&quot;的区别。读完这一页，你能说清&quot;为什么回答与你的对话历史有关、却不记得上上次对话&quot;，也知道 Agent 为什么总在处理窗口被塞满的问题。</p>
+</blockquote>
+<h2 id="%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AA%97%E5%8F%A3">什么是上下文窗口</h2>
+<p>**上下文窗口（context window）**是 LLM 一次推理中能&quot;看到&quot;的最大 token 数。模型只能基于窗口内的内容来预测下一个词。</p>
+<pre><code class="language-text">我的窗口是 8k token
+输入（prompt + 历史） + 输出 ≤ 8k
+超出部分会被截断或忽略
+</code></pre>
+<p>这个窗口<strong>在下一次独立推理时清零</strong>——模型不跨请求记忆。你新开一个对话，它&quot;忘&quot;了上一个对话，除非你把旧内容重新放进窗口。</p>
+<h2 id="%E7%AA%97%E5%8F%A3%E4%B8%8E%22%E7%9F%A5%E8%AF%86%22%E6%98%AF%E4%B8%A4%E5%9B%9E%E4%BA%8B">窗口与&quot;知识&quot;是两回事</h2>
+<p>一个常见的混淆：</p>
+<pre><code class="language-text">模型&quot;知道&quot;什么 = 预训练时学到的权重记忆（世界知识）
+模型&quot;能看到&quot;什么 = 本次推理的上下文窗口（临时信息）
+</code></pre>
+<p>关键区别：</p>
+<ul>
+<li><strong>预训练知识</strong>是&quot;记住的常识&quot;，但可能过时或不准确。</li>
+<li><strong>上下文窗口</strong>是&quot;你这次给的临时材料&quot;，如要处理的文档、对话历史。</li>
+</ul>
+<p>所以不能指望模型&quot;自己知道&quot;你最近的事，但要让它用某份文档，就需要<strong>把文档塞进上下文</strong>。这正是 RAG（检索增强）的思路（<a href="../07-llm-engineering/README.html">07</a>）。</p>
+<p><img src="../assets/figures/fig-context-window.svg" alt="上下文窗口与知识：窗口是临时材料，知识是预训练记忆"></p>
+<p>上图上方画出一条&quot;本次推理的窗口&quot;，里面装着系统说明、对话历史、当前问题和输出，且&quot;输入 + 输出 ≤ 窗口上限&quot;。下方左右两个框则区分了两个概念：模型&quot;知道&quot;的是预训练写进权重的世界知识（长期但可能过时），而&quot;这次看到&quot;的是窗口内的临时材料（用完即清、需重新塞入）。这正是 RAG 和 Agent 要管理上下文的根本原因。</p>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E7%AA%97%E5%8F%A3%E4%BC%9A%22%E6%BB%A1%22">为什么窗口会&quot;满&quot;</h2>
+<p>窗口有限的原因：</p>
+<pre><code class="language-text">注意力计算成本随序列长度平方或线性增长（长程 attention 成本高）
+显存/内存有限
+单请求的 token 预算 = prompt + 生成输出
+</code></pre>
+<p>所谓&quot;上下文窗口&quot;对产品的影响：</p>
+<pre><code class="language-text">长了：能放更长的文档、更多对话历史，但单次成本更高、更慢
+短了：长文档会塞不下，需截断/摘要/检索
+</code></pre>
+<p>很多产品&quot;看似记得上上次对话&quot;，其实是通过<strong>摘要旧对话 / 检索相关片段</strong>，把旧信息重新塞进当前窗口，而不是模型真的&quot;记得&quot;。</p>
+<h2 id="%E6%89%BE%E4%B8%8D%E5%88%B0-%2F-%E5%BF%BD%E7%95%A5%EF%BC%9A%E7%AA%97%E5%8F%A3%E5%86%85%E7%9A%84%E5%86%85%E5%AE%B9%E4%B9%9F%E4%BC%9A%22%E6%BC%8F%22">找不到 / 忽略：窗口内的内容也会&quot;漏&quot;</h2>
+<p>即便信息在窗口内，模型也可能<strong>忽略靠近窗口中间的&quot;长上下文&quot;信息</strong>。这是个未被完美解决的现象：给模型塞 50k 个 token 的文档，问深处的一条事实，它常常&quot;没看到&quot;。</p>
+<p>原因与注意力分配有关：太长上下文里，各自的注意力权重被稀释，关键信息容易被&quot;淹没&quot;。应对手段（<a href="../07-llm-engineering/README.html">07</a>）：把关键信息放前面/后面、用 RAG 只取相关片段、内容做结构化标记。</p>
+<p>这个现象在文献里常被叫作&quot;迷失在中间&quot;（lost in the middle）：对长文档做&quot;某事实在第几段&quot;的探针测试，准确率呈 <strong>U 形曲线</strong>——开头和结尾的事实记得牢，中间的明显差。两个直觉解释：训练数据天然&quot;重要信息靠前/靠后&quot;（开头是导语、结尾是结论），以及注意力 softmax 在超长序列上把权重摊薄。工程结论很朴素：<strong>位置就是注意力预算</strong>——你要模型一定看到的东西，要么放最前，要么放最后，要么干脆别让它在中段陪跑。</p>
+<h2 id="kv-cache%EF%BC%9A%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E5%8F%A6%E4%B8%80%E7%AC%94%E8%B4%A6">KV cache：长上下文的另一笔账</h2>
+<p>理解窗口成本，还要知道推理侧有个 <strong>KV cache（键值缓存）</strong>：注意力计算需要每个历史 token 的 Key/Value 向量（<a href="../05-nlp-transformers/05-05-attention.html">05-05 注意力</a> 的 QKV），如果每生成一个新 token 都重算全部历史的 K/V，代价是平方级的。所以推理引擎把算过的 K/V 存下来复用——这就是&quot;为什么多轮对话越聊越慢/越贵&quot;的机制根源：缓存随历史增长，显存和计算都随之上升。窗口上限在很大程度上就是<strong>KV cache 的显存上限</strong>。</p>
+<h2 id="%E6%88%90%E6%9C%AC%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%22%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87%22%E8%B4%B5">成本模型：为什么&quot;长上下文&quot;贵</h2>
+<p>API 按 token 计费（<a href="06-03-tokenizer.html">06-03</a>），窗口越长意味着：</p>
+<pre><code class="language-text">每次请求的输入 = prompt + 历史 + 文档
+输出 = 模型生成的回答
+两者都要计费
+</code></pre>
+<p>所以做 Agent 时，<strong>窗口管理</strong>是降本增效的核心：该塞的塞、该省略的省略、该检索的检索。deepseek-harness 里对工具结果、会话历史的处理都围绕这个展开（<a href="../08-agent-foundations/README.html">08</a>、<a href="../10-practical-lab/README.html">10</a>）。</p>
+<p><img src="../assets/figures/fig-window-management.svg" alt="Agent 窗口管理：该塞的塞、该省的省"></p>
+<p>上图把窗口管理归纳成&quot;放进什么&quot;和&quot;用什么手段&quot;两块：左侧蓝色列举应放进窗口的内容——系统说明、当前问题、检索到的相关片段、最近对话的摘要；右侧绿色列举手段——截断旧对话、摘要压缩、用 RAG 检索相关片段、对内容做结构化标记。底部琥珀色还有个重要提醒：长文档中间的内容容易被忽略，所以要把关键信息放在显眼位置、或只取相关片段。窗口管理的本质就是&quot;只给模型最该看的内容&quot;。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%22%E8%AE%B0%E5%BF%86%E6%B8%85%E7%90%86%22%E7%9A%84%E6%80%9D%E8%80%83%E5%AE%9E%E9%AA%8C">一个&quot;记忆清理&quot;的思考实验</h2>
+<p>假设你和一个 Agent 对话，第 1 问&quot;帮我查北京的天气&quot;，第 2 问&quot;那后天呢？&quot;。模型第 2 问能答对，不是因为它&quot;记着第 1 问&quot;，而是因为<strong>产品把第 1 轮对话一起塞进了第 2 轮的窗口</strong>：</p>
+<pre><code class="language-text">第 2 轮输入 = 系统说明 + 第 1 轮(用户+助手) + &quot;那后天呢？&quot;
+</code></pre>
+<p>如果第 1 轮太旧被截断，模型就不知道&quot;那&quot;指什么。这就是为什么 Agent 要认真管理上下文，也说明&quot;记忆&quot;的实现是工程，不是模型自带的魔法。</p>
+<p>把这个实验做绝一点：一个跑了几百步的 Agent，中间满是工具输出。如果全量保留，窗口和 KV cache 都会爆；如果简单截断，早期&quot;用户到底要什么&quot;的原始指令可能被切掉，Agent 从此在错误的轨道上狂奔。deepseek-harness 的答案是<strong>压缩（compaction）</strong>：把旧历史摘要成保留要点的高密度块，替换原文再继续——既守住窗口预算，又保住任务的目标与约束。这正是 <a href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a> 三层记忆的工程化形态。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>什么是上下文窗口？一次独立推理结束后它还在吗？</li>
+<li>&quot;模型知道&quot;和&quot;模型这次能看到&quot;有什么区别？</li>
+<li>为什么窗口会满、长上下文贵？</li>
+<li>为什么信息在窗口内也可能被&quot;漏掉&quot;？</li>
+<li>Agent 为什么需要主动管理上下文（摘要、截断、检索）？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>上下文窗口是一次推理能处理的 token 数上限（输入+输出）。每次独立推理结束窗口即清空，模型不跨请求记忆，除非把旧内容重新放进窗口。</li>
+<li>&quot;知道&quot;指预训练学进权重的世界知识；&quot;这次能看到&quot;指本次窗口内的临时材料。前者是长期记忆，后者是一次性输入，两者来源和生命周期不同。</li>
+<li>窗口有限一是注意力计算/显存随序列增长成本高，二是单请求 token 预算有限。越长窗口单次更贵、更慢；产品上需截断、摘要或检索来应对&quot;塞不下&quot;。</li>
+<li>因为长上下文中每个位置被分配的注意力会被大量内容稀释，深处的关键信息权重过低，模型可能&quot;看到了却没注意&quot;，导致漏答或答错。</li>
+<li>因为窗口有限、计费按 token、且长文的中间信息容易被忽略。Agent 通过摘要旧对话、截断、用 RAG 检索相关片段，把&quot;最该看的内容&quot;精炼地放进窗口，保证既省成本又不丢关键信息。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想搞清楚&quot;能力从何而来 / 会凭空冒出来吗&quot; → <a href="06-08-emergent-capabilities.html">06-08 能力从何而来</a>。</li>
+<li>想落地进行窗口管理 / RAG / 摘要 → <a href="../07-llm-engineering/README.html">07 LLM 工程</a>。</li>
+<li>想了解 Agent 如何组织记忆（工具、会话） → <a href="../08-agent-foundations/README.html">08 Agent 基础</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

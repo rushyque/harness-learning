@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>概率与分布 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E5%B8%83">概率与分布</h1>
+<blockquote>
+<p>目标：把概率当成&quot;量化不确定性的语言&quot;。读完这一页，你能区分事件与随机变量、离散与连续分布、概率质量函数与概率密度函数，并说出最常用几种分布的样子、用途和形状。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%88%E5%AD%A6%E6%A6%82%E7%8E%87">为什么先学概率</h2>
+<p>先不从任何技术说起，只看你每天都在面对的生活。</p>
+<ul>
+<li>明天会不会下雨？天气预报说&quot;70% 概率有雨&quot;。</li>
+<li>这枚硬币抛起来，是哪一面朝上？</li>
+<li>你走过一条马路，会不会恰好遇到红灯？</li>
+</ul>
+<p>这些问题的共同点是：<strong>我们没法百分百确定答案，却能给每一种可能分配一个&quot;把握程度&quot;</strong>。70% 有雨、一半对一半、大概率遇到红灯——这些话虽然不保证某一次的结果，却能在决策前给出量化的判断。</p>
+<p>概率论就是把&quot;我拿不准&quot;变成&quot;我可以计算、可以更新&quot;的那套语言。它不是&quot;玄学&quot;，而是一套严格、可计算的公理系统：先约定怎么用数字表达&quot;可能性&quot;，再研究这些数字之间如何互相转换。</p>
+<p>为什么要费这么大劲去量化&quot;不确定&quot;？因为<strong>真实世界的信息往往不是&quot;是或否&quot;，而是&quot;有多大的可能&quot;</strong>。能分清&quot;几乎确定&quot;、&quot;五五开&quot;和&quot;大概不行&quot;，你就能在没有绝对把握的时候，仍然做出理性选择。许多现代系统（包括各种会&quot;猜&quot;的软件）之所以能工作，靠的就是这种&quot;用数字表达可能性，再在可能之间做取舍&quot;的能力。这一页先把这套语言本身学通，至于它具体怎么帮到某些系统，放到后面章节自然就接上了。</p>
+<h2 id="%E5%9F%BA%E6%9C%AC%E5%85%AC%E7%90%86%E4%B8%8E%E8%AE%B0%E5%8F%B7">基本公理与记号</h2>
+<p>用 $\Omega$ 表示<strong>样本空间</strong>（所有可能结果的集合），用 $A$、$B$ 表示<strong>事件</strong>（结果的子集）。概率是给事件赋一个 $0$ 到 $1$ 之间数字的规则，满足三条公理：</p>
+<p>$$
+\text{1. } P(A)\ge 0;\qquad
+\text{2. } P(\Omega)=1;\qquad
+\text{3. 互斥事件并的概率 = 各概率之和}
+$$</p>
+<p>常用记号：</p>
+<p>$$
+P(A)\quad\text{事件 A 的概率}
+$$</p>
+<p>$$
+P(A\mid B)\quad\text{在 B 已发生的条件下，A 的概率}
+$$</p>
+<p>$$
+P(A,,B)\quad\text{A 和 B 同时发生的概率（联合概率）}
+$$</p>
+<h3 id="%E8%81%94%E5%90%88%E3%80%81%E8%BE%B9%E7%BC%98%E4%B8%8E%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">联合、边缘与条件概率</h3>
+<p>这是一个特别重要的三角关系，它们之间可以互相换算。用一张图沉淀它们的关系：</p>
+<pre><code class="language-mermaid">flowchart LR
+  J[&quot;P(A,B) 联合&lt;br/&gt;A 和 B 同时发生&quot;] --&gt;|&quot;对 B 求和&quot;| M[&quot;P(A) 边缘&lt;br/&gt;只看 A&quot;]
+  J --&gt;|&quot;除以 P(B)&quot;| C[&quot;条件概率&lt;br/&gt;在 B 的世界里看 A&quot;]
+  C --&gt;|&quot;乘回 P(B)&quot;| J
+  M -.-&gt; C
+</code></pre>
+<p>直观理解：$P(A\mid B)$ 是说&quot;在 B 发生的那部分世界里，A 占了多大比例&quot;。除法不过是&quot;只看 B 这一列，重新归一化&quot;。</p>
+<p>把&quot;重新归一化&quot;画出来最清楚：条件概率不是&quot;重置世界&quot;，而是<strong>把观察范围缩小到 B 已发生的那个子区域</strong>，再问其中 A 占多少比例</p>
+<p><img src="../assets/figures/fig-conditional.svg" alt="条件概率的文氏图"></p>
+<p>图中的交叉区域 $A\cap B$ 是&quot;同时发生&quot;；$P(A\mid B)$ 不是全局里 $A$ 占多少，而是<strong>在 B 里</strong> $A$ 占多少——所以分母是 $P(B)$，把 B 的面积归一成 1。分子则是 $P(A\cap B)$。这就解释了为什么它必须写成 $P(A\cap B)/P(B)$ 而不是别的样子。</p>
+<p><strong>全概率公式</strong>是上面这张图里&quot;把 B 的所有情况加起来&quot;的正式写法。如果 $B_1,\dots,B_k$ 是互斥且覆盖整个样本空间（称其为<strong>划分</strong>），那么：</p>
+<p>$$
+P(A) = \sum_i P(A\mid B_i)\cdot P(B_i)
+$$</p>
+<p>这个公式是后面 <a href="01-04-bayesian.html">01-04 贝叶斯视角</a> 里分母算法的地基，务必记牢。</p>
+<h3 id="%E7%8B%AC%E7%AB%8B">独立</h3>
+<p>如果</p>
+<p>$$
+P(A,,B) = P(A)\cdot P(B)
+$$</p>
+<p>就说 $A$ 和 $B$ <strong>独立</strong>——知不知道 $B$，对 $A$ 的概率没有影响。掷两次硬币，结果是独立的；但&quot;今天下雨&quot;和&quot;我带了伞&quot;不独立。</p>
+<p>独立 $\ne$ 互斥，这是经典易错点：</p>
+<ul>
+<li><strong>互斥</strong>：$A$ 和 $B$ 不能同时发生。</li>
+<li><strong>独立</strong>：$A$ 的发生不影响 $B$ 的概率。</li>
+</ul>
+<p>事实上，两个概率都非零且互斥的事件<strong>不可能</strong>独立：知道 $A$ 发生就排除了 $B$，这正是&quot;极度依赖&quot;。</p>
+<h2 id="%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">随机变量</h2>
+<p>先澄清一个容易绕进去的名字。我们说&quot;随机变量&quot;，听起来像个&quot;会随机变的数&quot;，但它其实不是变量，而是一个<strong>函数</strong>：它的工作是<strong>把一次随机试验的结果，翻译成一个数字</strong>。</p>
+<p>举例：抛一枚骰子，结果可能是&quot;1 点、2 点……6 点&quot;。这些结果本身不是数字，但你可以定义随机变量 $X$＝&quot;这次掷出的点数&quot;，于是 $X$ 把每一种结果对应到一个数字。再比如&quot;抛硬币&quot;，你可以定义 $X{=}1$ 表示正面、$X{=}0$ 表示反面——把正/反这个非数字结果，翻译成 0/1 两个数字。</p>
+<p>为什么要费这一道工序？因为<strong>数字才能进入计算</strong>。一旦结果变成了数字，我们就能求和、求平均、比较大小、画分布。这也是概率和&quot;普通&quot;数学接轨的那座桥：概率告诉你&quot;每个数字出现的可能性&quot;，而接下来的整页就在研究这些&quot;数字 + 概率&quot;的配对。</p>
+<p>按取值的方式，随机变量分两大类：有的只能取<strong>离散的几个值</strong>（骰子点数、正反），有的能取<strong>连续的一段范围</strong>（身高、温度、等待时间）。这两类描述方式不同，下面分别讲。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>取值</th>
+<th>例子</th>
+<th>描述它的函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>离散</td>
+<td>可数</td>
+<td>骰子点数、单词计数</td>
+<td>概率质量函数 PMF</td>
+</tr>
+<tr>
+<td>连续</td>
+<td>一段范围</td>
+<td>身高、温度</td>
+<td>概率密度函数 PDF</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E7%A6%BB%E6%95%A3%EF%BC%9A%E6%A6%82%E7%8E%87%E8%B4%A8%E9%87%8F%E5%87%BD%E6%95%B0-pmf">离散：概率质量函数 PMF</h3>
+<p>$P(X=x)$ 给出每个具体取值的概率。比如抛硬币 $P(X{=}1)=0.5,\ P(X{=}0)=0.5$。</p>
+<h3 id="%E8%BF%9E%E7%BB%AD%EF%BC%9A%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0-pdf">连续：概率密度函数 PDF</h3>
+<p>连续变量取到<strong>精确某一点</strong>的概率是 0（因为可以取值无穷多），所以我们讨论&quot;落在一个区间内&quot;的概率：</p>
+<p>$$
+P(a\le X\le b)=\int_a^b f(x),dx \quad\text{（密度曲线下的面积）}
+$$</p>
+<p>$f(x)$ 叫概率密度函数。它本身可以大于 1，但只要曲线下总面积等于 1 就合法。下面这张图把三种典型分布的&quot;形状语言&quot;画在一起：</p>
+<p><img src="../assets/figures/fig-distributions.svg" alt="常见概率分布的形状：正态、均匀、偏斜"></p>
+<blockquote>
+<p>常见误区：把 PDF 的取值 $f(x)$ 直接当概率。它不是——它是&quot;单位长度上的概率密度&quot;，真正概率是面积。密度高（曲线高）意味着&quot;落在这一小段的概率密度大&quot;，但概率要靠积分得到。</p>
+</blockquote>
+<h2 id="%E5%B8%B8%E8%A7%81%E7%A6%BB%E6%95%A3%E5%88%86%E5%B8%83">常见离散分布</h2>
+<h3 id="%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83-bernoulli">伯努利分布 Bernoulli</h3>
+<p>单次二选一实验：成功 $1$、失败 $0$。</p>
+<p>$$
+P(X{=}1)=p,\qquad P(X{=}0)=1-p
+$$</p>
+<p>例子：一次点击是否发生、一个词是否出现。它是分类问题的最小积木。</p>
+<h3 id="%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83-binomial">二项分布 Binomial</h3>
+<p>把 $n$ 次独立的伯努利实验加总，得到成功次数 $X\sim\mathrm{Bin}(n,p)$：</p>
+<p>$$
+P(X{=}k)=\binom{n}{k},p^{k}(1-p)^{n-k}
+$$</p>
+<p>其中二项系数 $\binom{n}{k}=\frac{n!}{k!(n-k)!}$（$n!$ 是阶乘，$n!=n\times(n-1)\times\dots\times1$）表示&quot;从 $n$ 次里选哪 $k$ 次成功&quot;的组合数。例子：$n$ 个用户里有几个转化。当 $n$ 很大时，二项分布趋近正态分布（这正是<strong>中心极限定理</strong>——&quot;大量独立随机量加总，总和趋近正态&quot;，本页稍后的术语卡会正式讲它——的一个体现）。</p>
+<h3 id="%E5%88%86%E7%B1%BB-%2F-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%88%86%E5%B8%83-categorical-%2F-multinomial">分类 / 多项式分布 Categorical / Multinomial</h3>
+<p>实验取值不止两个，而是 $k$ 个类别。单个样本叫 <strong>Categorical</strong>，$n$ 次取样计数叫 <strong>Multinomial</strong>。</p>
+<p>例子：一个词是&quot;名词/动词/形容词&quot;；一篇文档里各类词的计数。语言模型在每一步输出的正是&quot;下一个词在词表上的多项式/分类分布&quot;。理解它，就是理解大模型输出的最小单位。</p>
+<h2 id="%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83">常见连续分布</h2>
+<h3 id="%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83-uniform">均匀分布 Uniform</h3>
+<p>$[a,b]$ 区间内处处密度相等：</p>
+<p>$$
+f(x)=\frac{1}{b-a},\qquad a\le x\le b
+$$</p>
+<p>例子：随机初始化权重的兜底、&quot;无信息先验&quot;（意思是对结果不预设立场、把各处看得同等可能；<a href="01-04-bayesian.html">01-04 贝叶斯</a> 会正式讲先验这个概念）。</p>
+<h3 id="%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-normal-%2F-%E9%AB%98%E6%96%AF">正态分布 Normal / 高斯</h3>
+<p>$$
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+$$</p>
+<p>其中 $\mu$ 是均值（山峰位置），$\sigma$ 是标准差（胖瘦）。记作 $X\sim N(\mu,\sigma^2)$。</p>
+<p><strong>为什么它无处不在？</strong> 中心极限定理说：大量独立随机量之和，无论单个怎么分布，总和都趋近正态。测量误差、均值、噪声，常常都是正态。深度学习里权重的初始化也常假设近似正态。</p>
+<blockquote>
+<p>术语卡：<strong>中心极限定理</strong>（Central Limit Theorem）就是这么一条结论——&quot;很多独立的小随机扰动叠在一起，总和的分布趋近正态&quot;。上面的公式 $f(x)$ 你现在不用记，只需记住它的两个旋钮：$\mu$（mu，读&quot;缪&quot;）定山峰的<strong>位置</strong>，$\sigma$（sigma，读&quot;西格玛&quot;）定山峰的<strong>胖瘦</strong>，写在一起 $N(\mu,\sigma^2)$ 就完整描述了一条正态曲线。</p>
+</blockquote>
+<h3 id="%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81">标准正态</h3>
+<p>$\mu=0,\ \sigma=1$ 的叫标准正态 $Z\sim N(0,1)$，查表和研究最方便。</p>
+<h2 id="%E7%94%A8%E7%86%B5%E7%9C%8B%E5%88%86%E5%B8%83%EF%BC%88%E9%A2%84%E5%91%8A%EF%BC%89">用熵看分布（预告）</h2>
+<p>分布并没有&quot;哪个更随机&quot;的唯一答案，但可以量化。往后的 <a href="01-05-information-theory.html">01-05 信息论</a> 会引入<strong>熵</strong>来度量&quot;这个分布有多不确定&quot;。现在只需记住：均值/方差管&quot;位置和胖瘦&quot;，熵管&quot;有多随机&quot;。</p>
+<h2 id="%E5%8A%A8%E6%89%8B%EF%BC%9A%E9%87%87%E6%A0%B7%E4%B8%8E%E6%9F%A5%E7%9C%8B%E5%88%86%E5%B8%83">动手：采样与查看分布</h2>
+<pre><code class="language-python">import numpy as np
+
+# 伯努利：抛 10000 次，p=0.3
+coins = np.random.binomial(1, 0.3, size=10000)
+print(&quot;head ratio:&quot;, coins.mean())          # 约 0.3
+
+# 正态：均值 5，标准差 2
+x = np.random.normal(5, 2, size=5000)
+print(&quot;sample mean:&quot;, x.mean().round(3))    # 约 5
+print(&quot;sample std:&quot;,  x.std().round(3))     # 约 2
+
+# 分类分布：词表大小 5，模拟&quot;下一个词&quot;
+vocab = np.random.choice(5, size=1000, p=[0.1, 0.2, 0.5, 0.15, 0.05])
+counts = np.bincount(vocab) / len(vocab)
+print(&quot;empirical distribution:&quot;, counts.round(3))
+</code></pre>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>&quot;独立&quot;和&quot;互斥&quot;各举一个生活中的例子，并说明为什么不能混用。</li>
+<li>为什么连续随机变量取到精确某点的概率是 0？这又如何解释 PDF 可以大于 1？</li>
+<li>掷两次骰子，第一次结果是 3 的条件下，两次和为 8 的概率是多少？</li>
+<li>语言模型每一步输出的&quot;下一个词分布&quot;更接近哪种分布？</li>
+<li>用全概率公式，&quot;测阳性&quot;这个事件，为什么要把&quot;真阳 + 假阳&quot;两项相加？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li><strong>独立</strong>：连续抛两次硬币，第一次的结果不影响第二次。<strong>互斥</strong>：&quot;今天是周一&quot;和&quot;今天是周二&quot;不可能同时成立。二者不能混用：互斥强调&quot;不能同时发生&quot;，独立强调&quot;一个发生与否不改变另一个的概率&quot;。事实上两个互斥且非零概率的事件<strong>不可能</strong>独立——知道 A 发生就排除 B，正是极度依赖。</li>
+<li>连续变量取值不可数，落在&quot;恰好某一点&quot;这一段<strong>宽度为 0 的区间</strong>，所以概率是 0。PDF 是&quot;单位长度上的概率密度&quot;而非概率本身，只要曲线下的总面积等于 1，单点密度完全可以大于 1。</li>
+<li>已知第一次是 3，要两次和为 8，第二次必须掷出 5，概率是 $1/6$。</li>
+<li>更像<strong>分类（Categorical）分布</strong>：在固定词表上，对&quot;下一个词到底是哪一个&quot;给每个候选词一个概率。采样时按这个分布抽一个词，就得到一次&quot;随机生成&quot;。</li>
+<li>因为&quot;测阳性&quot;可以由两条互斥路径到达：确实有病且测阳（$P(+\mid\text{病})P(\text{病})$），或没病但误报阳性（$P(+\mid\text{健康})P(\text{健康})$）。这两条路径覆盖了所有&quot;阳性&quot;的来源，加起来就是全概率公式——这也是贝叶斯公式分母的由来。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想知道&quot;平均&quot;和&quot;波动&quot;如何用一个数字表达 → <a href="01-03-expectation.html">01-03 期望与方差</a>。</li>
+<li>想看&quot;如何用数据更新信念&quot; → <a href="01-04-bayesian.html">01-04 贝叶斯视角</a>。</li>
+<li>想在机器学习里正式用它做建模 → <a href="../03-machine-learning/README.html">03 机器学习</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

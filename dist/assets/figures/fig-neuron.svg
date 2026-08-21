@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="单个神经元：加权求和加偏置，再过非线性激活">
+  <rect x="0" y="0" width="680" height="360" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#1c2733">单个神经元：加权求和 z，再经过非线性激活 f</text>
+  <circle cx="100" cy="78" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="100" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x₁</text>
+  <text x="60" y="78" text-anchor="end" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w₁ = 0.8</text>
+  <line x1="120" y1="78" x2="212.0" y2="146.1" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M212.0 146.1 L209.0 150.1 L214.9 142.0 Z" fill="#0f4c81"/>
+  <circle cx="100" cy="152" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="100" y="156" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x₂</text>
+  <text x="60" y="152" text-anchor="end" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w₂ = -1.3</text>
+  <line x1="120" y1="152" x2="210.0" y2="152.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M210.0 152.0 L210.0 157.0 L210.0 147.0 Z" fill="#0f4c81"/>
+  <circle cx="100" cy="226" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="100" y="230" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x₃</text>
+  <text x="60" y="226" text-anchor="end" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w₃ = 0.5</text>
+  <line x1="120" y1="226" x2="212.0" y2="157.9" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M212.0 157.9 L214.9 162.0 L209.0 153.9 Z" fill="#0f4c81"/>
+  <rect x="240" y="96" width="250" height="130" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="365" y="124" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#33475b">线性结合</text>
+  <text x="365" y="146" text-anchor="middle" font-family="sans-serif" font-size="14.5" font-weight="700" fill="#0f4c81">z = w·x + b</text>
+  <line x1="252" y1="162" x2="478" y2="162" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="365" y="186" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#33475b">非线性激活</text>
+  <text x="365" y="208" text-anchor="middle" font-family="sans-serif" font-size="14.5" font-weight="700" fill="#0e7c66">a = f(z)</text>
+  <line x1="490" y1="152" x2="560.0" y2="152.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M560.0 152.0 L560.0 157.0 L560.0 147.0 Z" fill="#0e7c66"/>
+  <circle cx="592" cy="152" r="22" fill="#ffffff" stroke="#0e7c66" stroke-width="2"/>
+  <text x="592" y="156" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#0e7c66">a</text>
+  <text x="592" y="236" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">输出传给下一层</text>
+  <text x="365" y="270" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">w 表示每个输入的重要性，b 是独立的可调偏置</text>
+  <text x="365" y="296" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">z = 加权和（净输入）；a = 神经元输出</text></svg>

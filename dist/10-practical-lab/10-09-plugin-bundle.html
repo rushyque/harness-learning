@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写一个插件 Bundle：实现一处可分发扩展 · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../08-agent-foundations/README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="../08-agent-foundations/08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E5%86%99%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6-bundle%EF%BC%9A%E5%AE%9E%E7%8E%B0%E4%B8%80%E5%A4%84%E5%8F%AF%E5%88%86%E5%8F%91%E6%89%A9%E5%B1%95">写一个插件 Bundle：实现一处可分发扩展</h1>
+<blockquote>
+<p>目标：把你的能力打包成可复用的插件 bundle，作为独立扩展分发。读完这一页，你能说清&quot;工具/能力 → 插件 → bundle → profile&quot;的层级，也知道写自己 bundle 的最小骨架。</p>
+</blockquote>
+<h2 id="%E4%BB%8E%22%E5%B7%A5%E5%85%B7%22%E5%88%B0%22%E6%8F%92%E4%BB%B6%22%E5%88%B0%22bundle%22">从&quot;工具&quot;到&quot;插件&quot;到&quot;bundle&quot;</h2>
+<p>这几层的关系：</p>
+<pre><code class="language-text">工具（tool）：单个可执行动作
+插件（plugin）：一组能力的封装单元（可注册工具、挂事件、提供配置）
+bundle：把插件 + 配套（补丁、skill）打包成可分发的最小单位
+</code></pre>
+<p>当某个扩展想&quot;独立安装/复用&quot;，就应做成 bundle，让 <code>profile</code>/安装器能引用它（<a href="../09-agent-architecture/09-03-plugin-composition.html">09-03</a>）。</p>
+<p><img src="../assets/figures/fig-bundle-layers.svg" alt="工具 → 插件 → Bundle → Profile 层级"></p>
+<p>上图用一条阶梯把&quot;封装层级&quot;讲清楚：脚下是<strong>工具 tool</strong>（单个可执行动作），往上包成<strong>插件 plugin</strong>（一个能注册工具、挂事件、带配置的能力单元），再往上打包成<strong>Bundle</strong>（插件 + 配套补丁，可分发的最小单位），最后<strong>Profile</strong> 把若干 bundle 装配成可运行的 Agent 配方。那条蜿蜒的箭头就是从低到高的封装路径。理解这条链之后，&quot;要不要做成 bundle&quot;就有了判断依据：只想在本机快速试，改几行配置即可；要独立安装、被多个 profile 引用，才值得封装成 bundle。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6-bundle-%E7%9A%84%E7%9C%9F%E5%AE%9E%E7%BB%93%E6%9E%84">一个插件 bundle 的真实结构</h2>
+<p>以仓库里的 <code>packages/bundle/headless</code> 为例（真实文件，非示意）：</p>
+<pre><code class="language-text">packages/bundle/headless/
+  package.json        # 声明 dsh.bundle.patch: &quot;./cordis.patch.yml&quot; 与插件依赖
+  cordis.patch.yml    # 补丁层：插入/覆盖哪些插件行（entry）
+  src/                # 插件实现
+</code></pre>
+<p>关键机制：<code>package.json</code> 里的 <code>&quot;dsh&quot;: { &quot;bundle&quot;: { &quot;patch&quot;: &quot;./cordis.patch.yml&quot; } }</code> 就是 bundle 的&quot;身份证&quot;——profile 加载它时会读这个字段，把补丁层叠到自己的配置上。写之前先读 <code>packages/bundle/base/cordis.patch.yml</code>（内置注释很详细）和 <code>packages/bundle/headless/cordis.patch.yml</code>。</p>
+<h2 id="%E8%AF%BB%E6%87%82-headless-%E7%9A%84%E8%A1%A5%E4%B8%81%E5%B1%82%EF%BC%9A%E4%B8%89%E5%B1%82%E5%8F%A0%E5%8A%A0%E7%9A%84%E7%9C%9F%E5%AE%9E%E6%A0%B7%E6%9C%AC">读懂 headless 的补丁层：三层叠加的真实样本</h2>
+<p>补丁层的语法只有三种动作，headless 的 <code>cordis.patch.yml</code> 恰好各用了一次，是最好的教学样本：</p>
+<pre><code class="language-yaml"># 动作一：按 id 定位已有行，覆盖它的 config
+- id: system-prompt
+  config:
+    persona: &gt;-
+      You are a coding agent powered by the {{model}} model...
+
+# 动作二：按 id 关掉一个行
+- id: hmr
+  disabled: true
+
+# 动作三：insert 插入新行（自己或别的插件包）
+- insert:
+    - id: code-runtime
+      name: '@deepseek-ai/dsh-code-runtime-worker-thread'
+    - id: headless-runner
+      name: '@deepseek-ai/dsh-headless'
+      config:
+        task: !!js ctx.headlessStartup.task
+</code></pre>
+<p>三个动作对应三种扩展场景：改配置（换 persona）、做减法（关掉 Web 热重载）、做加法（插入 code-runtime 与 headless-runner 两个插件行）。注意最后一行的 <code>!!js ctx.headlessStartup.task</code>——cordis.yml 允许在 <code>config</code> 里用 <code>!!js</code> 表达式（两个感叹号，单个 <code>!js</code> 是 YAML 语法错误），它在加载时求值，从 <code>headless-startup</code> 插件注入的服务里取出命令行传入的任务文本。</p>
+<h2 id="%E8%A1%A5%E4%B8%81%E5%A6%82%E4%BD%95%E5%8F%A0%E6%88%90%E6%9C%80%E7%BB%88%E9%85%8D%E7%BD%AE">补丁如何叠成最终配置</h2>
+<p>加载器（<code>packages/boot/app-boot/src/profile.ts</code>）的合成规则是<strong>从空表开始逐层应用</strong>：</p>
+<pre><code class="language-text">最终插件行列表 = 空表
+  ← 依次应用每个 bundle 的 cordis.patch.yml（按 dsh.profile.bundles 顺序）
+  ← 再应用 profile 自己的 cordis.patch.yml（你的个人补丁）
+  ← 最后应用启动器层（--patch 文件与命令行旗标）
+</code></pre>
+<p>同 id 的行&quot;后写胜出&quot;，且<strong>整段 config 替换而非合并</strong>。这条规则解释了 base bundle 注释里的一句话：随模式变化的配置行不放 base，而是由每个模式 bundle 完整重述——否则一次覆盖就会把其他字段悄悄抹掉。这也正是 <a href="../09-agent-architecture/09-03-plugin-composition.html">09-03</a> &quot;配置驱动组合&quot;的落地机制。</p>
+<h2 id="%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7">插件实现长什么样</h2>
+<p><code>src/index.ts</code> 就是普通插件（与 <a href="10-05-write-a-tool.html">10-05</a> 同一套写法）：导出 <code>name</code>、<code>inject</code>（依赖的服务）、<code>Config</code>（zod 风格 schema 校验过的配置）和一个应用函数。headless 的 runner 声明 <code>inject: ['agentDefaultModel', 'agents', 'sessions']</code>——它要等这三个服务就绪才能建 Agent、驱动任务、刷 Session、打印结果、退出。bundle 没有任何&quot;特殊插件 API&quot;：<strong>bundle 只是&quot;插件 + 声明补丁&quot;的打包约定</strong>。</p>
+<h2 id="%E5%86%99-bundle-%E7%9A%84%E6%AD%A5%E9%AA%A4">写 bundle 的步骤</h2>
+<pre><code class="language-text">1. 明确扩展点：提供哪些工具/能力（复用能力缝）
+2. 写插件：实现注册逻辑（effect 里注册工具等）
+3. 写 cordis.patch.yml 并在 package.json 声明 dsh.bundle.patch
+4. 打包 &amp; 配置引用：让 profile 能加载它
+5. 测试：能被加载、工具可调用、权限正常
+</code></pre>
+<h2 id="%E4%B8%8E%22%E7%A7%81%E6%9C%89%E9%85%8D%E7%BD%AE%22%E7%9A%84%E5%8C%BA%E5%88%AB">与&quot;私有配置&quot;的区别</h2>
+<pre><code class="language-text">只在你的 profile 里加几行：快速试（但不可复用）
+做成 bundle：封装好、可分发、可复用（但更重）
+</code></pre>
+<p>原则：先小验证，再决定要不要&quot;正规化&quot;成可分发 bundle。</p>
+<h2 id="%E9%AA%8C%E8%AF%81%E6%B8%85%E5%8D%95">验证清单</h2>
+<pre><code class="language-text">package.json 声明 dsh.bundle.patch、依赖声明清楚
+插件能被加载（不外抛）
+提供的工具/能力可用
+权限/安全符合预期
+能被其他 profile 引用而不破坏
+</code></pre>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>工具、插件、bundle 的层级关系是什么？</li>
+<li>一个 bundle 最小要包含什么？</li>
+<li>为什么有时&quot;做成 bundle&quot;比&quot;改配置文件&quot;更好？</li>
+<li>写一个 bundle 的大致步骤是什么？</li>
+<li>验证 bundle 应检查哪些点？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>工具是单个动作；插件是能力的封装单元（注册工具/事件/配置）；bundle 把插件+配套补丁打包成可分发的最小单位。</li>
+<li>package.json（声明 dsh.bundle.patch 指向补丁文件）+ cordis.patch.yml（补丁层）+ 插件实现。</li>
+<li>因为 bundle 封装好、可分发、可复用、依赖清楚，适合&quot;要独立安装/被多个 profile 引用&quot;的扩展；而改配置只适合快速试。</li>
+<li>明确扩展点 → 写插件实现注册 → 写 cordis.patch.yml 并声明 dsh.bundle.patch → 打包并让 profile 引用 → 测试加载/可用/权限。</li>
+<li>声明清楚、依赖清楚、插件可加载不报错、提供的工具可用、权限符合预期、能被其他 profile 引用而不破坏。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想做端到端综合任务 → <a href="10-10-end-to-end.html">10-10 端到端任务</a>。</li>
+<li>想守扩展的安全边界 → <a href="../11-safety-governance/README.html">11 安全与治理</a>。</li>
+<li>想复习插件组合语法 → <a href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

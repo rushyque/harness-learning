@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" role="img" aria-label="RNN 时间展开：同一个单元在时间轴上重复使用，隐藏状态携带记忆">
+  <rect x="0" y="0" width="680" height="420" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">RNN 时间展开：同一套权重在每一步复用，h 携带记忆</text>
+  <circle cx="90" cy="118" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="90" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x0</text>
+  <text x="90" y="88" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">词 0</text>
+  <circle cx="260" cy="118" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="260" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x1</text>
+  <text x="260" y="88" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">词 1</text>
+  <circle cx="430" cy="118" r="20" fill="#ffffff" stroke="#0f4c81" stroke-width="2"/>
+  <text x="430" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f4c81">x2</text>
+  <text x="430" y="88" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#5e6b7a">词 2</text>
+  <rect x="60" y="170" width="60" height="56" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="90" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">单元</text>
+  <text x="90" y="202" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">tanh</text>
+  <rect x="230" y="170" width="60" height="56" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="260" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">单元</text>
+  <text x="260" y="202" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">tanh</text>
+  <rect x="400" y="170" width="60" height="56" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="430" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">单元</text>
+  <text x="430" y="202" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#0f4c81">tanh</text>
+  <line x1="90" y1="138" x2="90.0" y2="160.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M90.0 160.0 L85.0 160.0 L95.0 160.0 Z" fill="#0f4c81"/>
+  <line x1="260" y1="138" x2="260.0" y2="160.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M260.0 160.0 L255.0 160.0 L265.0 160.0 Z" fill="#0f4c81"/>
+  <line x1="430" y1="138" x2="430.0" y2="160.0" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M430.0 160.0 L425.0 160.0 L435.0 160.0 Z" fill="#0f4c81"/>
+  <line x1="120" y1="198" x2="220.0" y2="198.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M220.0 198.0 L220.0 203.0 L220.0 193.0 Z" fill="#b26a00"/>
+  <line x1="290" y1="198" x2="390.0" y2="198.0" stroke="#b26a00" stroke-width="2.5"/>
+  <path d="M390.0 198.0 L390.0 203.0 L390.0 193.0 Z" fill="#b26a00"/>
+  <circle cx="90" cy="288" r="20" fill="#ffffff" stroke="#0e7c66" stroke-width="2"/>
+  <text x="90" y="292" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">h0</text>
+  <line x1="90" y1="226" x2="90.0" y2="258.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M90.0 258.0 L85.0 258.0 L95.0 258.0 Z" fill="#0e7c66"/>
+  <circle cx="260" cy="288" r="20" fill="#ffffff" stroke="#0e7c66" stroke-width="2"/>
+  <text x="260" y="292" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">h1</text>
+  <line x1="260" y1="226" x2="260.0" y2="258.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M260.0 258.0 L255.0 258.0 L265.0 258.0 Z" fill="#0e7c66"/>
+  <circle cx="430" cy="288" r="20" fill="#ffffff" stroke="#0e7c66" stroke-width="2"/>
+  <text x="430" y="292" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#0e7c66">h2</text>
+  <line x1="430" y1="226" x2="430.0" y2="258.0" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M430.0 258.0 L425.0 258.0 L435.0 258.0 Z" fill="#0e7c66"/>
+  <text x="300" y="322" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">前一步的 h 与当前 x 一起，更新出这一步的记忆</text>
+  <text x="300" y="346" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">同一套 W_h、W_x、b 在每一步被共享 → 可处理任意长度</text>
+  <line x1="30" y1="372" x2="650" y2="372" stroke="#9db4cc" stroke-width="1.5"/>
+  <text x="340.0" y="366" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1c2733">▾ 往下：LSTM 用三个门控制细胞状态 c 的读写</text>
+  <text x="250" y="400" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">遗忘门 f        输入门 i        输出门 o，都乘在 c 的通路上</text></svg>

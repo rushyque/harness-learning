@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="困惑度直觉刻度">
+  <rect x="0" y="0" width="680" height="360" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">困惑度 PPL：平均在几个词之间“拿不准”</text>
+  <line x1="80" y1="150" x2="600" y2="150" stroke="#9db4cc" stroke-width="2"/>
+  <circle cx="80" cy="150" r="7" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="80" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">PPL=1</text>
+  <line x1="80" y1="150" x2="80" y2="176" stroke="#0e7c66" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="80" y="206" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#5e6b7a">每次都锁定唯一词（理想）</text>
+  <circle cx="235" cy="150" r="7" fill="#dcefe7" stroke="#0e7c66" stroke-width="2"/>
+  <text x="235" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#0e7c66">PPL=10</text>
+  <line x1="235" y1="150" x2="235" y2="176" stroke="#0e7c66" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="235" y="206" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#5e6b7a">在 10 个词里纠结</text>
+  <circle cx="370" cy="150" r="7" fill="#f7e9d2" stroke="#b26a00" stroke-width="2"/>
+  <text x="370" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b26a00">PPL=100</text>
+  <line x1="370" y1="150" x2="370" y2="176" stroke="#b26a00" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="370" y="206" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#5e6b7a">拿不太准，很发散</text>
+  <circle cx="540" cy="150" r="7" fill="#f6dddc" stroke="#b23a2a" stroke-width="2"/>
+  <text x="540" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#b23a2a">PPL=1e5</text>
+  <line x1="540" y1="150" x2="540" y2="176" stroke="#b23a2a" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="540" y="206" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="400" fill="#5e6b7a">几乎随机</text>
+  <text x="340" y="250" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">越低越好；但要在同一数据集、同一词表上才可比</text>
+  <text x="340" y="280" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">loss 与 PPL 是同一件事：PPL = exp(loss)</text>
+  <text x="340" y="320" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="400" fill="#5e6b7a">模型平均在 N 个词里选——这就是“不确定度”</text>
+</svg>

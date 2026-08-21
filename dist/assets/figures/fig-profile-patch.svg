@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" role="img" aria-label="基础 bundle + 补丁派生变体">
+  <rect x="0" y="0" width="680" height="400" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1c2733">同一套骨架 + 不同补丁 = 不同专用 Agent</text>
+  <rect x="60" y="90" width="180" height="130" rx="8" fill="#dce8f5" stroke="#0f4c81" stroke-width="2"/>
+  <text x="150" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">基础 bundle</text>
+  <text x="150" y="150" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">通用能力骨架</text>
+  <text x="150" y="174" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">+ shell / fs</text>
+  <text x="150" y="196" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">+ llm 适配</text>
+  <text x="150" y="216" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#5e6b7a">(通用基座)</text>
+  <rect x="280" y="90" width="200" height="34" rx="6" fill="#fafbfc" stroke="#b26a00" stroke-width="2"/>
+  <text x="380" y="112" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#b26a00">补丁 A：+web</text>
+  <rect x="280" y="132" width="200" height="34" rx="6" fill="#fafbfc" stroke="#0e7c66" stroke-width="2"/>
+  <text x="380" y="154" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#0e7c66">补丁 B：改系统提示</text>
+  <rect x="280" y="174" width="200" height="34" rx="6" fill="#fafbfc" stroke="#b23a2a" stroke-width="2"/>
+  <text x="380" y="196" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#b23a2a">补丁 C：禁某能力</text>
+  <line x1="240" y1="108" x2="266.0" y2="106.6" stroke="#b26a00" stroke-width="2"/>
+  <path d="M266.0 106.6 L266.3 111.5 L265.7 101.6 Z" fill="#b26a00"/>
+  <line x1="240" y1="150" x2="266.0" y2="148.6" stroke="#0f4c81" stroke-width="2"/>
+  <path d="M266.0 148.6 L266.3 153.5 L265.7 143.6 Z" fill="#0f4c81"/>
+  <line x1="240" y1="192" x2="266.0" y2="190.6" stroke="#0e7c66" stroke-width="2"/>
+  <path d="M266.0 190.6 L266.3 195.5 L265.7 185.6 Z" fill="#0e7c66"/>
+  <rect x="530" y="90" width="120" height="90" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="2"/>
+  <text x="590" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#5b3aa6">Agent 变体</text>
+  <text x="590" y="144" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">叠加 overlay</text>
+  <text x="590" y="166" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="400" fill="#33475b">派生 + 组合</text>
+  <text x="590" y="188" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="400" fill="#5e6b7a">避免重复维护</text>
+  <line x1="484" y1="107" x2="516.0" y2="107.0" stroke="#b26a00" stroke-width="2"/>
+  <path d="M516.0 107.0 L516.0 112.0 L516.0 102.0 Z" fill="#b26a00"/>
+  <line x1="484" y1="149" x2="516.0" y2="149.0" stroke="#b26a00" stroke-width="2"/>
+  <path d="M516.0 149.0 L516.0 154.0 L516.0 144.0 Z" fill="#b26a00"/>
+  <line x1="484" y1="191" x2="516.0" y2="191.0" stroke="#b26a00" stroke-width="2"/>
+  <path d="M516.0 191.0 L516.0 196.0 L516.0 186.0 Z" fill="#b26a00"/>
+  <rect x="60" y="300" width="400" height="60" rx="8" fill="#e5e0f4" stroke="#5b3aa6" stroke-width="1.5"/>
+  <text x="260" y="326" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#5b3aa6">最小安全面：不在配置里的插件不出现</text>
+  <text x="260" y="348" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="400" fill="#33475b">不暴露 = 最强的安全</text>
+</svg>

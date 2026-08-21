@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多步推理：从&amp;quot;一步回答&amp;quot;到&amp;quot;拆开一步步想&amp;quot; · Agent 知识图谱</title>
+<link rel="stylesheet" href="../assets/docsify/docsify.min.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/static.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="章节导航">
+  <h1 class="app-name"><a href="../index.html">Agent 知识图谱</a></h1>
+  <ul class="sidebar-nav"><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../index.html">首页</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../00-curriculum/README.html">学习路线</a></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../01-math-foundations/README.html">数学基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-01-linear-algebra.html">01-01 线性代数</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-02-probability.html">01-02 概率与分布</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-03-expectation.html">01-03 期望与方差</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-04-bayesian.html">01-04 贝叶斯视角</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-05-information-theory.html">01-05 信息论</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-06-gradient.html">01-06 梯度与微分</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-07-optimization.html">01-07 最优化</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-08-matrix-decomposition.html">01-08 矩阵分解</a></li><li><a class="dsh-nav-leaf" href="../01-math-foundations/01-09-probabilistic-graphs.html">01-09 图与概率图</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../02-programming-basics/README.html">编程基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-01-python-basics.html">02-01 Python 基础</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-02-numpy.html">02-02 NumPy</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-03-data-structures.html">02-03 数据结构</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-04-engineering-habits.html">02-04 工程习惯</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-05-version-control.html">02-05 版本控制</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-06-reading-typescript.html">02-06 读 TypeScript 仓库</a></li><li><a class="dsh-nav-leaf" href="../02-programming-basics/02-07-python-for-research.html">02-07 用 Python 做研究</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../03-machine-learning/README.html">机器学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-01-supervised-overview.html">03-01 监督学习全景</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-02-linear-regression.html">03-02 线性回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-03-logistic-regression.html">03-03 逻辑回归</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-04-bias-variance.html">03-04 偏差-方差与正则化</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-05-evaluation-metrics.html">03-05 评估指标</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-06-trees-ensemble.html">03-06 树与集成</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-07-unsupervised.html">03-07 无监督</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-08-feature-engineering.html">03-08 特征工程</a></li><li><a class="dsh-nav-leaf" href="../03-machine-learning/03-09-learning-curves.html">03-09 学习曲线与诊断</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../04-deep-learning/README.html">深度学习</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-01-neural-net-intuition.html">04-01 神经网络直觉</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-02-backpropagation.html">04-02 前向与反向传播</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-03-activations.html">04-03 激活函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-04-loss-functions.html">04-04 损失函数</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-05-optimizers.html">04-05 优化器</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-06-training-tricks.html">04-06 训练技巧</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-07-cnn.html">04-07 CNN</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-08-rnn-lstm.html">04-08 RNN/LSTM</a></li><li><a class="dsh-nav-leaf" href="../04-deep-learning/04-09-distributed.html">04-09 分布式训练基础</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../05-nlp-transformers/README.html">NLP 与 Transformer</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-01-lm-basics.html">05-01 语言模型的起点</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-02-word-representation.html">05-02 词表示</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-03-tokenization.html">05-03 子词分词</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-04-seq2seq.html">05-04 Seq2Seq</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-05-attention.html">05-05 注意力机制</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-06-transformer.html">05-06 Transformer</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-07-positional-encoding.html">05-07 位置编码</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-08-pretraining.html">05-08 预训练范式</a></li><li><a class="dsh-nav-leaf" href="../05-nlp-transformers/05-09-nlp-tasks.html">05-09 NLP 任务全景</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../06-llm-fundamentals/README.html">LLM 原理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-01-what-is-llm.html">06-01 LLM 是什么</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-02-token-through-model.html">06-02 从输入到输出</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-03-tokenizer.html">06-03 Tokenizer 深入</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-04-scaling-laws.html">06-04 缩放定律</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-05-training-stages.html">06-05 训练三阶段</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-06-loss-objective.html">06-06 损失与目标</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-07-context-window.html">06-07 上下文窗口</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08 能力从何而来</a></li><li><a class="dsh-nav-leaf" href="../06-llm-fundamentals/06-09-limits-hallucination.html">06-09 局限与幻觉</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../07-llm-engineering/README.html">LLM 工程</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-01-training-engineering.html">07-01 训练工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-02-inference-optimization.html">07-02 推理优化</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-03-context-engineering.html">07-03 上下文工程</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-04-alignment.html">07-04 对齐</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-05-dpo.html">07-05 DPO 与替代</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-06-hallucination.html">07-06 幻觉与缓解</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-07-evaluation.html">07-07 评估基准</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-08-rag.html">07-08 RAG</a></li><li><a class="dsh-nav-leaf" href="../07-llm-engineering/07-09-finetuning.html">07-09 微调实践</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="README.html">Agent 基础</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="08-01-what-is-an-agent.html">08-01 什么是 Agent</a></li><li><a class="dsh-nav-leaf" href="08-02-tools-and-function-calling.html">08-02 工具调用</a></li><li><a class="dsh-nav-leaf" href="08-03-agent-loop.html">08-03 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="08-04-memory-systems.html">08-04 记忆系统</a></li><li><a class="dsh-nav-leaf" href="08-05-planning.html">08-05 规划</a></li><li><a class="dsh-nav-leaf" href="08-06-reflection.html">08-06 反思与自我修正</a></li><li><a class="dsh-nav-leaf" href="08-07-multi-step.html">08-07 多步推理</a></li><li><a class="dsh-nav-leaf" href="08-08-agent-evaluation.html">08-08 Agent 评估</a></li><li><a class="dsh-nav-leaf" href="08-09-failure-modes.html">08-09 常见失败模式</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../09-agent-architecture/README.html">Agent 架构</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-01-design-principles.html">09-01 框架设计原则</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-02-capability-seam.html">09-02 能力缝</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-03-plugin-composition.html">09-03 插件化组合</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-04-event-loop.html">09-04 事件驱动循环</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-05-session-log.html">09-05 会话日志与可追溯</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-06-scope-permission.html">09-06 作用域与权限</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-07-workflow-vs-agent.html">09-07 工作流 vs Agent</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-08-multi-agent.html">09-08 多智能体协作</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-09-observability.html">09-09 可观测性</a></li><li><a class="dsh-nav-leaf" href="../09-agent-architecture/09-10-state-recovery.html">09-10 状态与恢复</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../10-practical-lab/README.html">实战 Lab</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-01-environment.html">10-01 环境与仓库</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-02-boot-flow.html">10-02 读懂启动流程</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-03-session-internals.html">10-03 拆解会话日志</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-04-agent-loop.html">10-04 拆解 Agent 循环</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-05-write-a-tool.html">10-05 写一个工具</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-06-write-a-skill.html">10-06 写一个 skill</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-07-mcp.html">10-07 接入 MCP 服务器</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-08-custom-profile.html">10-08 搭自定义 profile</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-09-plugin-bundle.html">10-09 写一个插件 bundle</a></li><li><a class="dsh-nav-leaf" href="../10-practical-lab/10-10-end-to-end.html">10-10 端到端任务</a></li></ul></li><li class="dsh-chapter-li"><a class="dsh-nav-chapter" href="../11-safety-governance/README.html">安全与治理</a><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-01-permissions.html">11-01 权限与最小化</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-02-sandbox.html">11-02 沙箱与隔离</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-03-prompt-injection.html">11-03 提示注入</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-04-tool-safety.html">11-04 工具安全</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-05-privacy.html">11-05 数据隐私</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-06-redteam.html">11-06 红队与对抗</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-07-audit.html">11-07 可追溯与审计</a></li><li><a class="dsh-nav-leaf" href="../11-safety-governance/11-08-eval-driven.html">11-08 评估驱动改进</a></li></ul></li><li class="dsh-chapter-li"><span class="dsh-nav-chapter">参考资料</span><ul class="dsh-tree"><li><a class="dsh-nav-leaf" href="../reference/README.html">参考资料</a></li><li><a class="dsh-nav-leaf" href="../reference/glossary.html">术语表</a></li><li><a class="dsh-nav-leaf" href="../reference/reading-list.html">书单</a></li></ul></li></ul>
+</nav>
+<section class="content">
+  <main class="markdown-section"><h1 id="%E5%A4%9A%E6%AD%A5%E6%8E%A8%E7%90%86%EF%BC%9A%E4%BB%8E%22%E4%B8%80%E6%AD%A5%E5%9B%9E%E7%AD%94%22%E5%88%B0%22%E6%8B%86%E5%BC%80%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%83%B3%22">多步推理：从&quot;一步回答&quot;到&quot;拆开一步步想&quot;</h1>
+<blockquote>
+<p>目标：理解 CoT、ReAct、自一致性这类&quot;把推理展开&quot;的技巧为什么有用、怎么用。读完这一页，你能说清多步推理如何提升复杂任务正确率，也知道它的代价。</p>
+</blockquote>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%22%E4%B8%80%E6%AD%A5%E6%83%B3%E5%AE%8C%22%E5%AE%B9%E6%98%93%E9%94%99">为什么&quot;一步想完&quot;容易错</h2>
+<p>让模型直接回答一个复杂问题：</p>
+<pre><code class="language-text">问：三个人各有年龄，条件……最后问某人的年龄？答：X
+</code></pre>
+<p>模型若试图&quot;一步算完&quot;，中间步骤容易出错、且没法回看。而把推理&quot;展开成多步&quot;，每一步更简单、也可校验，整体准确率更高（<a href="../06-llm-fundamentals/06-08-emergent-capabilities.html">06-08</a>）。</p>
+<p>这就是**多步推理（multi-step reasoning）**的价值：把复杂问题拆成&quot;看得见、能检查&quot;的中途步骤。</p>
+<h2 id="%E6%80%9D%E7%BB%B4%E9%93%BE-cot%EF%BC%9A%E8%AE%A9%E4%B8%AD%E9%97%B4%E6%AD%A5%E9%AA%A4%E6%98%BE%E5%BC%8F%E5%8C%96">思维链 CoT：让中间步骤显式化</h2>
+<p><strong>Chain-of-Thought（思维链）</strong>：在 prompt 里让模型&quot;先一步步推理，再给结论&quot;。07 章你已经把它当 prompt 技巧用过（<a href="../07-llm-engineering/07-03-context-engineering.html">07-03</a>）；这一页换一个角度看它——它不只是&quot;提示词写法&quot;，更是一切多步推理的基础形态。</p>
+<pre><code class="language-text">直接问：这个逻辑题答案是？   （可能直接错）
+引导：请一步步推理再给答案。 （准确率更高）
+</code></pre>
+<p>可以说 CoT 把&quot;模型的隐藏思考&quot;外化成可读文本，既提高了正确率，也让每一步可被人类/系统检查。</p>
+<p><img src="../assets/figures/fig-cot-multi-step.svg" alt="一步想完 vs 多步推理"></p>
+<p>上图对比两种做法：左边&quot;一步想完&quot;问题直接给答案，推理链一长就容易一步错全错，中间步骤也没法回看；右边把推理展开成步骤 1 → 2 → 3，每一步更简单、可检验、中间结果可见可定位。下方补上 CoT 与 ReAct 的区分：CoT 侧重把隐藏思考外化成一串文本步骤，ReAct 则再加&quot;真实行动取 Observation&quot;。</p>
+<h2 id="react%EF%BC%9A%E6%8E%A8%E7%90%86-%2B-%E8%A1%8C%E5%8A%A8%E4%BA%A4%E6%9B%BF">ReAct：推理 + 行动交替</h2>
+<p>如果&quot;推理&quot;还需要外部事实，光靠模型自己想不够。<strong>ReAct</strong>（Reason + Act）让&quot;推理&quot;和&quot;取信息/行动&quot;交替：</p>
+<pre><code class="language-text">Thought：我该查什么？
+Action：调用搜索/工具
+Observation：检索到结果
+Thought：根据结果下一步
+...
+</code></pre>
+<p>你已经接触过它（<a href="08-01-what-is-an-agent.html">08-01</a>）。ReAct 本质上就是&quot;Agent 循环里的多步推理&quot;：每一步都从真实工具结果获取新依据，再决定下一步。</p>
+<h2 id="%E8%87%AA%E4%B8%80%E8%87%B4%E6%80%A7-cot-sc%EF%BC%9A%E5%A4%9A%E8%B7%AF%E9%87%87%E6%A0%B7%E5%8F%96%E5%A4%9A%E6%95%B0">自一致性 CoT-SC：多路采样取多数</h2>
+<p>一个模型一次推理可能错。<strong>Self-Consistency（自一致性，CoT-SC）</strong>——SC 就是 Self-Consistency 的缩写——思路是：</p>
+<pre><code class="language-text">同一个问题，让模型生成多条独立推理路径
+统计每条路径的最终答案，投票/取多数
+→ 多数一致性答案往往更可靠
+</code></pre>
+<p>这相当于&quot;多个推理器投票&quot;，比单条更稳，但要多烧几倍 token。</p>
+<p><img src="../assets/figures/fig-self-consistency.svg" alt="自一致性多路投票"></p>
+<p>上图演示 Self-Consistency：对同一个问题生成多条独立推理路径，路径 A 与 C 都得到答案 X、路径 B 得答案 Y，于是按多数投票选 X。这相当于&quot;多个推理器投票&quot;消减单条路径的偶然错误，代价是多烧几倍 token——适合关键、复杂、高风险任务。</p>
+<h2 id="%E4%B8%80%E4%B8%AA-cot-%E7%9A%84-prompt-%E7%A4%BA%E4%BE%8B">一个 CoT 的 prompt 示例</h2>
+<pre><code class="language-python">def cot_prompt(question):
+    return (
+        &quot;请一步一步思考，最后再给出答案。\n&quot;
+        &quot;问题：&quot; + question
+    )
+
+# 或给 few-shot 例子，展示&quot;先步骤后答案&quot;的格式
+few_shot = &quot;&quot;&quot;示例：
+问：3+4*2=?
+答：先算乘法 4*2=8，再算 3+8=11。答案是 11。
+&quot;&quot;&quot;
+</code></pre>
+<h2 id="%E5%A4%9A%E6%AD%A5%E6%8E%A8%E7%90%86%E7%9A%84%E4%BB%A3%E4%BB%B7%E4%B8%8E%E8%BE%B9%E7%95%8C">多步推理的代价与边界</h2>
+<pre><code class="language-text">慢/贵：每多一步都要多 token、多轮次
+会暴露中间思考：产品上有时要隐藏/裁剪（不暴露给用户）
+仍可能错：一步步推理不代表绝对正确，只是更稳
+需可验证：有工具结果/规则时，配合验证（[08-06](08-06-reflection.md)）更可靠
+</code></pre>
+<p>所以多步推理是有取舍的：<strong>在关键、复杂、高风险任务上用，简单任务别浪费。</strong></p>
+<h2 id="%E4%B8%8E-agent-%E7%9A%84%E5%85%B3%E7%B3%BB">与 Agent 的关系</h2>
+<p>对 Agent，多步推理几乎就是&quot;决策展开&quot;：</p>
+<pre><code class="language-text">复杂任务 → 先 CoT 拆计划（[08-05](08-05-planning.md)）
+执行中 → ReAct 看结果再决定
+出错 → 反思修正（[08-06](08-06-reflection.md)）
+</code></pre>
+<p>把&quot;会推理&quot;变成&quot;会行动、会查证、会纠错&quot;，正是这套文档从模型到 Agent 的主线。</p>
+<h2 id="%E6%80%9D%E8%80%83%E9%A2%98">思考题</h2>
+<ol>
+<li>为什么&quot;把推理展开成多步&quot;往往比&quot;一步想完&quot;正确率高？</li>
+<li>CoT 与 ReAct 的区别是什么？</li>
+<li>自一致性（CoT-SC）的思路是什么？</li>
+<li>多步推理的代价有哪些？</li>
+<li>在什么场景下应该&quot;别滥用&quot;多步推理？</li>
+</ol>
+<h2 id="%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88">参考答案</h2>
+<ol>
+<li>因为每一步更简单、更容易用已有子能力完成，且中间步骤可被检查/校验；一步想完时推理链过长、一步错全错且无法定位。</li>
+<li>CoT 侧重&quot;模型在内部把推理外化成一串思考步骤&quot;；ReAct 是在思考之外还穿插真实行动（查信息/调用工具换取 Observation），让推理有外部依据。</li>
+<li>让模型对同一问题生成多条独立推理路径，统计各答案出现的次数，取多数一致的那个，靠&quot;多数投票&quot;消减单条推理的偶然错误。</li>
+<li>更慢更贵（多 token、多轮）、中间思考可能需隐藏/裁剪、仍可能错（不绝对）、需要配合验证才可靠。</li>
+<li>简单或低风险任务用多步推理是浪费（烧 token、加延迟）；应在关键、复杂、高风险、需要查证的任务上使用，并配验证与预算上限。</li>
+</ol>
+<h2 id="%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</h2>
+<ul>
+<li>想量化 Agent 的表现 → <a href="08-08-agent-evaluation.html">08-08 Agent 评估</a>。</li>
+<li>想了解它为什么会失败 → <a href="08-09-failure-modes.html">08-09 常见失败模式</a>。</li>
+<li>想在架构里组织这些推理/行动 → <a href="../09-agent-architecture/README.html">09 Agent 架构</a>。</li>
+</ul>
+<p><a href="README.html">返回本章目录</a></p>
+</main>
+</section>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.querySelector('.markdown-section'), {
+          throwOnError: false, delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      } catch (e) {}
+    }
+  });
+</script>
+</body>
+</html>

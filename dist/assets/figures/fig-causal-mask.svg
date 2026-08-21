@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" role="img" aria-label="因果掩码：自注意力分数矩阵中未来位置置为 -inf，softmax 后权重为 0">
+  <rect x="0" y="0" width="680" height="420" rx="8" fill="#fafbfc"/>
+  <text x="340.0" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1c2733">因果掩码：预测第 t 个词只能用左边的词，不能看未来</text>
+  <text x="128" y="131.0" text-anchor="end" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">w₁</text>
+  <text x="128" y="191.0" text-anchor="end" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">w₂</text>
+  <text x="128" y="251.0" text-anchor="end" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">w₃</text>
+  <text x="128" y="311.0" text-anchor="end" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f4c81">w₄</text>
+  <text x="180.0" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">w₁</text>
+  <text x="240.0" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">w₂</text>
+  <text x="300.0" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">w₃</text>
+  <text x="360.0" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">w₄</text>
+  <rect x="150" y="96" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="180.0" y="131.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="210" y="96" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="240.0" y="131.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="270" y="96" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="300.0" y="131.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="330" y="96" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="360.0" y="131.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="150" y="156" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="180.0" y="191.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="210" y="156" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="240.0" y="191.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="270" y="156" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="300.0" y="191.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="330" y="156" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="360.0" y="191.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="150" y="216" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="180.0" y="251.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="210" y="216" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="240.0" y="251.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="270" y="216" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="300.0" y="251.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="330" y="216" width="60" height="60" rx="2" fill="#f6dddc" stroke="#b23a2a" stroke-width="1"/>
+  <text x="360.0" y="251.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#b23a2a">−inf</text>
+  <rect x="150" y="276" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="180.0" y="311.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="210" y="276" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="240.0" y="311.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="270" y="276" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="300.0" y="311.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <rect x="330" y="276" width="60" height="60" rx="2" fill="#dcefe7" stroke="#0e7c66" stroke-width="1"/>
+  <text x="360.0" y="311.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0e7c66">看</text>
+  <text x="340.0" y="360" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#33475b">左上三角是可见的过去，右上三角是必须遮住的未来</text>
+  <text x="340.0" y="388" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#5e6b7a">没有它，模型会“作弊”提前看到答案，失去学习意义</text>
+  <text x="340.0" y="410" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#b26a00">这是自回归生成式模型的灵魂</text>
+</svg>
