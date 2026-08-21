@@ -146,6 +146,36 @@
 </ul>
 <hr>
 <p><strong>下一步</strong>：进入 <a href="00-curriculum/README.html">00 学习路线</a>。</p>
+<hr>
+<h2 id="%F0%9F%94%A7-%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E3%80%81%E6%9E%84%E5%BB%BA%E4%B8%8E-github-pages-%E9%83%A8%E7%BD%B2">🔧 本地预览、构建与 GitHub Pages 部署</h2>
+<h3 id="%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88">本地预览</h3>
+<p><code>learning/</code> 是一套 docsify 知识库，入口是 <code>index.html</code>。docsify 靠浏览器动态加载 <code>.md</code>，所以<strong>直接双击 <code>index.html</code> 无法显示正文</strong>，需要起一个本地静态服务器（任选其一）：</p>
+<pre><code class="language-sh"># Python：
+python -m http.server 8080 --directory learning
+# 或 Node：
+npx serve learning
+</code></pre>
+<p>然后浏览器打开 <code>http://localhost:8080</code>。</p>
+<p>也可以直接打开<strong>已构建产物</strong> <code>dist/index.html</code>——它是<strong>全相对路径的纯静态页面</strong>，双击即可离线查看，无需任何服务器/编译。</p>
+<h3 id="%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9-dist%2F">重新构建静态站点 <code>dist/</code></h3>
+<p>修改了 <code>.md</code> 后，重新生成预渲染的静态站点：</p>
+<pre><code class="language-sh">cd build
+npm install        # 仅首次
+npm run build      # 输出到 ../dist
+</code></pre>
+<p><code>build/build.mjs</code> 用 markdown-it 把每个 <code>.md</code> 预渲染成独立 <code>.html</code>，改写内部链接为 <code>.html</code>、拷贝图/字体/KaTeX 资源、生成带章节侧边栏的布局，产物可离线运行、也可直接静态托管。</p>
+<h3 id="github-pages-%E5%9C%A8%E7%BA%BF%E8%AE%BF%E9%97%AE">GitHub Pages 在线访问</h3>
+<p>在线地址：<strong><a href="https://rushyque.github.io/harness-learning/">https://rushyque.github.io/harness-learning/</a></strong></p>
+<p>自动部署由一个 GitHub Actions 工作流（<code>.github/workflows/pages.yml</code>）驱动：推送到 <code>main</code> 时把仓库里<strong>已构建好的 <code>dist/</code> 原样发布</strong>（只拷贝、不编译）。</p>
+<p><strong>首次启用（只需一次，约 30 秒）：</strong></p>
+<ol>
+<li>打开仓库 <code>Settings → Pages</code></li>
+<li><strong>Build and deployment → Source</strong> 选择 <strong>「GitHub Actions」</strong>，点 Save</li>
+<li>到 <strong>Actions</strong> 页对「Deploy static site to GitHub Pages」点 <strong>Re-run failed jobs</strong>（或再对 <code>main</code> 做一次推送）</li>
+</ol>
+<p>之后每次「改 <code>.md</code> → <code>npm run build</code> → 推送 <code>main</code>」，Pages 都会自动更新。</p>
+<hr>
+<p>返回 <a href="00-curriculum/README.html">00 学习路线</a>。</p>
 </main>
 </section>
 <script src="assets/katex/katex.min.js"></script>
