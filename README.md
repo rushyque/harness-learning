@@ -80,10 +80,11 @@
 
 ---
 
-## 🔧 本地预览、构建与 GitHub Pages 部署
+
+## 🔧 本地预览与 GitHub Pages 部署
 
 ### 本地预览
-`learning/` 是一套 docsify 知识库，入口是 `index.html`。docsify 靠浏览器动态加载 `.md`，所以**直接双击 `index.html` 无法显示正文**，需要起一个本地静态服务器（任选其一）：
+`learning/` 是一套 docsify 知识库，入口是 `index.html`。docsify 靠浏览器动态加载 `.md`，所以需要起一个本地静态服务器（任选其一）：
 
 ```sh
 # Python：
@@ -93,30 +94,17 @@ npx serve learning
 ```
 然后浏览器打开 `http://localhost:8080`。
 
-也可以直接打开**已构建产物** `dist/index.html`——它是**全相对路径的纯静态页面**，双击即可离线查看，无需任何服务器/编译。
-
-### 重新构建静态站点 `dist/`
-修改了 `.md` 后，重新生成预渲染的静态站点：
-
-```sh
-cd build
-npm install        # 仅首次
-npm run build      # 输出到 ../dist
-```
-
-`build/build.mjs` 用 markdown-it 把每个 `.md` 预渲染成独立 `.html`，改写内部链接为 `.html`、拷贝图/字体/KaTeX 资源、生成带章节侧边栏的布局，产物可离线运行、也可直接静态托管。
-
 ### GitHub Pages 在线访问
 在线地址：**https://rushyque.github.io/harness-learning/**
 
-自动部署由一个 GitHub Actions 工作流（`.github/workflows/pages.yml`）驱动：推送到 `main` 时把仓库里**已构建好的 `dist/` 原样发布**（只拷贝、不编译）。
+Pages 直接部署这套 docsify **源站**（无需任何编译），保持与本地渲染一致的完整体验（搜索、进度学习层、KaTeX 等）。自动更新由 GitHub Actions 工作流（`.github/workflows/pages.yml`）驱动：推送到 `main` 时把仓库根目录原样发布。
 
 **首次启用（只需一次，约 30 秒）：**
 1. 打开仓库 `Settings → Pages`
 2. **Build and deployment → Source** 选择 **「GitHub Actions」**，点 Save
 3. 到 **Actions** 页对「Deploy static site to GitHub Pages」点 **Re-run failed jobs**（或再对 `main` 做一次推送）
 
-之后每次「改 `.md` → `npm run build` → 推送 `main`」，Pages 都会自动更新。
+之后每次 **改 `.md` → 推送 `main`**，Pages 会自动更新，无需编译。
 
 ---
 
