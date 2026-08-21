@@ -151,7 +151,6 @@ function pageHtml(htmlRel, assets, title, body) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)} · Agent 知识图谱</title>
-<link rel="stylesheet" href="${assets}/docsify/docsify.min.css">
 <link rel="stylesheet" href="${assets}/styles.css">
 <link rel="stylesheet" href="${assets}/katex/katex.min.css">
 <link rel="stylesheet" href="${assets}/static.css">
@@ -201,24 +200,11 @@ mkdirSync(OUT, { recursive: true });
 // copy needed assets
 copyDir(join(SRC, 'assets', 'figures'), join(OUT, 'assets', 'figures'));
 copyDir(join(SRC, 'assets', 'katex'), join(OUT, 'assets', 'katex'));
-copyDir(join(SRC, 'assets', 'docsify'), join(OUT, 'assets', 'docsify'));
 mkdirSync(join(OUT, 'assets'), { recursive: true });
 copyFileSync(join(SRC, 'assets', 'styles.css'), join(OUT, 'assets', 'styles.css'));
 
-// static.css (our layout overrides)
-const staticCss = `
-.sidebar { display:block !important; position:fixed; top:0; bottom:0; left:0; width:300px; overflow-y:auto; z-index:10; }
-.content { position: relative; margin-left: 300px; }
-.markdown-section { padding: 40px 48px; }
-.markdown-section img { max-width: 100%; }
-.sidebar-nav a.current { font-weight: 600; color: #42b983; }
-.dsh-nav-chapter { display:block; padding:6px 0; font-weight:600; }
-.dsh-tree { list-style:none; margin:0 0 8px 0; padding:0 0 0 12px; }
-.dsh-tree .dsh-nav-leaf { padding:3px 0; color:#666; font-weight:400; }
-.dsh-tree { display:block !important; max-height:none !important; }
-.dsh-chapter-li>ul { display:block; }
-`;
-writeFileSync(join(OUT, 'assets', 'static.css'), staticCss);
+
+copyFileSync(join(BUILD, 'static.css'), join(OUT, 'assets', 'static.css'));
 
 // build pages
 const results = [];
